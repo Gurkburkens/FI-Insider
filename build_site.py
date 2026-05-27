@@ -12,9 +12,7 @@ OUT_FILE = Path("docs/index.html")
 
 
 def fmt_sek(amount: float) -> str:
-            if amount >= 1_000_000:
-                            return f"{amount/1_000_000:.1f} Mkr"
-                    return f"{amount:,.0f} kr"
+                return f"{amount/1_000_000:.1f} Mkr" if amount >= 1_000_000 else f"{amount:,.0f} kr"
 
 
 def fmt_date(s: str) -> str:
