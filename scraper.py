@@ -19,6 +19,68 @@ THRESHOLD_SEK  = 1_000_000
 DAYS_BACK      = 30
 OUTPUT_FILE    = Path("data/trades.json")
 BASE_URL       = "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Search/Insyn"
+FI_BASE        = "https://marknadssok.fi.se"
+
+
+# ── Score-beräkning ────────────────────────────────────────────────────────────
+def calc_score(trade: dict) -> int:
+    """
+    Beräknar ett köp-signal-score från 0–100 baserat på:
+    - Belopp (ju större desto starkare signal)
+    - Roll (VD > styrelseordförande > styrelse > CFO > övriga)
+    - Instrumenttyp (aktier > teckningsoptioner)
+    - Hur nytt köpet är (färskare = starkare)
+    """
+    score = 0
+
+    # ── Belopp (0–35 poäng) ──
+    amount = trade.get("amount_sek", 0)
+    if   amount >= 50_000_000: score += 35
+    elif amount >= 20_000_000: score += 30
+    elif amount >= 10_000_000: score += 25
+    elif amount >=  5_000_000: score += 20
+    elif amount >=  3_000_000: score += 15
+    elif amount >=  2_000_000: score += 10
+    else:                      score +=  5
+
+    # ── Roll (0–30 poäng) ──
+    role = trade.get("role", "").lower()
+    if any(k in role for k in ["verkställande direktör", "vd", "ceo"]):
+        score += 30
+    elif any(k in role for k in ["ordförande", "chairman"]):
+        score += 25
+    elif any(k in role for k in ["styrelseledamot", "styrelse"]):
+        score += 20
+    elif any(k in role for k in ["ekonomichef", "cfo", "finanschef"]):
+        score += 15
+    elif any(k in role for k in ["ledande", "befattning"]):
+        score += 10
+    else:
+        score += 5
+
+    # ── Instrumenttyp (0–20 poäng) ──
+    instrument = trade.get("instrument", "").lower()
+    itype = trade.get("instrument_type", "").lower()
+    if "aktie" in itype or "aktie" in instrument:
+        score += 20
+    elif "teckningsoption" in itype or "warrant" in itype:
+        score += 8
+    else:
+        score += 12
+
+    # ── Färskhet (0–15 poäng) ──
+    try:
+        trade_date = datetime.fromisoformat(trade.get("trade_date", "")[:10])
+        days_ago = (datetime.now() - trade_date).days
+        if   days_ago <= 3:  score += 15
+        elif days_ago <= 7:  score += 12
+        elif days_ago <= 14: score += 8
+        elif days_ago <= 21: score += 4
+        else:                score += 1
+    except Exception:
+        score += 5
+
+    return min(score, 100)
 
 
 # ── Scraper ────────────────────────────────────────────────────────────────────
@@ -40,7 +102,6 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
         "Sec-Fetch-User": "?1",
     })
 
-    # Besök startsidan först för att få cookies
     try:
         session.get("https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Start/Insyn", timeout=15)
         time.sleep(1)
@@ -69,7 +130,14 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
             resp.raise_for_status()
         except requests.RequestException as e:
             print(f"  Fel vid hämtning: {e}")
-            break
+            # Försök igen en gång
+            time.sleep(3)
+            try:
+                resp = session.get(BASE_URL, params=params, timeout=30)
+                resp.raise_for_status()
+            except Exception:
+                print(f"  Ger upp efter retry.")
+                break
 
         soup = BeautifulSoup(resp.text, "html.parser")
         rows = soup.select("table tbody tr")
@@ -81,27 +149,26 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
         found_on_page = 0
         for row in rows:
             cells = [td.get_text(strip=True) for td in row.find_all("td")]
+            # Hämta anmälningslänk från sista td
+            link_tag = row.select_one("td a[href]")
+            fi_url = (FI_BASE + link_tag["href"]) if link_tag else ""
+
             if len(cells) < 14:
                 continue
-            trade = parse_row(cells)
+            trade = parse_row(cells, fi_url)
             if trade:
+                trade["score"] = calc_score(trade)
                 trades.append(trade)
                 found_on_page += 1
 
         print(f"    → {found_on_page} affärer över tröskel på sida {page}")
 
-        # Kolla om det finns nästa sida — testa flera varianter av hur FI skriver det
         has_next = (
             soup.find("a", string=lambda t: t and "Nästa" in t) or
             soup.find("a", rel="next") or
             soup.find("a", title=lambda t: t and f"Sida {page+1}" in t) or
             soup.find("a", href=lambda h: h and f"page={page+1}" in h)
         )
-
-        # Debug: visa alla paginerings-länkar
-        if page == 1:
-            pag_links = soup.select("ul li a, .pagination a, a[href*='page=']")
-            print(f"    Paginerings-länkar: {[a.get_text(strip=True) for a in pag_links[:8]]}")
 
         if not has_next:
             print(f"  Ingen nästa-sida, avslutar efter sida {page}.")
@@ -113,7 +180,7 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
     return trades
 
 
-def parse_row(cells: list[str]) -> dict | None:
+def parse_row(cells: list[str], fi_url: str = "") -> dict | None:
     """
     Kolumnordning från FI:s publiceringsklient:
     0:  Publiceringsdatum
@@ -121,7 +188,7 @@ def parse_row(cells: list[str]) -> dict | None:
     2:  Person i ledande ställning
     3:  Befattning
     4:  Närstående
-    5:  Karaktär          ← "Förvärv" = köp
+    5:  Karaktär
     6:  Instrumentnamn
     7:  Instrumenttyp
     8:  ISIN
@@ -139,18 +206,25 @@ def parse_row(cells: list[str]) -> dict | None:
         if amount_sek < THRESHOLD_SEK:
             return None
 
+        isin = cells[8].strip()
+
         return {
-            "published":  cells[0],
-            "company":    cells[1],
-            "person":     cells[2],
-            "role":       cells[3],
-            "instrument": cells[6],
-            "trade_type": cells[5],
-            "volume":     cells[10],
-            "price":      cells[12],
-            "currency":   cells[13],
-            "amount_sek": amount_sek,
-            "trade_date": cells[9],
+            "published":       cells[0],
+            "company":         cells[1],
+            "person":          cells[2],
+            "role":            cells[3],
+            "instrument":      cells[6],
+            "instrument_type": cells[7],
+            "isin":            isin,
+            "trade_type":      cells[5],
+            "volume":          cells[10],
+            "price":           cells[12],
+            "currency":        cells[13],
+            "amount_sek":      amount_sek,
+            "trade_date":      cells[9],
+            "fi_url":          fi_url,
+            "nordnet_url":     f"https://www.nordnet.se/marknaden/aktiekurser?searchText={isin}" if isin else "",
+            "score":           0,
         }
     except (IndexError, ValueError) as e:
         print(f"  Parse-fel: {e} | {cells}")
