@@ -2,6 +2,7 @@
 FI Insiderhandel Scraper
 Hämtar insynshandel från Finansinspektionens publiceringsklient,
 filtrerar köp (Förvärv) över 1 miljon kr.
+Berikar med ticker-symbol från Avanzas öppna sök-API.
 """
 
 import json
@@ -22,18 +23,49 @@ BASE_URL       = "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Sear
 FI_BASE        = "https://marknadssok.fi.se"
 
 
+# ── Ticker-lookup via Avanza ───────────────────────────────────────────────────
+_ticker_cache: dict = {}
+
+def lookup_ticker(isin: str, session: requests.Session) -> dict:
+    """Slår upp ticker-symbol och börs från Avanzas öppna sök-API."""
+    if not isin:
+        return {}
+    if isin in _ticker_cache:
+        return _ticker_cache[isin]
+
+    try:
+        r = session.get(
+            "https://www.avanza.se/ab/sok/inline",
+            params={"query": isin},
+            timeout=8,
+        )
+        if r.status_code == 200:
+            data = r.json()
+            # Avanza returnerar en lista med träffar
+            hits = data if isinstance(data, list) else data.get("hits", {}).get("hits", [])
+            for hit in hits[:3]:
+                src = hit.get("_source", hit)
+                hit_isin = src.get("isin", src.get("ISIN", ""))
+                if hit_isin == isin:
+                    result = {
+                        "ticker":   src.get("tickerSymbol", src.get("ticker", "")),
+                        "exchange": src.get("listName", src.get("exchange", "")),
+                        "name":     src.get("name", ""),
+                    }
+                    _ticker_cache[isin] = result
+                    return result
+    except Exception as e:
+        pass
+
+    _ticker_cache[isin] = {}
+    return {}
+
+
 # ── Score-beräkning ────────────────────────────────────────────────────────────
 def calc_score(trade: dict) -> int:
-    """
-    Beräknar ett köp-signal-score från 0–100 baserat på:
-    - Belopp (ju större desto starkare signal)
-    - Roll (VD > styrelseordförande > styrelse > CFO > övriga)
-    - Instrumenttyp (aktier > teckningsoptioner)
-    - Hur nytt köpet är (färskare = starkare)
-    """
     score = 0
 
-    # ── Belopp (0–35 poäng) ──
+    # Belopp (0–35p)
     amount = trade.get("amount_sek", 0)
     if   amount >= 50_000_000: score += 35
     elif amount >= 20_000_000: score += 30
@@ -43,7 +75,7 @@ def calc_score(trade: dict) -> int:
     elif amount >=  2_000_000: score += 10
     else:                      score +=  5
 
-    # ── Roll (0–30 poäng) ──
+    # Roll (0–30p)
     role = trade.get("role", "").lower()
     if any(k in role for k in ["verkställande direktör", "vd", "ceo"]):
         score += 30
@@ -58,17 +90,16 @@ def calc_score(trade: dict) -> int:
     else:
         score += 5
 
-    # ── Instrumenttyp (0–20 poäng) ──
-    instrument = trade.get("instrument", "").lower()
+    # Instrumenttyp (0–20p)
     itype = trade.get("instrument_type", "").lower()
-    if "aktie" in itype or "aktie" in instrument:
+    if "aktie" in itype:
         score += 20
     elif "teckningsoption" in itype or "warrant" in itype:
         score += 8
     else:
         score += 12
 
-    # ── Färskhet (0–15 poäng) ──
+    # Färskhet (0–15p)
     try:
         trade_date = datetime.fromisoformat(trade.get("trade_date", "")[:10])
         days_ago = (datetime.now() - trade_date).days
@@ -130,7 +161,6 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
             resp.raise_for_status()
         except requests.RequestException as e:
             print(f"  Fel vid hämtning: {e}")
-            # Försök igen en gång
             time.sleep(3)
             try:
                 resp = session.get(BASE_URL, params=params, timeout=30)
@@ -149,7 +179,6 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
         found_on_page = 0
         for row in rows:
             cells = [td.get_text(strip=True) for td in row.find_all("td")]
-            # Hämta anmälningslänk från sista td
             link_tag = row.select_one("td a[href]")
             fi_url = (FI_BASE + link_tag["href"]) if link_tag else ""
 
@@ -157,6 +186,13 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
                 continue
             trade = parse_row(cells, fi_url)
             if trade:
+                # Hämta ticker från Avanza
+                if trade["isin"]:
+                    ticker_info = lookup_ticker(trade["isin"], session)
+                    trade["ticker"]   = ticker_info.get("ticker", "")
+                    trade["exchange"] = ticker_info.get("exchange", "")
+                    time.sleep(0.2)
+
                 trade["score"] = calc_score(trade)
                 trades.append(trade)
                 found_on_page += 1
@@ -181,23 +217,6 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
 
 
 def parse_row(cells: list[str], fi_url: str = "") -> dict | None:
-    """
-    Kolumnordning från FI:s publiceringsklient:
-    0:  Publiceringsdatum
-    1:  Emittent
-    2:  Person i ledande ställning
-    3:  Befattning
-    4:  Närstående
-    5:  Karaktär
-    6:  Instrumentnamn
-    7:  Instrumenttyp
-    8:  ISIN
-    9:  Transaktionsdatum
-    10: Volym
-    11: Volymsenhet
-    12: Pris
-    13: Valuta
-    """
     try:
         if cells[5] != "Förvärv":
             return None
@@ -216,6 +235,8 @@ def parse_row(cells: list[str], fi_url: str = "") -> dict | None:
             "instrument":      cells[6],
             "instrument_type": cells[7],
             "isin":            isin,
+            "ticker":          "",
+            "exchange":        "",
             "trade_type":      cells[5],
             "volume":          cells[10],
             "price":           cells[12],
@@ -223,7 +244,6 @@ def parse_row(cells: list[str], fi_url: str = "") -> dict | None:
             "amount_sek":      amount_sek,
             "trade_date":      cells[9],
             "fi_url":          fi_url,
-            "nordnet_url":     f"https://www.nordnet.se/marknaden/aktiekurser?searchText={isin}" if isin else "",
             "score":           0,
         }
     except (IndexError, ValueError) as e:
