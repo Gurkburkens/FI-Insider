@@ -133,38 +133,92 @@ def build_html(data: dict) -> str:
     }}
 
     header {{
-      padding: 3rem 2rem 2rem;
+      padding: 3rem 2rem 2.5rem;
       border-bottom: 1px solid var(--border);
       max-width: 1400px;
       margin: 0 auto;
     }}
-    .header-top {{
+    .header-inner {{
       display: flex;
-      align-items: baseline;
-      gap: 1rem;
+      align-items: flex-start;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }}
+    .header-left {{
+      flex: 1;
+      min-width: 260px;
+    }}
+    .header-eyebrow {{
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       margin-bottom: 0.5rem;
     }}
     h1 {{
       font-family: var(--mono);
-      font-size: 1.1rem;
+      font-size: 2rem;
       font-weight: 500;
       color: var(--accent);
-      letter-spacing: 0.05em;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
     }}
-    .header-sub {{
+    .header-desc {{
       font-size: 0.8rem;
       color: var(--muted);
-      font-family: var(--mono);
+      max-width: 420px;
+      line-height: 1.6;
     }}
-    .meta {{
+    .header-stats {{
       display: flex;
-      gap: 2rem;
-      margin-top: 1rem;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      align-self: flex-start;
+      margin-top: 0.25rem;
     }}
-    .meta span {{ color: var(--text); }}
+    .stat-card {{
+      background: var(--surface);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 120px;
+    }}
+    .stat-label {{
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }}
+    .stat-value {{
+      font-family: var(--mono);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1;
+    }}
+    .stat-value.accent {{ color: var(--accent); }}
+    .stat-sub {{
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }}
+    .live-dot {{
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 5px;
+      vertical-align: middle;
+    }}
 
     .filterbar {{
       max-width: 1400px;
@@ -331,18 +385,32 @@ def build_html(data: dict) -> str:
 <body>
 
 <header>
-  <div class="header-top">
-    <h1>FI // INSIDERHANDEL</h1>
-    <span class="header-sub">köp &gt; {threshold/1_000_000:.0f} Mkr · VD &amp; styrelse</span>
-  </div>
-  <p style="color:var(--muted);font-size:0.8rem;max-width:600px;">
-    Automatisk bevakning av insynspersoners aktieköp registrerade hos
-    Finansinspektionen. Score 0–100 baseras på belopp, roll, instrumenttyp och aktualitet.
-  </p>
-  <div class="meta">
-    <div>Senast uppdaterad <span>{updated}</span></div>
-    <div>Totalt <span>{total}</span> affärer</div>
-    <div>Källa <span><a href="https://marknadssok.fi.se" target="_blank" style="color:var(--accent-dk)">marknadssok.fi.se</a></span></div>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-eyebrow">Finansinspektionen · Insynsregister</div>
+      <h1>FI // INSIDERHANDEL</h1>
+      <p class="header-desc">
+        Automatisk bevakning av insynspersoners aktieköp &gt; {threshold/1_000_000:.0f} Mkr.
+        Score 0–100 baseras på belopp, roll, instrumenttyp och aktualitet.
+      </p>
+    </div>
+    <div class="header-stats">
+      <div class="stat-card">
+        <span class="stat-label">Affärer</span>
+        <span class="stat-value accent">{total}</span>
+        <span class="stat-sub">totalt i databasen</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Tröskel</span>
+        <span class="stat-value">{threshold/1_000_000:.0f} Mkr</span>
+        <span class="stat-sub">minsta köp</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Uppdaterad</span>
+        <span class="stat-value" style="font-size:0.85rem">{updated}</span>
+        <span class="stat-sub"><span class="live-dot"></span>automatiskt varje vardag</span>
+      </div>
+    </div>
   </div>
 </header>
 
