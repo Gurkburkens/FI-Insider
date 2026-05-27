@@ -68,17 +68,9 @@ def build_rows(trades: list[dict]) -> str:
         score       = t.get("score", 0)
         instrument  = t.get("instrument", "")
 
-        ticker   = t.get("ticker", "")
-        exchange = t.get("exchange", "")
-
-        if ticker and exchange:
-            nordnet_cell = f'<span class="ticker-main">{exchange} / {ticker}</span><br><span class="isin">{instrument}</span>'
-        elif ticker:
-            nordnet_cell = f'<span class="ticker-main">{ticker}</span><br><span class="isin">{instrument}</span>'
-        elif isin:
-            nordnet_cell = f'{instrument}<br><span class="isin">{isin}</span>'
-        else:
-            nordnet_cell = instrument
+        company = t.get("company", "")
+        nordnet_url = f"https://www.nordnet.se/marknaden/aktiekurser?searchText={company.replace(' ', '+').replace('/', '%2F')}"
+        nordnet_cell = f'<a href="{nordnet_url}" target="_blank" class="company-link">{instrument}</a><br><span class="isin">{isin}</span>' if isin else f'<a href="{nordnet_url}" target="_blank" class="company-link">{instrument}</a>'
 
         # FI-länk
         fi_link = f'<a href="{fi_url}" target="_blank" class="fi-link">FI ↗</a>' if fi_url else "–"
@@ -237,7 +229,8 @@ def build_html(data: dict) -> str:
     .td-person     {{ font-size: 0.85rem; }}
     .td-amount     {{ font-family: var(--mono); font-weight: 500; color: var(--accent); white-space: nowrap; font-size: 0.9rem; }}
     .td-instrument {{ font-size: 0.8rem; }}
-    .ticker-main {{ font-family: var(--mono); font-weight: 500; font-size: 0.85rem; color: var(--text); }}
+    .company-link {{ color: var(--blue); text-decoration: none; font-size: 0.85rem; }}
+    .company-link:hover {{ text-decoration: underline; }}
     .td-score      {{ min-width: 110px; }}
     .td-fi         {{ font-family: var(--mono); font-size: 0.75rem; }}
 
