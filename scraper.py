@@ -2,7 +2,6 @@
 FI Insiderhandel Scraper
 Hämtar insynshandel från Finansinspektionens publiceringsklient,
 filtrerar köp (Förvärv) över 1 miljon kr.
-Berikar med ticker-symbol från Avanzas öppna sök-API.
 """
 
 import json
@@ -23,52 +22,10 @@ BASE_URL       = "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Sear
 FI_BASE        = "https://marknadssok.fi.se"
 
 
-# ── Ticker-lookup via OpenFIGI ────────────────────────────────────────────────
-_ticker_cache: dict = {}
-
-def batch_lookup_tickers(isins: list[str]) -> dict:
-    """Slår upp ticker och börs för flera ISIN på en gång via OpenFIGI batch-API.
-    Max 100 per anrop, gratis utan API-nyckel."""
-    result = {}
-    unique = [i for i in set(isins) if i]
-    # Dela upp i batcher om 10 (gratis-gränsen)
-    for i in range(0, len(unique), 10):
-        batch = unique[i:i+10]
-        payload = [{"idType": "ID_ISIN", "idValue": isin} for isin in batch]
-        try:
-            r = requests.post(
-                "https://api.openfigi.com/v3/mapping",
-                json=payload,
-                headers={"Content-Type": "application/json"},
-                timeout=15,
-            )
-            if r.status_code == 200:
-                data = r.json()
-                for isin, item in zip(batch, data):
-                    hits = item.get("data", [])
-                    for hit in hits:
-                        if hit.get("securityType") == "Common Stock":
-                            result[isin] = {
-                                "ticker":   hit.get("ticker", ""),
-                                "exchange": hit.get("exchCode", ""),
-                            }
-                            break
-                    if isin not in result and hits:
-                        result[isin] = {
-                            "ticker":   hits[0].get("ticker", ""),
-                            "exchange": hits[0].get("exchCode", ""),
-                        }
-        except Exception as e:
-            print(f"  OpenFIGI-fel: {e}")
-        time.sleep(1)
-    return result
-
-
 # ── Score-beräkning ────────────────────────────────────────────────────────────
 def calc_score(trade: dict) -> int:
     score = 0
 
-    # Belopp (0–35p)
     amount = trade.get("amount_sek", 0)
     if   amount >= 50_000_000: score += 35
     elif amount >= 20_000_000: score += 30
@@ -78,7 +35,6 @@ def calc_score(trade: dict) -> int:
     elif amount >=  2_000_000: score += 10
     else:                      score +=  5
 
-    # Roll (0–30p)
     role = trade.get("role", "").lower()
     if any(k in role for k in ["verkställande direktör", "vd", "ceo"]):
         score += 30
@@ -93,7 +49,6 @@ def calc_score(trade: dict) -> int:
     else:
         score += 5
 
-    # Instrumenttyp (0–20p)
     itype = trade.get("instrument_type", "").lower()
     if "aktie" in itype:
         score += 20
@@ -102,7 +57,6 @@ def calc_score(trade: dict) -> int:
     else:
         score += 12
 
-    # Färskhet (0–15p)
     try:
         trade_date = datetime.fromisoformat(trade.get("trade_date", "")[:10])
         days_ago = (datetime.now() - trade_date).days
@@ -231,8 +185,6 @@ def parse_row(cells: list[str], fi_url: str = "") -> dict | None:
             "instrument":      cells[6],
             "instrument_type": cells[7],
             "isin":            isin,
-            "ticker":          "",
-            "exchange":        "",
             "trade_type":      cells[5],
             "volume":          cells[10],
             "price":           cells[12],
