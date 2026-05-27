@@ -77,16 +77,16 @@ def build_rows(trades: list[dict]) -> str:
 
         rows.append(f"""
     <tr>
-      <td class="td-date">{fmt_date(t.get("trade_date",""))}</td>
-      <td class="td-company"><strong>{t.get("company","")}</strong></td>
-      <td class="td-person">
+      <td class="td-date" data-label="Datum">{fmt_date(t.get("trade_date",""))}</td>
+      <td class="td-company" data-label="Bolag"><strong>{t.get("company","")}</strong></td>
+      <td class="td-person" data-label="Person">
         {t.get("person","")}
         <br>{role_badge(t.get("role",""))}
       </td>
-      <td class="td-amount">{fmt_sek(t.get("amount_sek",0))}</td>
-      <td class="td-instrument">{nordnet_cell}</td>
-      <td class="td-score">{score_bar(score)}</td>
-      <td class="td-fi">{fi_link}</td>
+      <td class="td-amount" data-label="Belopp">{fmt_sek(t.get("amount_sek",0))}</td>
+      <td class="td-instrument" data-label="Aktie">{nordnet_cell}</td>
+      <td class="td-score" data-label="Score">{score_bar(score)}</td>
+      <td class="td-fi" data-label="Källa">{fi_link}</td>
     </tr>""")
     return "\n".join(rows)
 
@@ -370,6 +370,111 @@ def build_html(data: dict) -> str:
     .badge-other {{ background: #1c1c1c; color: var(--muted); }}
 
     .empty {{ text-align: center; color: var(--muted); padding: 3rem; font-family: var(--mono); }}
+
+    /* ── Mobil ── */
+    @media (max-width: 768px) {{
+      header {{ padding: 1.5rem 1rem 1.5rem; }}
+      .header-inner {{ flex-direction: column; gap: 1.5rem; }}
+      h1 {{ font-size: 1.3rem; }}
+      .header-stats {{ width: 100%; }}
+      .stat-card {{ padding: 0.75rem 1rem; min-width: 0; flex: 1; }}
+      .stat-value {{ font-size: 1rem; }}
+
+      .filterbar {{ padding: 0 1rem; gap: 0.5rem; }}
+      .filterbar input {{ width: 100%; }}
+      .count {{ margin-left: 0; }}
+
+      .table-wrap {{ padding: 0; margin-top: 1rem; }}
+      thead {{ display: none; }}
+
+      tbody tr {{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin: 0.75rem 1rem;
+        padding: 1rem;
+        background: var(--surface);
+        gap: 0;
+      }}
+      td {{ display: none; border: none; padding: 0; }}
+
+      /* Rad 1: datum (vänster) + person/roll (höger) */
+      .td-date {{
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 0.7rem;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+      }}
+      .td-person {{
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+      }}
+      .td-person br {{ display: none; }}
+
+      /* Rad 2: bolagsnamn (vänster, stor) */
+      .td-company {{
+        display: block;
+        grid-column: 1 / 3;
+        grid-row: 2;
+        margin-bottom: 0.5rem;
+      }}
+      .td-company strong {{ font-size: 1rem; font-weight: 500; }}
+
+      /* Rad 3: belopp (vänster) + score (höger) */
+      .td-amount {{
+        display: block;
+        grid-column: 1;
+        grid-row: 3;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--accent);
+        align-self: center;
+      }}
+      .td-score {{
+        display: block;
+        grid-column: 2;
+        grid-row: 3;
+        text-align: right;
+        align-self: center;
+      }}
+      .score-wrap {{ align-items: flex-end; }}
+      .score-bar-bg {{ width: 60px; margin-left: auto; }}
+
+      /* Rad 4: aktie/ISIN (vänster) + FI-länk (höger) */
+      .td-instrument {{
+        display: block;
+        grid-column: 1;
+        grid-row: 4;
+        margin-top: 0.6rem;
+        font-size: 0.75rem;
+      }}
+      .td-instrument .company-link {{ font-size: 0.75rem; }}
+      .td-instrument .isin {{ font-size: 0.62rem; }}
+
+      .td-fi {{
+        display: block;
+        grid-column: 2;
+        grid-row: 4;
+        text-align: right;
+        margin-top: 0.6rem;
+      }}
+      .td-fi a {{
+        font-size: 0.7rem;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        padding: 2px 10px;
+        border-radius: 3px;
+      }}
+    }}
 
     footer {{
       text-align: center;
