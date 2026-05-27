@@ -32,7 +32,6 @@
       line-height: 1.6;
     }
 
-    /* ── Header ── */
     header {
       padding: 3rem 2rem 2rem;
       border-bottom: 1px solid var(--border);
@@ -67,7 +66,6 @@
     }
     .meta span { color: var(--text); }
 
-    /* ── Filter bar ── */
     .filterbar {
       max-width: 1400px;
       margin: 1.5rem auto 0;
@@ -98,17 +96,13 @@
       color: var(--muted);
     }
 
-    /* ── Table ── */
     .table-wrap {
       max-width: 1400px;
       margin: 1.5rem auto 4rem;
       padding: 0 2rem;
       overflow-x: auto;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    table { width: 100%; border-collapse: collapse; }
     thead th {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -125,25 +119,84 @@
     }
     thead th:hover { color: var(--text); }
     thead th.sorted { color: var(--accent); }
-
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.1s;
-    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
     tbody tr:hover { background: var(--surface); }
+    td { padding: 0.9rem 1rem; vertical-align: middle; }
 
-    td {
-      padding: 0.9rem 1rem;
-      vertical-align: top;
-    }
-    .td-date     { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
-    .td-company  { font-size: 0.9rem; }
+    .td-date       { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+    .td-company    { font-size: 0.9rem; }
     .td-company strong { font-weight: 500; }
-    .td-person   { font-size: 0.85rem; }
-    .td-amount   { font-family: var(--mono); font-weight: 500; color: var(--accent); white-space: nowrap; font-size: 0.9rem; }
-    .td-instrument { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+    .td-person     { font-size: 0.85rem; }
+    .td-amount     { font-family: var(--mono); font-weight: 500; color: var(--accent); white-space: nowrap; font-size: 0.9rem; }
+    .td-instrument { font-size: 0.8rem; }
+    .td-score      { min-width: 110px; }
+    .td-fi         { font-family: var(--mono); font-size: 0.75rem; }
 
-    /* ── Badges ── */
+    .nordnet-link {
+      color: var(--blue);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .nordnet-link:hover { text-decoration: underline; }
+    .isin {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .fi-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+    }
+    .fi-link:hover { color: var(--text); }
+
+    /* Score */
+    .score-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .score-num {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .score-bar-bg {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      width: 80px;
+    }
+    .score-bar-fill {
+      height: 3px;
+      border-radius: 2px;
+      transition: width 0.3s;
+    }
+    .score-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Score-förklaring */
+    .score-info {
+      max-width: 1400px;
+      margin: 1rem auto 0;
+      padding: 0 2rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .score-info span { display: flex; align-items: center; gap: 0.4rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
     .badge {
       display: inline-block;
       padding: 0.15rem 0.5rem;
@@ -155,13 +208,13 @@
       margin-top: 3px;
     }
     .badge-ceo   { background: #14532d; color: #86efac; }
-    .badge-board { background: #1e3a5f; color: #93c5fd; }
+    .badge-chair { background: #1e3a5f; color: #93c5fd; }
+    .badge-board { background: #1c2b4a; color: #7dd3fc; }
     .badge-cfo   { background: #451a03; color: #fcd34d; }
     .badge-other { background: #1c1c1c; color: var(--muted); }
 
     .empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--mono); }
 
-    /* ── Footer ── */
     footer {
       text-align: center;
       padding: 2rem;
@@ -182,14 +235,21 @@
   </div>
   <p style="color:var(--muted);font-size:0.8rem;max-width:600px;">
     Automatisk bevakning av insynspersoners aktieköp registrerade hos
-    Finansinspektionen. Uppdateras varje vardag.
+    Finansinspektionen. Score 0–100 baseras på belopp, roll, instrumenttyp och aktualitet.
   </p>
   <div class="meta">
     <div>Senast uppdaterad <span>27 May 2026</span></div>
-    <div>Totalt <span>18</span> affärer</div>
+    <div>Totalt <span>3</span> affärer</div>
     <div>Källa <span><a href="https://marknadssok.fi.se" target="_blank" style="color:var(--accent-dk)">marknadssok.fi.se</a></span></div>
   </div>
 </header>
+
+<div class="score-info">
+  <span><span class="dot" style="background:#4ade80"></span> 75–100 Stark signal</span>
+  <span><span class="dot" style="background:#fbbf24"></span> 50–74 Medel signal</span>
+  <span><span class="dot" style="background:#f87171"></span> 0–49 Svag signal</span>
+  <span style="margin-left:auto">Score baseras på: belopp · roll · instrumenttyp · aktualitet</span>
+</div>
 
 <div class="filterbar">
   <input type="text" id="search" placeholder="Sök bolag eller person...">
@@ -199,7 +259,12 @@
     <option value="styrelse">Styrelse</option>
     <option value="cfo">CFO</option>
   </select>
-  <div class="count" id="count">18 affärer</div>
+  <select id="score-filter">
+    <option value="0">Alla scores</option>
+    <option value="75">Stark (75+)</option>
+    <option value="50">Medel (50+)</option>
+  </select>
+  <div class="count" id="count">3 affärer</div>
 </div>
 
 <div class="table-wrap">
@@ -210,241 +275,113 @@
         <th data-col="1">Bolag ↕</th>
         <th data-col="2">Person / Roll</th>
         <th data-col="3">Belopp ↕</th>
-        <th data-col="4">Instrument</th>
+        <th data-col="4">Aktie / ISIN</th>
+        <th data-col="5">Score ↕</th>
+        <th>FI</th>
       </tr>
     </thead>
     <tbody id="tbody">
 
     <tr>
-      <td class="td-date">27 May 2026</td>
-      <td class="td-company"><strong>Svedbergs Group AB</strong></td>
+      <td class="td-date">25 May 2025</td>
+      <td class="td-company"><strong>Exempel AB</strong></td>
       <td class="td-person">
-        Anders Wassberg
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">2.2 Mkr</td>
-      <td class="td-instrument">Svedbergs i Dalstorp AB ser. B</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">27 May 2026</td>
-      <td class="td-company"><strong>Gränges AB</strong></td>
-      <td class="td-person">
-        Fredrik Spens
-        <br><span class="badge badge-other">Annan ledande befa</span>
-      </td>
-      <td class="td-amount">1.9 Mkr</td>
-      <td class="td-instrument">Gränges AB teckningsoption</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">27 May 2026</td>
-      <td class="td-company"><strong>RugVista Group AB (publ)</strong></td>
-      <td class="td-person">
-        Carl Rydin
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">9.4 Mkr</td>
-      <td class="td-instrument">RugVista Group AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>Svedbergs Group AB</strong></td>
-      <td class="td-person">
-        Anders Wassberg
-        <br><span class="badge badge-board">Styrelse</span>
+        Anna Svensson
+        <br><span class="badge badge-ceo">VD</span>
       </td>
       <td class="td-amount">2.1 Mkr</td>
-      <td class="td-instrument">Svedbergs i Dalstorp AB ser. B</td>
+      <td class="td-instrument">Aktie</td>
+      <td class="td-score"><div class="score-wrap">
+      <div class="score-num" style="color:#f87171">0</div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" style="width:0%;background:#f87171"></div>
+      </div>
+      <div class="score-label" style="color:#f87171">Svag</div>
+    </div></td>
+      <td class="td-fi">–</td>
     </tr>
 
     <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>BIMobject AB</strong></td>
+      <td class="td-date">23 May 2025</td>
+      <td class="td-company"><strong>Nordisk Teknik AB</strong></td>
       <td class="td-person">
-        Lars Jörnow
-        <br><span class="badge badge-board">Styrelse</span>
+        Erik Lindqvist
+        <br><span class="badge badge-chair">Ordf.</span>
       </td>
-      <td class="td-amount">33.7 Mkr</td>
-      <td class="td-instrument">BIMobject AB</td>
+      <td class="td-amount">2.2 Mkr</td>
+      <td class="td-instrument">Aktie</td>
+      <td class="td-score"><div class="score-wrap">
+      <div class="score-num" style="color:#f87171">0</div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" style="width:0%;background:#f87171"></div>
+      </div>
+      <div class="score-label" style="color:#f87171">Svag</div>
+    </div></td>
+      <td class="td-fi">–</td>
     </tr>
 
     <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>Tempest Security AB</strong></td>
+      <td class="td-date">21 May 2025</td>
+      <td class="td-company"><strong>SwedeFinans Group</strong></td>
       <td class="td-person">
-        Anders Lönnebo
-        <br><span class="badge badge-board">Styrelse</span>
+        Maria Bergström
+        <br><span class="badge badge-cfo">CFO</span>
       </td>
-      <td class="td-amount">1.1 Mkr</td>
-      <td class="td-instrument">Tempest Security AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>Bure Equity AB</strong></td>
-      <td class="td-person">
-        Carl Peter Staffan Björkman
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">19.4 Mkr</td>
-      <td class="td-instrument">Bure Equity AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>BIMobject AB</strong></td>
-      <td class="td-person">
-        Lars Jörnow
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">33.7 Mkr</td>
-      <td class="td-instrument">BIMobject AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>BIMobject AB</strong></td>
-      <td class="td-person">
-        David Johansson
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">67.5 Mkr</td>
-      <td class="td-instrument">BIMobject AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">26 May 2026</td>
-      <td class="td-company"><strong>Investment Aktiebolaget Spiltan</strong></td>
-      <td class="td-person">
-        Per Börjesson
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount">5.7 Mkr</td>
-      <td class="td-instrument">Investment AB Spiltan</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">25 May 2026</td>
-      <td class="td-company"><strong>Svedbergs Group AB</strong></td>
-      <td class="td-person">
-        Anders Wassberg
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">8.6 Mkr</td>
-      <td class="td-instrument">Svedbergs i Dalstorp AB ser. B</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">25 May 2026</td>
-      <td class="td-company"><strong>Gränges AB</strong></td>
-      <td class="td-person">
-        Fredrik Spens
-        <br><span class="badge badge-other">Annan ledande befa</span>
-      </td>
-      <td class="td-amount">1.9 Mkr</td>
-      <td class="td-instrument">Gränges AB teckningsoption</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">25 May 2026</td>
-      <td class="td-company"><strong>Vertiseit AB (publ)</strong></td>
-      <td class="td-person">
-        Carl Backman
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">15.3 Mkr</td>
-      <td class="td-instrument">Vertiseit AB ser. B</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">25 May 2026</td>
-      <td class="td-company"><strong>RugVista Group AB (publ)</strong></td>
-      <td class="td-person">
-        Carl Rydin
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">8.5 Mkr</td>
-      <td class="td-instrument">RugVista Group AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">22 May 2026</td>
-      <td class="td-company"><strong>Svedbergs Group AB</strong></td>
-      <td class="td-person">
-        Anders Wassberg
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">1.1 Mkr</td>
-      <td class="td-instrument">Svedbergs i Dalstorp AB ser. B</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">22 May 2026</td>
-      <td class="td-company"><strong>Eniro Group AB</strong></td>
-      <td class="td-person">
-        Hosni Omeirat
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount">17.5 Mkr</td>
-      <td class="td-instrument">Eniro AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">22 May 2026</td>
-      <td class="td-company"><strong>Eniro Group AB</strong></td>
-      <td class="td-person">
-        Hosni Omeirat
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount">1.0 Mkr</td>
-      <td class="td-instrument">Eniro AB</td>
-    </tr>
-
-    <tr>
-      <td class="td-date">22 May 2026</td>
-      <td class="td-company"><strong>Svedbergs Group AB</strong></td>
-      <td class="td-person">
-        Anders Wassberg
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount">5.6 Mkr</td>
-      <td class="td-instrument">Svedbergs i Dalstorp AB ser. B</td>
+      <td class="td-amount">1.2 Mkr</td>
+      <td class="td-instrument">Aktie</td>
+      <td class="td-score"><div class="score-wrap">
+      <div class="score-num" style="color:#f87171">0</div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" style="width:0%;background:#f87171"></div>
+      </div>
+      <div class="score-label" style="color:#f87171">Svag</div>
+    </div></td>
+      <td class="td-fi">–</td>
     </tr>
     </tbody>
   </table>
 </div>
 
 <footer>
-  Data från <a href="https://www.fi.se" target="_blank">Finansinspektionen</a> · 
-  <a href="https://github.com" target="_blank">Källkod på GitHub</a> ·
-  Ej finansiell rådgivning
+  Data från <a href="https://www.fi.se" target="_blank">Finansinspektionen</a> ·
+  Aktier på <a href="https://www.nordnet.se" target="_blank">Nordnet</a> ·
+  <a href="https://github.com/Gurkburkens/FI-Insider" target="_blank">Källkod på GitHub</a> ·
+  Ej finansiell rådgivning ·
+  Skapad av Gustav Engström
 </footer>
 
 <script>
-  const search = document.getElementById('search');
-  const roleFilter = document.getElementById('role-filter');
-  const tbody = document.getElementById('tbody');
-  const countEl = document.getElementById('count');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const search      = document.getElementById('search');
+  const roleFilter  = document.getElementById('role-filter');
+  const scoreFilter = document.getElementById('score-filter');
+  const tbody       = document.getElementById('tbody');
+  const countEl     = document.getElementById('count');
+  const rows        = Array.from(tbody.querySelectorAll('tr'));
 
   function filter() {
-    const q = search.value.toLowerCase();
-    const r = roleFilter.value.toLowerCase();
-    let visible = 0;
+    const q      = search.value.toLowerCase();
+    const r      = roleFilter.value.toLowerCase();
+    const minScore = parseInt(scoreFilter.value) || 0;
+    let visible  = 0;
+
     rows.forEach(row => {
-      const text = row.textContent.toLowerCase();
+      const text  = row.textContent.toLowerCase();
+      const scoreEl = row.querySelector('.score-num');
+      const score = scoreEl ? parseInt(scoreEl.textContent) : 0;
+
       const matchQ = !q || text.includes(q);
       const matchR = !r || text.includes(r);
-      row.style.display = matchQ && matchR ? '' : 'none';
-      if (matchQ && matchR) visible++;
+      const matchS = score >= minScore;
+
+      row.style.display = matchQ && matchR && matchS ? '' : 'none';
+      if (matchQ && matchR && matchS) visible++;
     });
     countEl.textContent = visible + ' affärer';
   }
 
   search.addEventListener('input', filter);
   roleFilter.addEventListener('change', filter);
+  scoreFilter.addEventListener('change', filter);
 
   // Sortering
   let sortCol = -1, sortAsc = true;
@@ -455,13 +392,15 @@
       else { sortCol = col; sortAsc = true; }
       document.querySelectorAll('thead th').forEach(h => h.classList.remove('sorted'));
       th.classList.add('sorted');
-      th.textContent = th.textContent.replace(/ [↑↓]$/, '') + (sortAsc ? ' ↑' : ' ↓');
       const sorted = [...rows].sort((a, b) => {
         const av = a.cells[col]?.textContent.trim() || '';
         const bv = b.cells[col]?.textContent.trim() || '';
-        // Siffror för belopp
         if (col === 3) {
           const toNum = s => parseFloat(s.replace(/[^0-9,.]/g,'').replace(',','.')) || 0;
+          return sortAsc ? toNum(av) - toNum(bv) : toNum(bv) - toNum(av);
+        }
+        if (col === 5) {
+          const toNum = s => parseInt(s) || 0;
           return sortAsc ? toNum(av) - toNum(bv) : toNum(bv) - toNum(av);
         }
         return sortAsc ? av.localeCompare(bv,'sv') : bv.localeCompare(av,'sv');
