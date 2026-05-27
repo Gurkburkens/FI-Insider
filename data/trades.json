@@ -1,7 +1,7 @@
 {
-  "updated": "2026-05-27T14:27:12.866795",
+  "updated": "2026-05-27T14:37:07.262160",
   "threshold_sek": 1000000,
-  "total": 13,
+  "total": 15,
   "trades": [
     {
       "published": "2026-05-27",
@@ -61,6 +61,24 @@
       "score": 38
     },
     {
+      "id": "A003Z202-1",
+      "published": "2026-05-27",
+      "company": "Tempest Security AB",
+      "person": "Anders Lönnebo",
+      "role": "Styrelseordförande",
+      "instrument": "Tempest Security AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0010469221",
+      "trade_type": "Förvärv",
+      "volume": "100 000",
+      "price": "11,50",
+      "currency": "SEK",
+      "amount_sek": 1150000.0,
+      "trade_date": "2026-05-26",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z202-1?s%C3%B6kfunktion=Insyn",
+      "score": 65
+    },
+    {
       "published": "2026-05-27",
       "company": "Investment Aktiebolaget Spiltan",
       "person": "Per Börjesson",
@@ -116,6 +134,24 @@
       "trade_date": "2026-05-26",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z179?s%C3%B6kfunktion=Insyn",
       "score": 85
+    },
+    {
+      "id": "A003Z206",
+      "published": "2026-05-27",
+      "company": "Gränges AB",
+      "person": "Fredrik Spens",
+      "role": "Annan ledande befattningshavare",
+      "instrument": "Gränges AB teckningsoption",
+      "instrument_type": "Teckningsoption",
+      "isin": "",
+      "trade_type": "Förvärv",
+      "volume": "75 000",
+      "price": "24,95",
+      "currency": "SEK",
+      "amount_sek": 1871250.0,
+      "trade_date": "2026-05-25",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z206?s%C3%B6kfunktion=Insyn",
+      "score": 38
     },
     {
       "published": "2026-05-27",
