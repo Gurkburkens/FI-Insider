@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   scrape-and-publish:
@@ -39,8 +37,3 @@ jobs:
           git add data/trades.json docs/
           git diff --cached --quiet || git commit -m "Auto: uppdatera insiderhandel $(date +%Y-%m-%d)"
           git push
-
-      - name: Publicera till GitHub Pages
-        uses: actions/deploy-pages@v4
-        with:
-          folder: docs
