@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FI Insiderhandel · Stora köp</title>
+  <title>FI Insiderhandel Â· Stora kÃ¶p</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -245,7 +245,7 @@
       text-transform: uppercase;
     }
 
-    /* Score-förklaring */
+    /* Score-fÃ¶rklaring */
     .score-info {
       max-width: 1400px;
       margin: 1rem auto 0;
@@ -278,7 +278,7 @@
 
     .empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--mono); }
 
-    /* ── Mobil ── */
+    /* ââ Mobil ââ */
     @media (max-width: 768px) {
       header { padding: 1.5rem 1rem 1.5rem; }
       .header-inner { flex-direction: column; gap: 1.5rem; }
@@ -307,7 +307,7 @@
       }
       td { display: none; border: none; padding: 0; }
 
-      /* Rad 1: datum (vänster) + person/roll (höger) */
+      /* Rad 1: datum (vÃ¤nster) + person/roll (hÃ¶ger) */
       .td-date {
         display: block;
         grid-column: 1;
@@ -327,7 +327,7 @@
       }
       .td-person br { display: none; }
 
-      /* Rad 2: bolagsnamn (vänster, stor) */
+      /* Rad 2: bolagsnamn (vÃ¤nster, stor) */
       .td-company {
         display: block;
         grid-column: 1 / 3;
@@ -336,7 +336,7 @@
       }
       .td-company strong { font-size: 1rem; font-weight: 500; }
 
-      /* Rad 3: belopp (vänster) + score (höger) */
+      /* Rad 3: belopp (vÃ¤nster) + score (hÃ¶ger) */
       .td-amount {
         display: block;
         grid-column: 1;
@@ -356,7 +356,7 @@
       .score-wrap { align-items: flex-end; }
       .score-bar-bg { width: 60px; margin-left: auto; }
 
-      /* Rad 4: aktie/ISIN (vänster) + FI-länk (höger) */
+      /* Rad 4: aktie/ISIN (vÃ¤nster) + FI-lÃ¤nk (hÃ¶ger) */
       .td-instrument {
         display: block;
         grid-column: 1;
@@ -399,23 +399,23 @@
 <header>
   <div class="header-inner">
     <div class="header-left">
-      <div class="header-eyebrow">Finansinspektionen · Insynsregister</div>
+      <div class="header-eyebrow">Finansinspektionen Â· Insynsregister</div>
       <h1>FI // INSIDERHANDEL</h1>
       <p class="header-desc">
-        Automatisk bevakning av insynspersoners aktieköp &gt; 1 Mkr.
-        Score 0–100 baseras på belopp, roll, instrumenttyp och aktualitet.
+        Automatisk bevakning av insynspersoners aktiekÃ¶p &gt; 1 Mkr.
+        Score 0â100 baseras pÃ¥ belopp, roll, instrumenttyp och aktualitet.
       </p>
     </div>
     <div class="header-stats">
       <div class="stat-card">
-        <span class="stat-label">Affärer</span>
+        <span class="stat-label">AffÃ¤rer</span>
         <span class="stat-value accent">46</span>
         <span class="stat-sub">totalt i databasen</span>
       </div>
       <div class="stat-card">
-        <span class="stat-label">Tröskel</span>
+        <span class="stat-label">TrÃ¶skel</span>
         <span class="stat-value">1 Mkr</span>
-        <span class="stat-sub">minsta köp</span>
+        <span class="stat-sub">minsta kÃ¶p</span>
       </div>
       <div class="stat-card">
         <span class="stat-label">Uppdaterad</span>
@@ -427,14 +427,14 @@
 </header>
 
 <div class="score-info">
-  <span><span class="dot" style="background:#4ade80"></span> 75–100 Stark signal</span>
-  <span><span class="dot" style="background:#fbbf24"></span> 50–74 Medel signal</span>
-  <span><span class="dot" style="background:#f87171"></span> 0–49 Svag signal</span>
-  <span style="margin-left:auto">Score baseras på: belopp · roll · instrumenttyp · aktualitet</span>
+  <span><span class="dot" style="background:#4ade80"></span> 75â100 Stark signal</span>
+  <span><span class="dot" style="background:#fbbf24"></span> 50â74 Medel signal</span>
+  <span><span class="dot" style="background:#f87171"></span> 0â49 Svag signal</span>
+  <span style="margin-left:auto">Score baseras pÃ¥: belopp Â· roll Â· instrumenttyp Â· aktualitet</span>
 </div>
 
 <div class="filterbar">
-  <input type="text" id="search" placeholder="Sök bolag eller person...">
+  <input type="text" id="search" placeholder="SÃ¶k bolag eller person...">
   <select id="role-filter">
     <option value="">Alla roller</option>
     <option value="vd">VD</option>
@@ -446,19 +446,19 @@
     <option value="75">Stark (75+)</option>
     <option value="50">Medel (50+)</option>
   </select>
-  <div class="count" id="count">46 affärer</div>
+  <div class="count" id="count">46 affÃ¤rer</div>
 </div>
 
 <div class="table-wrap">
   <table id="main-table">
     <thead>
       <tr>
-        <th data-col="0">Datum ↕</th>
-        <th data-col="1">Bolag ↕</th>
+        <th data-col="0">Datum â</th>
+        <th data-col="1">Bolag â</th>
         <th data-col="2">Person / Roll</th>
-        <th data-col="3">Belopp ↕</th>
+        <th data-col="3">Belopp â</th>
         <th data-col="4">Aktie / ISIN</th>
-        <th data-col="5">Score ↕</th>
+        <th data-col="5">Score â</th>
         <th>FI</th>
       </tr>
     </thead>
@@ -466,13 +466,13 @@
 
     <tr>
       <td class="td-date" data-label="Datum">27 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Gränges AB</strong></td>
+      <td class="td-company" data-label="Bolag"><strong>GrÃ¤nges AB</strong></td>
       <td class="td-person" data-label="Person">
         Fredrik Spens
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.9 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Gränges+AB" target="_blank" class="company-link">Gränges AB teckningsoption</a></td>
+      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=GrÃ¤nges+AB" target="_blank" class="company-link">GrÃ¤nges AB teckningsoption</a></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
       <div class="score-num" style="color:#f87171">26</div>
       <div class="score-bar-bg">
@@ -481,14 +481,14 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z206?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z206?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">26 May 2026</td>
       <td class="td-company" data-label="Bolag"><strong>Investment Aktiebolaget Spiltan</strong></td>
       <td class="td-person" data-label="Person">
-        Per Börjesson
+        Per BÃ¶rjesson
         <br><span class="badge badge-ceo">VD</span>
       </td>
       <td class="td-amount" data-label="Belopp">5.7 Mkr</td>
@@ -501,14 +501,14 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z226-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z226-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">26 May 2026</td>
       <td class="td-company" data-label="Bolag"><strong>BIMobject AB</strong></td>
       <td class="td-person" data-label="Person">
-        Lars Jörnow
+        Lars JÃ¶rnow
         <br><span class="badge badge-board">Styrelse</span>
       </td>
       <td class="td-amount" data-label="Belopp">33.7 Mkr</td>
@@ -521,7 +521,7 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z179?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z179?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -541,7 +541,7 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z227-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z227-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -559,9 +559,9 @@
         <div class="score-bar-fill" style="width:63%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">2x köp av samma person</div>
+      <div class="score-detail">2x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z221-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z221-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -579,9 +579,9 @@
         <div class="score-bar-fill" style="width:71%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">5x köp av samma person</div>
+      <div class="score-detail">5x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z220-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z220-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -599,9 +599,9 @@
         <div class="score-bar-fill" style="width:73%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">2x köp av samma person</div>
+      <div class="score-detail">2x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z212-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z212-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -621,7 +621,7 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -641,7 +641,7 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y947-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y947-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -659,9 +659,9 @@
         <div class="score-bar-fill" style="width:82%;background:#4ade80"></div>
       </div>
       <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">6x köp av samma person</div>
+      <div class="score-detail">6x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y936-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y936-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -681,7 +681,7 @@
       <div class="score-label" style="color:#4ade80">Stark</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y928-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y928-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -699,9 +699,9 @@
         <div class="score-bar-fill" style="width:50%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">2x köp av samma person</div>
+      <div class="score-detail">2x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y943-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y943-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -721,7 +721,7 @@
       <div class="score-label" style="color:#4ade80">Stark</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y705-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y705-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -739,9 +739,9 @@
         <div class="score-bar-fill" style="width:46%;background:#f87171"></div>
       </div>
       <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">2x köp av samma person</div>
+      <div class="score-detail">2x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y703-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y703-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -761,7 +761,7 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y491?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y491?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -769,7 +769,7 @@
       <td class="td-company" data-label="Bolag"><strong>Swedish Orphan Biovitrum AB (publ)</strong></td>
       <td class="td-person" data-label="Person">
         Sofiane FAHMY
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">13.0 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Swedish+Orphan+Biovitrum+AB+(publ)" target="_blank" class="company-link">Swedish Orphan Biovitrum AB</a><br><span class="isin">SE0000872095</span></td>
@@ -781,7 +781,7 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y500?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y500?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -801,15 +801,15 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z066-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z066-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">06 May 2026</td>
       <td class="td-company" data-label="Bolag"><strong>Plejd AB</strong></td>
       <td class="td-person" data-label="Person">
-        Rikard Sköldin
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        Rikard SkÃ¶ldin
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.1 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Plejd+AB" target="_blank" class="company-link">Plejd</a><br><span class="isin">SE0008014476</span></td>
@@ -821,7 +821,7 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y237?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y237?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -841,7 +841,7 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y225-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y225-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -859,16 +859,16 @@
         <div class="score-bar-fill" style="width:77%;background:#4ade80"></div>
       </div>
       <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">6x köp av samma person</div>
+      <div class="score-detail">6x kÃ¶p av samma person</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y236-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y236-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">04 May 2026</td>
       <td class="td-company" data-label="Bolag"><strong>Arbona AB</strong></td>
       <td class="td-person" data-label="Person">
-        Håkan Blomdahl
+        HÃ¥kan Blomdahl
         <br><span class="badge badge-chair">Ordf.</span>
       </td>
       <td class="td-amount" data-label="Belopp">3.0 Mkr</td>
@@ -881,14 +881,14 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y228-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y228-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">29 Apr 2026</td>
       <td class="td-company" data-label="Bolag"><strong>Briox AB</strong></td>
       <td class="td-person" data-label="Person">
-        Martin Jönsson
+        Martin JÃ¶nsson
         <br><span class="badge badge-board">Styrelse</span>
       </td>
       <td class="td-amount" data-label="Belopp">8.2 Mkr</td>
@@ -901,7 +901,7 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y163-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y163-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -921,15 +921,15 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y101?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y101?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">29 Apr 2026</td>
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
-        Björn Einar Lidefelt
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        BjÃ¶rn Einar Lidefelt
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">6.6 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
@@ -939,9 +939,9 @@
         <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y132-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y132-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -949,7 +949,7 @@
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
         Simon Ellis
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">5.2 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
@@ -959,9 +959,9 @@
         <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y127-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y127-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -969,7 +969,7 @@
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
         Neil  Vann
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">6.0 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
@@ -979,9 +979,9 @@
         <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y115-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y115-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -989,7 +989,7 @@
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
         Massimo Grassi
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">10.0 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
@@ -999,9 +999,9 @@
         <div class="score-bar-fill" style="width:58%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y103-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y103-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1019,9 +1019,9 @@
         <div class="score-bar-fill" style="width:59%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y089-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y089-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1029,7 +1029,7 @@
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
         Lucas Boselli
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">11.7 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
@@ -1039,16 +1039,16 @@
         <div class="score-bar-fill" style="width:58%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y077-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y077-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">29 Apr 2026</td>
       <td class="td-company" data-label="Bolag"><strong>eWork Group AB</strong></td>
       <td class="td-person" data-label="Person">
-        A. Staffan Salén B. Erik Åfors
+        A. Staffan SalÃ©n B. Erik Ãfors
         <br><span class="badge badge-chair">Ordf.</span>
       </td>
       <td class="td-amount" data-label="Belopp">16.3 Mkr</td>
@@ -1061,14 +1061,14 @@
       <div class="score-label" style="color:#fbbf24">Medel</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y072-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y072-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">29 Apr 2026</td>
       <td class="td-company" data-label="Bolag"><strong>Bonava AB (publ)</strong></td>
       <td class="td-person" data-label="Person">
-        Mats Åke Jönsson
+        Mats Ãke JÃ¶nsson
         <br><span class="badge badge-chair">Ordf.</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.9 Mkr</td>
@@ -1081,7 +1081,7 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y069-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y069-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1089,7 +1089,7 @@
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
         stephanie ORDAN
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">5.9 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
@@ -1099,9 +1099,9 @@
         <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
       </div>
       <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1109,7 +1109,7 @@
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
         Allan David Talbot-cooper
-        <br><span class="badge badge-other">Annan ledande befa</span>
+        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.5 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
@@ -1119,16 +1119,16 @@
         <div class="score-bar-fill" style="width:42%;background:#f87171"></div>
       </div>
       <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y058-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y058-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
       <td class="td-date" data-label="Datum">29 Apr 2026</td>
       <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
       <td class="td-person" data-label="Person">
-        Nico Eric Josée Delvaux
+        Nico Eric JosÃ©e Delvaux
         <br><span class="badge badge-ceo">VD</span>
       </td>
       <td class="td-amount" data-label="Belopp">30.2 Mkr</td>
@@ -1139,9 +1139,9 @@
         <div class="score-bar-fill" style="width:80%;background:#4ade80"></div>
       </div>
       <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">8 insiders köper samtidigt</div>
+      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y038-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y038-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1149,7 +1149,7 @@
       <td class="td-company" data-label="Bolag"><strong>EQT AB</strong></td>
       <td class="td-person" data-label="Person">
         Jean Salata
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">31.0 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=EQT+AB" target="_blank" class="company-link">EQT AB</a><br><span class="isin">SE0012853455</span></td>
@@ -1161,7 +1161,7 @@
       <div class="score-label" style="color:#f87171">Svag</div>
       
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y065-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y065-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1169,19 +1169,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Antoine Duclaux
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.5 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">38</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:38%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y053-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y053-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1189,19 +1189,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Melker Jernberg
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">3.8 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">46</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:46%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y052-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y052-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1209,19 +1209,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Kina Wileke
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.7 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">38</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:38%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y051-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y051-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1229,19 +1229,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Jens Anders Holtinger
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">2.6 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">42</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:42%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y049-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y049-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1249,19 +1249,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Stephen Roy
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">2.7 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">42</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:42%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y047-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y047-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1269,19 +1269,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         ROGER ALM
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">3.0 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">46</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:46%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y045-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y045-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1289,19 +1289,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Scott Rafkin
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">3.6 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">46</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:46%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y044-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y044-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1309,19 +1309,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Yanna Niu
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">3.4 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">46</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:46%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y043-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y043-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1334,14 +1334,14 @@
       <td class="td-amount" data-label="Belopp">2.8 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">51</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:51%;background:#fbbf24"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y042-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y042-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1349,19 +1349,19 @@
       <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
       <td class="td-person" data-label="Person">
         Nina Aresund
-        <br><span class="badge badge-other">Annan medlem i bol</span>
+        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
       </td>
       <td class="td-amount" data-label="Belopp">1.5 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">38</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:38%;background:#f87171"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-label" style="color:#4ade80">Stark</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y041-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y041-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
 
     <tr>
@@ -1374,25 +1374,25 @@
       <td class="td-amount" data-label="Belopp">14.1 Mkr</td>
       <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
       <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">75</div>
+      <div class="score-num" style="color:#4ade80">88</div>
       <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:75%;background:#4ade80"></div>
+        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
       </div>
       <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders köper samtidigt</div>
+      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
     </div></td>
-      <td class="td-fi" data-label="Källa"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y040-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI ↗</a></td>
+      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y040-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
     </tr>
     </tbody>
   </table>
 </div>
 
 <footer>
-  Data från <a href="https://www.fi.se" target="_blank">Finansinspektionen</a> ·
-  Aktier på <a href="https://www.nordnet.se" target="_blank">Nordnet</a> ·
-  <a href="https://github.com/Gurkburkens/FI-Insider" target="_blank">Källkod på GitHub</a> ·
-  Ej finansiell rådgivning ·
-  Skapad av Gustav Engström
+  Data frÃ¥n <a href="https://www.fi.se" target="_blank">Finansinspektionen</a> Â·
+  Aktier pÃ¥ <a href="https://www.nordnet.se" target="_blank">Nordnet</a> Â·
+  <a href="https://github.com/Gurkburkens/FI-Insider" target="_blank">KÃ¤llkod pÃ¥ GitHub</a> Â·
+  Ej finansiell rÃ¥dgivning Â·
+  Skapad av Gustav EngstrÃ¶m
 </footer>
 
 <script>
@@ -1421,7 +1421,7 @@
       row.style.display = matchQ && matchR && matchS ? '' : 'none';
       if (matchQ && matchR && matchS) visible++;
     });
-    countEl.textContent = visible + ' affärer';
+    countEl.textContent = visible + ' affÃ¤rer';
   }
 
   search.addEventListener('input', filter);
