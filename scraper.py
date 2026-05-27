@@ -1,7 +1,7 @@
 """
 FI Insiderhandel Scraper
-Hämtar insynshandel från Finansinspektionens register
-och filtrerar köp över 1 miljon kr.
+Hämtar insynshandel från Finansinspektionens publiceringsklient,
+filtrerar köp (Förvärv) över 1 miljon kr.
 """
 
 import json
@@ -18,90 +18,128 @@ from bs4 import BeautifulSoup
 THRESHOLD_SEK  = 1_000_000
 DAYS_BACK      = 30
 OUTPUT_FILE    = Path("data/trades.json")
-FI_SEARCH_URL  = "https://marknadssok.fi.se/Publikt/sv/Search/Search"
+BASE_URL       = "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Search/Insyn"
 
 
-# ── FI-scraper ─────────────────────────────────────────────────────────────────
+# ── Scraper ────────────────────────────────────────────────────────────────────
 def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
     date_from = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
     date_to   = datetime.now().strftime("%Y-%m-%d")
 
     session = requests.Session()
     session.headers.update({
-        "User-Agent": "Mozilla/5.0 (compatible; FI-Insider-Tracker/1.0)"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "sv-SE,sv;q=0.9,en;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
     })
 
+    # Besök startsidan först för att få cookies
+    try:
+        session.get("https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Start/Insyn", timeout=15)
+        time.sleep(1)
+    except Exception:
+        pass
+
     params = {
+        "button":             "search",
         "SearchFunctionType": "Insyn",
+        "language":           "sv-se",
         "Transaktionsdatum.From": date_from,
-        "Transaktionsdatum.To": date_to,
-        "Transaktionstyp": "Förvärv",
-        "button": "search",
-        "Page": 1,
+        "Transaktionsdatum.To":   date_to,
+        "paging": "True",
+        "page":   1,
     }
 
     trades = []
     page   = 1
 
     while True:
-        params["Page"] = page
+        params["page"] = page
         print(f"  Hämtar sida {page}...")
 
         try:
-            resp = session.get(FI_SEARCH_URL, params=params, timeout=30)
+            resp = session.get(BASE_URL, params=params, timeout=30)
             resp.raise_for_status()
         except requests.RequestException as e:
             print(f"  Fel vid hämtning: {e}")
             break
 
         soup = BeautifulSoup(resp.text, "html.parser")
-        rows = soup.select("table.table tbody tr")
+        rows = soup.select("table tbody tr")
 
         if not rows:
             print(f"  Inga fler rader på sida {page}.")
             break
 
+        found_on_page = 0
         for row in rows:
             cells = [td.get_text(strip=True) for td in row.find_all("td")]
-            if len(cells) < 9:
+            if len(cells) < 14:
                 continue
             trade = parse_row(cells)
             if trade:
                 trades.append(trade)
+                found_on_page += 1
 
-        next_btn = soup.select_one("a[rel='next']")
-        if not next_btn:
+        print(f"    → {found_on_page} affärer över tröskel på sida {page}")
+
+        # Kolla om det finns nästa sida
+        next_link = soup.find("a", string=lambda t: t and "Nästa" in t)
+        if not next_link:
             break
 
         page += 1
-        time.sleep(0.5)
+        time.sleep(0.8)
 
     return trades
 
 
 def parse_row(cells: list[str]) -> dict | None:
-    """Tolkar en tabellrad från FI:s sökresultat.
-    Kolumnordning: 0=Publiceringsdatum, 1=Bolag, 2=LEI, 3=Person, 4=Befattning,
-    5=Närstående, 6=Instrument, 7=ISIN, 8=Transaktionstyp,
-    9=Volym, 10=Pris, 11=Valuta, 12=Handelsplats, 13=Datum
+    """
+    Kolumnordning från FI:s publiceringsklient:
+    0:  Publiceringsdatum
+    1:  Emittent
+    2:  Person i ledande ställning
+    3:  Befattning
+    4:  Närstående
+    5:  Karaktär          ← "Förvärv" = köp
+    6:  Instrumentnamn
+    7:  Instrumenttyp
+    8:  ISIN
+    9:  Transaktionsdatum
+    10: Volym
+    11: Volymsenhet
+    12: Pris
+    13: Valuta
     """
     try:
-        amount_sek = parse_amount(cells[9], cells[10])
+        # Bara köp
+        if cells[5] != "Förvärv":
+            return None
+
+        amount_sek = parse_amount(cells[10], cells[12])
         if amount_sek < THRESHOLD_SEK:
             return None
 
         return {
             "published":  cells[0],
             "company":    cells[1],
-            "person":     cells[3],
-            "role":       cells[4],
+            "person":     cells[2],
+            "role":       cells[3],
             "instrument": cells[6],
-            "trade_type": cells[8],
-            "volume":     cells[9],
-            "price":      cells[10],
-            "currency":   cells[11] if len(cells) > 11 else "SEK",
+            "trade_type": cells[5],
+            "volume":     cells[10],
+            "price":      cells[12],
+            "currency":   cells[13],
             "amount_sek": amount_sek,
-            "trade_date": cells[13] if len(cells) > 13 else cells[0],
+            "trade_date": cells[9],
         }
     except (IndexError, ValueError) as e:
         print(f"  Parse-fel: {e} | {cells}")
@@ -110,7 +148,10 @@ def parse_row(cells: list[str]) -> dict | None:
 
 def parse_amount(volume_str: str, price_str: str) -> float:
     def clean(s: str) -> float:
-        s = re.sub(r"[^\d,\.]", "", s).replace(",", ".")
+        # FI använder mellanslag som tusentalsavgränsare och komma som decimal
+        s = s.replace("\xa0", "").replace("\u202f", "").replace(" ", "")
+        s = s.replace(",", ".")
+        s = re.sub(r"[^\d\.]", "", s)
         return float(s) if s else 0.0
     return clean(volume_str) * clean(price_str)
 
@@ -156,7 +197,7 @@ if __name__ == "__main__":
 
     print("1/2 Hämtar data från FI...")
     trades = fetch_fi_trades()
-    print(f"    → {len(trades)} affärer över tröskel hittades.\n")
+    print(f"    → {len(trades)} affärer totalt hittades.\n")
 
     print("2/2 Sparar data...")
     save(trades)
