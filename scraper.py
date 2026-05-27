@@ -26,47 +26,42 @@ FI_BASE        = "https://marknadssok.fi.se"
 # ── Ticker-lookup via OpenFIGI ────────────────────────────────────────────────
 _ticker_cache: dict = {}
 
-def lookup_ticker(isin: str, session: requests.Session) -> dict:
-    """Slår upp ticker och börs via OpenFIGI (gratis, ingen API-nyckel)."""
-    if not isin:
-        return {}
-    if isin in _ticker_cache:
-        return _ticker_cache[isin]
-
-    try:
-        r = requests.post(
-            "https://api.openfigi.com/v3/mapping",
-            json=[{"idType": "ID_ISIN", "idValue": isin, "exchCode": "SS"}],
-            headers={"Content-Type": "application/json"},
-            timeout=8,
-        )
-        if r.status_code == 200:
-            data = r.json()
-            hits = data[0].get("data", []) if data else []
-            # Välj aktie i första hand
-            for hit in hits:
-                if hit.get("securityType", "") == "Common Stock":
-                    result = {
-                        "ticker":   hit.get("ticker", ""),
-                        "exchange": hit.get("exchCode", ""),
-                        "name":     hit.get("name", ""),
-                    }
-                    _ticker_cache[isin] = result
-                    return result
-            # Annars ta första träffen
-            if hits:
-                result = {
-                    "ticker":   hits[0].get("ticker", ""),
-                    "exchange": hits[0].get("exchCode", ""),
-                    "name":     hits[0].get("name", ""),
-                }
-                _ticker_cache[isin] = result
-                return result
-    except Exception:
-        pass
-
-    _ticker_cache[isin] = {}
-    return {}
+def batch_lookup_tickers(isins: list[str]) -> dict:
+    """Slår upp ticker och börs för flera ISIN på en gång via OpenFIGI batch-API.
+    Max 100 per anrop, gratis utan API-nyckel."""
+    result = {}
+    unique = [i for i in set(isins) if i]
+    # Dela upp i batcher om 10 (gratis-gränsen)
+    for i in range(0, len(unique), 10):
+        batch = unique[i:i+10]
+        payload = [{"idType": "ID_ISIN", "idValue": isin} for isin in batch]
+        try:
+            r = requests.post(
+                "https://api.openfigi.com/v3/mapping",
+                json=payload,
+                headers={"Content-Type": "application/json"},
+                timeout=15,
+            )
+            if r.status_code == 200:
+                data = r.json()
+                for isin, item in zip(batch, data):
+                    hits = item.get("data", [])
+                    for hit in hits:
+                        if hit.get("securityType") == "Common Stock":
+                            result[isin] = {
+                                "ticker":   hit.get("ticker", ""),
+                                "exchange": hit.get("exchCode", ""),
+                            }
+                            break
+                    if isin not in result and hits:
+                        result[isin] = {
+                            "ticker":   hits[0].get("ticker", ""),
+                            "exchange": hits[0].get("exchCode", ""),
+                        }
+        except Exception as e:
+            print(f"  OpenFIGI-fel: {e}")
+        time.sleep(1)
+    return result
 
 
 # ── Score-beräkning ────────────────────────────────────────────────────────────
@@ -194,13 +189,6 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
                 continue
             trade = parse_row(cells, fi_url)
             if trade:
-                # Hämta ticker från Avanza
-                if trade["isin"]:
-                    ticker_info = lookup_ticker(trade["isin"], session)
-                    trade["ticker"]   = ticker_info.get("ticker", "")
-                    trade["exchange"] = ticker_info.get("exchange", "")
-                    time.sleep(0.2)
-
                 trade["score"] = calc_score(trade)
                 trades.append(trade)
                 found_on_page += 1
