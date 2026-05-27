@@ -37,7 +37,7 @@ def role_badge(role: str) -> str:
     return f'<span class="badge badge-other">{role[:18]}</span>'
 
 
-def score_bar(score: int) -> str:
+def score_bar(score: int, detail: str = "") -> str:
     if score >= 75:
         color = "#4ade80"
         label = "Stark"
@@ -47,12 +47,14 @@ def score_bar(score: int) -> str:
     else:
         color = "#f87171"
         label = "Svag"
+    detail_html = f'<div class="score-detail">{detail}</div>' if detail else ""
     return f'''<div class="score-wrap">
       <div class="score-num" style="color:{color}">{score}</div>
       <div class="score-bar-bg">
         <div class="score-bar-fill" style="width:{score}%;background:{color}"></div>
       </div>
       <div class="score-label" style="color:{color}">{label}</div>
+      {detail_html}
     </div>'''
 
 
@@ -66,6 +68,7 @@ def build_rows(trades: list[dict]) -> str:
         nordnet_url = t.get("nordnet_url", "")
         isin        = t.get("isin", "")
         score       = t.get("score", 0)
+        score_detail = t.get("score_detail", "")
         instrument  = t.get("instrument", "")
 
         company = t.get("company", "")
@@ -85,7 +88,7 @@ def build_rows(trades: list[dict]) -> str:
       </td>
       <td class="td-amount" data-label="Belopp">{fmt_sek(t.get("amount_sek",0))}</td>
       <td class="td-instrument" data-label="Aktie">{nordnet_cell}</td>
-      <td class="td-score" data-label="Score">{score_bar(score)}</td>
+      <td class="td-score" data-label="Score">{score_bar(score, score_detail)}</td>
       <td class="td-fi" data-label="Källa">{fi_link}</td>
     </tr>""")
     return "\n".join(rows)
@@ -330,6 +333,13 @@ def build_html(data: dict) -> str:
       height: 3px;
       border-radius: 2px;
       transition: width 0.3s;
+    }}
+    .score-detail {{
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent-dk);
+      margin-top: 3px;
+      line-height: 1.4;
     }}
     .score-label {{
       font-family: var(--mono);
