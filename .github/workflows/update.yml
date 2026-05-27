@@ -1,0 +1,46 @@
+name: Uppdatera insiderhandel
+
+on:
+  schedule:
+    - cron: "0 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  scrape-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checka ut kod
+        uses: actions/checkout@v4
+
+      - name: Sätt upp Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installera beroenden
+        run: pip install requests beautifulsoup4
+
+      - name: Kör scraper
+        run: python scraper.py
+
+      - name: Bygg hemsida
+        run: python build_site.py
+
+      - name: Commita uppdaterad data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/trades.json docs/
+          git diff --cached --quiet || git commit -m "Auto: uppdatera insiderhandel $(date +%Y-%m-%d)"
+          git push
+
+      - name: Publicera till GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          folder: docs
