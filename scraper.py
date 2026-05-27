@@ -73,52 +73,126 @@ def parse_amount(volume_str: str, price_str: str) -> float:
 
 
 # ── Score-beräkning ────────────────────────────────────────────────────────────
-def calc_score(trade: dict) -> int:
+def calc_base_score(trade: dict) -> int:
+    """Grundscore baserat på enskild affär (0-80p)."""
     score = 0
 
+    # ── Belopp (0–30p) ──
     amount = trade.get("amount_sek", 0)
-    if   amount >= 50_000_000: score += 35
-    elif amount >= 20_000_000: score += 30
-    elif amount >= 10_000_000: score += 25
-    elif amount >=  5_000_000: score += 20
-    elif amount >=  3_000_000: score += 15
-    elif amount >=  2_000_000: score += 10
-    else:                      score +=  5
+    if   amount >= 50_000_000: score += 30
+    elif amount >= 20_000_000: score += 25
+    elif amount >= 10_000_000: score += 20
+    elif amount >=  5_000_000: score += 16
+    elif amount >=  3_000_000: score += 12
+    elif amount >=  2_000_000: score +=  8
+    else:                      score +=  4
 
+    # ── Roll (0–25p) ──
     role = trade.get("role", "").lower()
     if any(k in role for k in ["verkställande direktör", "vd", "ceo"]):
-        score += 30
-    elif any(k in role for k in ["ordförande", "chairman"]):
         score += 25
+    elif any(k in role for k in ["ordförande", "chairman"]):
+        score += 22
     elif any(k in role for k in ["styrelseledamot", "styrelse"]):
-        score += 20
+        score += 17
     elif any(k in role for k in ["ekonomichef", "cfo", "finanschef"]):
-        score += 15
+        score += 13
     elif any(k in role for k in ["ledande", "befattning"]):
-        score += 10
-    else:
-        score += 5
-
-    itype = trade.get("instrument_type", "").lower()
-    if "aktie" in itype:
-        score += 20
-    elif "teckningsoption" in itype or "warrant" in itype:
         score += 8
     else:
-        score += 12
+        score += 4
 
+    # ── Instrumenttyp (0–15p) ──
+    itype = trade.get("instrument_type", "").lower()
+    if "aktie" in itype:
+        score += 15   # Riktiga pengar på bordet
+    elif "teckningsoption" in itype or "warrant" in itype:
+        score += 4    # Ofta gratis tilldelning — svag signal
+    else:
+        score += 9
+
+    # ── Färskhet (0–10p) ──
     try:
         trade_date = datetime.fromisoformat(trade.get("trade_date", "")[:10])
         days_ago = (datetime.now() - trade_date).days
-        if   days_ago <= 3:  score += 15
-        elif days_ago <= 7:  score += 12
-        elif days_ago <= 14: score += 8
-        elif days_ago <= 21: score += 4
-        else:                score += 1
+        if   days_ago <= 3:  score += 10
+        elif days_ago <= 7:  score += 8
+        elif days_ago <= 14: score += 5
+        elif days_ago <= 21: score += 2
+        else:                score += 0
     except Exception:
-        score += 5
+        score += 4
 
-    return min(score, 100)
+    return score
+
+
+def enrich_scores(trades: list[dict]) -> list[dict]:
+    """
+    Beräknar slutlig score med kontext från alla affärer.
+    Lägger till bonus för:
+    - Upprepade köp av samma person (visar övertygelse)
+    - Flera insiders i samma bolag inom 14 dagar (klusterköp)
+    """
+    from collections import defaultdict
+
+    # Räkna köp per person och per bolag+period
+    person_counts: dict[str, int] = defaultdict(int)
+    company_dates: dict[str, list] = defaultdict(list)
+
+    for t in trades:
+        key = (t.get("company",""), t.get("person",""))
+        person_counts[key] += 1
+        try:
+            d = datetime.fromisoformat(t.get("trade_date","")[:10])
+            company_dates[t.get("company","")].append(d)
+        except Exception:
+            pass
+
+    for t in trades:
+        score = calc_base_score(t)
+        company = t.get("company", "")
+        person_key = (company, t.get("person",""))
+        bonuses = []
+
+        # ── Bonus: upprepade köp av samma person (0–10p) ──
+        repeat = person_counts[person_key]
+        if repeat >= 3:
+            score += 10
+            bonuses.append(f"{repeat}x köp av samma person")
+        elif repeat == 2:
+            score += 5
+            bonuses.append("2x köp av samma person")
+
+        # ── Bonus: klusterköp — flera insiders i bolaget inom 14 dagar (0–15p) ──
+        try:
+            this_date = datetime.fromisoformat(t.get("trade_date","")[:10])
+            nearby = [
+                d for d in company_dates[company]
+                if abs((d - this_date).days) <= 14
+            ]
+            unique_days = len(set(nearby))
+            unique_persons = len({
+                t2.get("person","") for t2 in trades
+                if t2.get("company","") == company
+                and t2.get("person","") != t.get("person","")
+                and abs((datetime.fromisoformat(t2.get("trade_date","")[:10]) - this_date).days) <= 14
+            })
+            if unique_persons >= 3:
+                score += 15
+                bonuses.append(f"{unique_persons} insiders köper samtidigt")
+            elif unique_persons == 2:
+                score += 8
+                bonuses.append(f"2 insiders köper samtidigt")
+            elif unique_persons == 1:
+                score += 4
+                bonuses.append("2 insiders köper inom 14 dagar")
+        except Exception:
+            pass
+
+        t["score"] = min(score, 100)
+        t["score_detail"] = " · ".join(bonuses) if bonuses else ""
+
+    return trades
 
 
 # ── Scraper ────────────────────────────────────────────────────────────────────
@@ -265,7 +339,6 @@ def fetch_batch(date_from: str, date_to: str) -> list[dict]:
                 continue
             trade = parse_row(cells, fi_url)
             if trade:
-                trade["score"] = calc_score(trade)
                 trades.append(trade)
                 found_on_page += 1
 
@@ -334,10 +407,19 @@ if __name__ == "__main__":
     existing  = load_existing()
     days_back = days_back_needed(existing)
 
-    print(f"\n1/2 Hämtar data från FI (senaste {days_back} dagarna)...")
+    print(f"\n1/3 Hämtar data från FI (senaste {days_back} dagarna)...")
     trades = fetch_fi_trades(days_back)
     print(f"    → {len(trades)} affärer totalt hittades.\n")
 
-    print("2/2 Sparar data...")
+    print("2/3 Beräknar scores...")
+    # Slå ihop med befintliga för att klusterköp ska fungera över tid
+    all_for_scoring = trades + existing.get("trades", [])
+    all_for_scoring = enrich_scores(all_for_scoring)
+    # Plocka ut bara de nya med uppdaterade scores
+    new_ids = {(t["company"], t["person"], t["trade_date"], t["volume"]) for t in trades}
+    trades = [t for t in all_for_scoring if (t["company"], t["person"], t["trade_date"], t["volume"]) in new_ids]
+    print(f"    → Scores beräknade.\n")
+
+    print("3/3 Sparar data...")
     save(trades, existing)
     print("\nKlart!")
