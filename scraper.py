@@ -186,9 +186,25 @@ def parse_row(cells: list[str], fi_url: str = "") -> dict | None:
 
 
 def fetch_fi_trades(days_back: int) -> list[dict]:
-    date_from = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
-    date_to   = datetime.now().strftime("%Y-%m-%d")
+    """Hämtar i veckovisa batcher för att undvika att FI kopplar ner oss."""
+    all_trades = []
+    today = datetime.now()
 
+    # Dela upp perioden i 7-dagars batcher
+    chunk = 7
+    for offset in range(0, days_back, chunk):
+        date_to   = (today - timedelta(days=offset)).strftime("%Y-%m-%d")
+        date_from = (today - timedelta(days=min(offset + chunk, days_back))).strftime("%Y-%m-%d")
+        print(f"  Batch: {date_from} → {date_to}")
+        batch = fetch_batch(date_from, date_to)
+        all_trades.extend(batch)
+        if offset + chunk < days_back:
+            time.sleep(2)  # Paus mellan batcher
+
+    return all_trades
+
+
+def fetch_batch(date_from: str, date_to: str) -> list[dict]:
     session = requests.Session()
     session.headers.update({
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
