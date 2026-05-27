@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 # ── Konfiguration ──────────────────────────────────────────────────────────────
 THRESHOLD_SEK  = 1_000_000
-DAYS_BACK      = 7
+DAYS_BACK      = 30
 OUTPUT_FILE    = Path("data/trades.json")
 FI_SEARCH_URL  = "https://marknadssok.fi.se/Publikt/sv/Search/Search"
 
