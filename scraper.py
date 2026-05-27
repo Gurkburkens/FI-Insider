@@ -75,7 +75,7 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
         rows = soup.select("table tbody tr")
 
         if not rows:
-            print(f"  Inga fler rader på sida {page}.")
+            print(f"  Inga fler rader på sida {page}, avslutar.")
             break
 
         found_on_page = 0
@@ -90,9 +90,21 @@ def fetch_fi_trades(days_back: int = DAYS_BACK) -> list[dict]:
 
         print(f"    → {found_on_page} affärer över tröskel på sida {page}")
 
-        # Kolla om det finns nästa sida
-        next_link = soup.find("a", string=lambda t: t and "Nästa" in t)
-        if not next_link:
+        # Kolla om det finns nästa sida — testa flera varianter av hur FI skriver det
+        has_next = (
+            soup.find("a", string=lambda t: t and "Nästa" in t) or
+            soup.find("a", rel="next") or
+            soup.find("a", title=lambda t: t and f"Sida {page+1}" in t) or
+            soup.find("a", href=lambda h: h and f"page={page+1}" in h)
+        )
+
+        # Debug: visa alla paginerings-länkar
+        if page == 1:
+            pag_links = soup.select("ul li a, .pagination a, a[href*='page=']")
+            print(f"    Paginerings-länkar: {[a.get_text(strip=True) for a in pag_links[:8]]}")
+
+        if not has_next:
+            print(f"  Ingen nästa-sida, avslutar efter sida {page}.")
             break
 
         page += 1
@@ -120,7 +132,6 @@ def parse_row(cells: list[str]) -> dict | None:
     13: Valuta
     """
     try:
-        # Bara köp
         if cells[5] != "Förvärv":
             return None
 
@@ -148,7 +159,6 @@ def parse_row(cells: list[str]) -> dict | None:
 
 def parse_amount(volume_str: str, price_str: str) -> float:
     def clean(s: str) -> float:
-        # FI använder mellanslag som tusentalsavgränsare och komma som decimal
         s = s.replace("\xa0", "").replace("\u202f", "").replace(" ", "")
         s = s.replace(",", ".")
         s = re.sub(r"[^\d\.]", "", s)
