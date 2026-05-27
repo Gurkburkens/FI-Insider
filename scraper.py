@@ -23,38 +23,46 @@ BASE_URL       = "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Search/Sear
 FI_BASE        = "https://marknadssok.fi.se"
 
 
-# ── Ticker-lookup via Avanza ───────────────────────────────────────────────────
+# ── Ticker-lookup via OpenFIGI ────────────────────────────────────────────────
 _ticker_cache: dict = {}
 
 def lookup_ticker(isin: str, session: requests.Session) -> dict:
-    """Slår upp ticker-symbol och börs från Avanzas öppna sök-API."""
+    """Slår upp ticker och börs via OpenFIGI (gratis, ingen API-nyckel)."""
     if not isin:
         return {}
     if isin in _ticker_cache:
         return _ticker_cache[isin]
 
     try:
-        r = session.get(
-            "https://www.avanza.se/ab/sok/inline",
-            params={"query": isin},
+        r = requests.post(
+            "https://api.openfigi.com/v3/mapping",
+            json=[{"idType": "ID_ISIN", "idValue": isin, "exchCode": "SS"}],
+            headers={"Content-Type": "application/json"},
             timeout=8,
         )
         if r.status_code == 200:
             data = r.json()
-            # Avanza returnerar en lista med träffar
-            hits = data if isinstance(data, list) else data.get("hits", {}).get("hits", [])
-            for hit in hits[:3]:
-                src = hit.get("_source", hit)
-                hit_isin = src.get("isin", src.get("ISIN", ""))
-                if hit_isin == isin:
+            hits = data[0].get("data", []) if data else []
+            # Välj aktie i första hand
+            for hit in hits:
+                if hit.get("securityType", "") == "Common Stock":
                     result = {
-                        "ticker":   src.get("tickerSymbol", src.get("ticker", "")),
-                        "exchange": src.get("listName", src.get("exchange", "")),
-                        "name":     src.get("name", ""),
+                        "ticker":   hit.get("ticker", ""),
+                        "exchange": hit.get("exchCode", ""),
+                        "name":     hit.get("name", ""),
                     }
                     _ticker_cache[isin] = result
                     return result
-    except Exception as e:
+            # Annars ta första träffen
+            if hits:
+                result = {
+                    "ticker":   hits[0].get("ticker", ""),
+                    "exchange": hits[0].get("exchCode", ""),
+                    "name":     hits[0].get("name", ""),
+                }
+                _ticker_cache[isin] = result
+                return result
+    except Exception:
         pass
 
     _ticker_cache[isin] = {}
