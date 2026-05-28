@@ -1,1458 +1,279 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FI Insiderhandel Â· Stora kÃ¶p</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #0d0f0e;
-      --surface:   #141614;
-      --border:    #222422;
-      --text:      #e8ebe8;
-      --muted:     #6b736b;
-      --accent:    #4ade80;
-      --accent-dk: #16a34a;
-      --red:       #f87171;
-      --amber:     #fbbf24;
-      --blue:      #60a5fa;
-      --mono:      'IBM Plex Mono', monospace;
-      --sans:      'IBM Plex Sans', sans-serif;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 3rem 2rem 2.5rem;
-      border-bottom: 1px solid var(--border);
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .header-inner {
-      display: flex;
-      align-items: flex-start;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-    .header-left {
-      flex: 1;
-      min-width: 260px;
-    }
-    .header-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    h1 {
-      font-family: var(--mono);
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 0.75rem;
-    }
-    .header-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      max-width: 420px;
-      line-height: 1.6;
-    }
-    .header-stats {
-      display: flex;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      align-self: flex-start;
-      margin-top: 0.25rem;
-    }
-    .stat-card {
-      background: var(--surface);
-      padding: 1rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 120px;
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .stat-value {
-      font-family: var(--mono);
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1;
-    }
-    .stat-value.accent { color: var(--accent); }
-    .stat-sub {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .live-dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-right: 5px;
-      vertical-align: middle;
-    }
-
-    .filterbar {
-      max-width: 1400px;
-      margin: 1.5rem auto 0;
-      padding: 0 2rem;
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .filterbar input, .filterbar select {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.4rem 0.75rem;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      border-radius: 3px;
-      outline: none;
-    }
-    .filterbar input:focus, .filterbar select:focus {
-      border-color: var(--accent-dk);
-    }
-    .filterbar input { width: 220px; }
-    .count {
-      margin-left: auto;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .table-wrap {
-      max-width: 1400px;
-      margin: 1.5rem auto 4rem;
-      padding: 0 2rem;
-      overflow-x: auto;
-    }
-    table { width: 100%; border-collapse: collapse; }
-    thead th {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      padding: 0.6rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-      cursor: pointer;
-      user-select: none;
-    }
-    thead th:hover { color: var(--text); }
-    thead th.sorted { color: var(--accent); }
-    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
-    tbody tr:hover { background: var(--surface); }
-    td { padding: 0.9rem 1rem; vertical-align: middle; }
-
-    .td-date       { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
-    .td-company    { font-size: 0.9rem; }
-    .td-company strong { font-weight: 500; }
-    .td-person     { font-size: 0.85rem; }
-    .td-amount     { font-family: var(--mono); font-weight: 500; color: var(--accent); white-space: nowrap; font-size: 0.9rem; }
-    .td-instrument { font-size: 0.8rem; }
-    .company-link { color: var(--blue); text-decoration: none; font-size: 0.85rem; }
-    .company-link:hover { text-decoration: underline; }
-    .td-score      { min-width: 110px; }
-    .td-fi         { font-family: var(--mono); font-size: 0.75rem; }
-
-    .nordnet-link {
-      color: var(--blue);
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .nordnet-link:hover { text-decoration: underline; }
-    .isin {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
-
-    .fi-link {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.7rem;
-    }
-    .fi-link:hover { color: var(--text); }
-
-    /* Score */
-    .score-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .score-num {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-    .score-bar-bg {
-      height: 3px;
-      background: var(--border);
-      border-radius: 2px;
-      width: 80px;
-    }
-    .score-bar-fill {
-      height: 3px;
-      border-radius: 2px;
-      transition: width 0.3s;
-    }
-    .score-detail {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--accent-dk);
-      margin-top: 3px;
-      line-height: 1.4;
-    }
-    .score-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    /* Score-fÃ¶rklaring */
-    .score-info {
-      max-width: 1400px;
-      margin: 1rem auto 0;
-      padding: 0 2rem;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .score-info span { display: flex; align-items: center; gap: 0.4rem; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-
-    .badge {
-      display: inline-block;
-      padding: 0.15rem 0.5rem;
-      border-radius: 2px;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      margin-top: 3px;
-    }
-    .badge-ceo   { background: #14532d; color: #86efac; }
-    .badge-chair { background: #1e3a5f; color: #93c5fd; }
-    .badge-board { background: #1c2b4a; color: #7dd3fc; }
-    .badge-cfo   { background: #451a03; color: #fcd34d; }
-    .badge-other { background: #1c1c1c; color: var(--muted); }
-
-    .empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--mono); }
-
-    /* ââ Mobil ââ */
-    @media (max-width: 768px) {
-      header { padding: 1.5rem 1rem 1.5rem; }
-      .header-inner { flex-direction: column; gap: 1.5rem; }
-      h1 { font-size: 1.3rem; }
-      .header-stats { width: 100%; }
-      .stat-card { padding: 0.75rem 1rem; min-width: 0; flex: 1; }
-      .stat-value { font-size: 1rem; }
-
-      .filterbar { padding: 0 1rem; gap: 0.5rem; }
-      .filterbar input { width: 100%; }
-      .count { margin-left: 0; }
-
-      .table-wrap { padding: 0; margin-top: 1rem; }
-      thead { display: none; }
-
-      tbody tr {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        margin: 0.75rem 1rem;
-        padding: 1rem;
-        background: var(--surface);
-        gap: 0;
-      }
-      td { display: none; border: none; padding: 0; }
-
-      /* Rad 1: datum (vÃ¤nster) + person/roll (hÃ¶ger) */
-      .td-date {
-        display: block;
-        grid-column: 1;
-        grid-row: 1;
-        font-size: 0.7rem;
-        color: var(--muted);
-        margin-bottom: 0.3rem;
-      }
-      .td-person {
-        display: block;
-        grid-column: 2;
-        grid-row: 1;
-        text-align: right;
-        font-size: 0.75rem;
-        color: var(--muted);
-        margin-bottom: 0.3rem;
-      }
-      .td-person br { display: none; }
-
-      /* Rad 2: bolagsnamn (vÃ¤nster, stor) */
-      .td-company {
-        display: block;
-        grid-column: 1 / 3;
-        grid-row: 2;
-        margin-bottom: 0.5rem;
-      }
-      .td-company strong { font-size: 1rem; font-weight: 500; }
-
-      /* Rad 3: belopp (vÃ¤nster) + score (hÃ¶ger) */
-      .td-amount {
-        display: block;
-        grid-column: 1;
-        grid-row: 3;
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: var(--accent);
-        align-self: center;
-      }
-      .td-score {
-        display: block;
-        grid-column: 2;
-        grid-row: 3;
-        text-align: right;
-        align-self: center;
-      }
-      .score-wrap { align-items: flex-end; }
-      .score-bar-bg { width: 60px; margin-left: auto; }
-
-      /* Rad 4: aktie/ISIN (vÃ¤nster) + FI-lÃ¤nk (hÃ¶ger) */
-      .td-instrument {
-        display: block;
-        grid-column: 1;
-        grid-row: 4;
-        margin-top: 0.6rem;
-        font-size: 0.75rem;
-      }
-      .td-instrument .company-link { font-size: 0.75rem; }
-      .td-instrument .isin { font-size: 0.62rem; }
-
-      .td-fi {
-        display: block;
-        grid-column: 2;
-        grid-row: 4;
-        text-align: right;
-        margin-top: 0.6rem;
-      }
-      .td-fi a {
-        font-size: 0.7rem;
-        color: var(--muted);
-        border: 1px solid var(--border);
-        padding: 2px 10px;
-        border-radius: 3px;
-      }
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: var(--accent-dk); text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FI Insiderhandel - Stora kop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--bg: #0d0f0e; --surface: #141614; --border: #222422; --text: #e8ebe8;
+--muted: #6b736b; --accent: #4ade80; --accent-dk: #16a34a;
+--red: #f87171; --amber: #fbbf24; --blue: #60a5fa;
+--mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+header { padding: 3rem 2rem 2.5rem; border-bottom: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
+.header-inner { display: flex; align-items: flex-start; gap: 3rem; flex-wrap: wrap; }
+.header-left { flex: 1; min-width: 260px; }
+.header-eyebrow { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+h1 { font-family: var(--mono); font-size: 2rem; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.75rem; }
+.header-desc { font-size: 0.8rem; color: var(--muted); max-width: 420px; line-height: 1.6; }
+.header-stats { display: flex; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; align-self: flex-start; margin-top: 0.25rem; }
+.stat-card { background: var(--surface); padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 4px; min-width: 120px; }
+.stat-label { font-family: var(--mono); font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.stat-value { font-family: var(--mono); font-size: 1.4rem; font-weight: 500; color: var(--text); line-height: 1; }
+.stat-value.accent { color: var(--accent); }
+.stat-sub { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+.live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 5px; vertical-align: middle; }
+.filterbar { max-width: 1400px; margin: 1.5rem auto 0; padding: 0 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+.filterbar input, .filterbar select { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.75rem; font-family: var(--mono); font-size: 0.75rem; border-radius: 3px; outline: none; }
+.filterbar input:focus, .filterbar select:focus { border-color: var(--accent-dk); }
+.filterbar input { width: 220px; }
+.count { margin-left: auto; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+.table-wrap { max-width: 1400px; margin: 1.5rem auto 4rem; padding: 0 2rem; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+thead th { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 0.6rem 1rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer; user-select: none; }
+thead th:hover { color: var(--text); }
+thead th.sorted { color: var(--accent); }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+tbody tr:hover { background: var(--surface); }
+td { padding: 0.9rem 1rem; vertical-align: middle; }
+.td-date { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+.td-company { font-size: 0.9rem; }
+.td-company strong { font-weight: 500; }
+.td-person { font-size: 0.85rem; }
+.td-amount { font-family: var(--mono); font-weight: 500; color: var(--accent); white-space: nowrap; font-size: 0.9rem; }
+.td-instrument { font-size: 0.8rem; }
+.company-link { color: var(--blue); text-decoration: none; font-size: 0.85rem; }
+.company-link:hover { text-decoration: underline; }
+.td-score { min-width: 110px; }
+.td-fi { font-family: var(--mono); font-size: 0.75rem; }
+.isin { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); }
+.fi-link { color: var(--muted); text-decoration: none; font-size: 0.7rem; }
+.fi-link:hover { color: var(--text); }
+.score-wrap { display: flex; flex-direction: column; gap: 3px; }
+.score-num { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; }
+.score-bar-bg { height: 3px; background: var(--border); border-radius: 2px; width: 80px; }
+.score-bar-fill { height: 3px; border-radius: 2px; transition: width 0.3s; }
+.score-detail { font-family: var(--mono); font-size: 0.6rem; color: var(--accent-dk); margin-top: 3px; line-height: 1.4; }
+.score-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.score-info { max-width: 1400px; margin: 1rem auto 0; padding: 0 2rem; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.score-info span { display: flex; align-items: center; gap: 0.4rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 2px; font-family: var(--mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.04em; margin-top: 3px; }
+.badge-ceo { background: #14532d; color: #86efac; }
+.badge-chair { background: #1e3a5f; color: #93c5fd; }
+.badge-board { background: #1c2b4a; color: #7dd3fc; }
+.badge-cfo { background: #451a03; color: #fcd34d; }
+.badge-other { background: #1c1c1c; color: var(--muted); }
+.empty { text-align: center; color: var(--muted); padding: 3rem; font-family: var(--mono); }
+@media (max-width: 768px) {
+header { padding: 1.5rem 1rem 1.5rem; }
+.header-inner { flex-direction: column; gap: 1.5rem; }
+h1 { font-size: 1.3rem; }
+.header-stats { width: 100%; }
+.stat-card { padding: 0.75rem 1rem; min-width: 0; flex: 1; }
+.stat-value { font-size: 1rem; }
+.filterbar { padding: 0 1rem; gap: 0.5rem; }
+.filterbar input { width: 100%; }
+.count { margin-left: 0; }
+.table-wrap { padding: 0; margin-top: 1rem; }
+thead { display: none; }
+tbody tr { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); border-radius: 8px; margin: 0.75rem 1rem; padding: 1rem; background: var(--surface); gap: 0; }
+td { display: none; border: none; padding: 0; }
+.td-date { display: block; grid-column: 1; grid-row: 1; font-size: 0.7rem; color: var(--muted); margin-bottom: 0.3rem; }
+.td-person { display: block; grid-column: 2; grid-row: 1; text-align: right; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.3rem; }
+.td-person br { display: none; }
+.td-company { display: block; grid-column: 1 / 3; grid-row: 2; margin-bottom: 0.5rem; }
+.td-company strong { font-size: 1rem; font-weight: 500; }
+.td-amount { display: block; grid-column: 1; grid-row: 3; font-size: 1.4rem; font-weight: 500; color: var(--accent); align-self: center; }
+.td-score { display: block; grid-column: 2; grid-row: 3; text-align: right; align-self: center; }
+.score-wrap { align-items: flex-end; }
+.score-bar-bg { width: 60px; margin-left: auto; }
+.td-instrument { display: block; grid-column: 1; grid-row: 4; margin-top: 0.6rem; font-size: 0.75rem; }
+.td-fi { display: block; grid-column: 2; grid-row: 4; text-align: right; margin-top: 0.6rem; }
+.td-fi a { font-size: 0.7rem; color: var(--muted); border: 1px solid var(--border); padding: 2px 10px; border-radius: 3px; }
+}
+footer { text-align: center; padding: 2rem; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); border-top: 1px solid var(--border); }
+footer a { color: var(--accent-dk); text-decoration: none; }
+</style>
 </head>
 <body>
-
 <header>
-  <div class="header-inner">
-    <div class="header-left">
-      <div class="header-eyebrow">Finansinspektionen Â· Insynsregister</div>
-      <h1>FI // INSIDERHANDEL</h1>
-      <p class="header-desc">
-        Automatisk bevakning av insynspersoners aktiekÃ¶p &gt; 1 Mkr.
-        Score 0â100 baseras pÃ¥ belopp, roll, instrumenttyp och aktualitet.
-      </p>
-    </div>
-    <div class="header-stats">
-      <div class="stat-card">
-        <span class="stat-label">AffÃ¤rer</span>
-        <span class="stat-value accent">46</span>
-        <span class="stat-sub">totalt i databasen</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">TrÃ¶skel</span>
-        <span class="stat-value">1 Mkr</span>
-        <span class="stat-sub">minsta kÃ¶p</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Uppdaterad</span>
-        <span class="stat-value" style="font-size:0.85rem">27 May 2026</span>
-        <span class="stat-sub"><span class="live-dot"></span>automatiskt varje vardag</span>
-      </div>
-    </div>
-  </div>
+<div class="header-inner">
+<div class="header-left">
+<div class="header-eyebrow">Finansinspektionen - Insynsregister</div>
+<h1>FI // INSIDERHANDEL</h1>
+<p class="header-desc">
+Automatisk bevakning av insynspersoners aktiekop &gt; 1 Mkr.
+Score 0-100 baseras pa belopp, roll, instrumenttyp och aktualitet.
+</p>
+</div>
+<div class="header-stats">
+<div class="stat-card">
+<span class="stat-label">Affarer</span>
+<span class="stat-value accent">48</span>
+<span class="stat-sub">totalt i databasen</span>
+</div>
+<div class="stat-card">
+<span class="stat-label">Troskel</span>
+<span class="stat-value">1 Mkr</span>
+<span class="stat-sub">minsta kop</span>
+</div>
+<div class="stat-card">
+<span class="stat-label">Uppdaterad</span>
+<span class="stat-value" style="font-size:0.85rem">28 May 2026</span>
+<span class="stat-sub"><span class="live-dot"></span>automatiskt varje vardag</span>
+</div>
+</div>
+</div>
 </header>
-
 <div class="score-info">
-  <span><span class="dot" style="background:#4ade80"></span> 75â100 Stark signal</span>
-  <span><span class="dot" style="background:#fbbf24"></span> 50â74 Medel signal</span>
-  <span><span class="dot" style="background:#f87171"></span> 0â49 Svag signal</span>
-  <span style="margin-left:auto">Score baseras pÃ¥: belopp Â· roll Â· instrumenttyp Â· aktualitet</span>
+<span><span class="dot" style="background:#4ade80"></span> 75-100 Stark signal</span>
+<span><span class="dot" style="background:#fbbf24"></span> 50-74 Medel signal</span>
+<span><span class="dot" style="background:#f87171"></span> 0-49 Svag signal</span>
+<span style="margin-left:auto">Score baseras pa: belopp - roll - instrumenttyp - aktualitet</span>
 </div>
-
 <div class="filterbar">
-  <input type="text" id="search" placeholder="SÃ¶k bolag eller person...">
-  <select id="role-filter">
-    <option value="">Alla roller</option>
-    <option value="vd">VD</option>
-    <option value="styrelse">Styrelse</option>
-    <option value="cfo">CFO</option>
-  </select>
-  <select id="score-filter">
-    <option value="0">Alla scores</option>
-    <option value="75">Stark (75+)</option>
-    <option value="50">Medel (50+)</option>
-  </select>
-  <div class="count" id="count">46 affÃ¤rer</div>
+<input type="text" id="search" placeholder="Sok bolag eller person...">
+<select id="role-filter">
+<option value="">Alla roller</option>
+<option value="vd">VD</option>
+<option value="styrelse">Styrelse</option>
+<option value="cfo">CFO</option>
+</select>
+<select id="score-filter">
+<option value="0">Alla scores</option>
+<option value="75">Stark (75+)</option>
+<option value="50">Medel (50+)</option>
+</select>
+<div class="count" id="count">48 affarer</div>
 </div>
-
 <div class="table-wrap">
-  <table id="main-table">
-    <thead>
-      <tr>
-        <th data-col="0">Datum â</th>
-        <th data-col="1">Bolag â</th>
-        <th data-col="2">Person / Roll</th>
-        <th data-col="3">Belopp â</th>
-        <th data-col="4">Aktie / ISIN</th>
-        <th data-col="5">Score â</th>
-        <th>FI</th>
-      </tr>
-    </thead>
-    <tbody id="tbody">
-
-    <tr>
-      <td class="td-date" data-label="Datum">27 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>GrÃ¤nges AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Fredrik Spens
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.9 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=GrÃ¤nges+AB" target="_blank" class="company-link">GrÃ¤nges AB teckningsoption</a></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">26</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:26%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z206?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">26 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Investment Aktiebolaget Spiltan</strong></td>
-      <td class="td-person" data-label="Person">
-        Per BÃ¶rjesson
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">5.7 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Investment+Aktiebolaget+Spiltan" target="_blank" class="company-link">Investment AB Spiltan</a><br><span class="isin">SE0013382546</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">66</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:66%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z226-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">26 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>BIMobject AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Lars JÃ¶rnow
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">33.7 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=BIMobject+AB" target="_blank" class="company-link">BIMobject AB</a><br><span class="isin">SE0011644376</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">67</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:67%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z179?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">25 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Vertiseit AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Carl Backman
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">15.3 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Vertiseit+AB+(publ)" target="_blank" class="company-link">Vertiseit AB ser. B</a><br><span class="isin">SE0012481133</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">62</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:62%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z227-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">25 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>RugVista Group AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Carl Rydin
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">8.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=RugVista+Group+AB+(publ)" target="_blank" class="company-link">RugVista Group AB</a><br><span class="isin">SE0015659834</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">63</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:63%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">2x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z221-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">22 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Svedbergs Group AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Anders Wassberg
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">5.6 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Svedbergs+Group+AB" target="_blank" class="company-link">Svedbergs i Dalstorp AB ser. B</a><br><span class="isin">SE0000407991</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">71</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:71%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">5x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z220-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">22 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Eniro Group AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Hosni Omeirat
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">17.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Eniro+Group+AB" target="_blank" class="company-link">Eniro AB</a><br><span class="isin">SE0011256312</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">73</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:73%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">2x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z212-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">20 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>FASTIGHETS AKTIEBOLAGET TRIANON</strong></td>
-      <td class="td-person" data-label="Person">
-        Joel Eklund
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">2.6 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=FASTIGHETS+AKTIEBOLAGET+TRIANON" target="_blank" class="company-link">Fastighets AB Trianon ser. B</a><br><span class="isin">SE0018013658</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">48</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:48%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">20 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Teqnion AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Investment Aktiebolaget Spiltan
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">22.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Teqnion+AB" target="_blank" class="company-link">Teqnion AB</a><br><span class="isin">SE0012308088</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">73</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:73%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y947-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">18 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>H & M Hennes & Mauritz AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Karl-Johan Persson
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">104.7 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=H+&+M+Hennes+&+Mauritz+AB" target="_blank" class="company-link">Hennes & Mauritz AB, H & M ser. B</a><br><span class="isin">SE0000106270</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">82</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:82%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">6x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y936-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">18 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Stenhus Fastigheter i Norden AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Ilias Georgiadis
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">82.6 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Stenhus+Fastigheter+i+Norden+AB+(publ)" target="_blank" class="company-link">Stenhus Fastigheter i Norden AB</a><br><span class="isin">SE0014956819</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">75</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:75%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y928-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">15 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Scandi Standard AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Paulo Gaspar
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">2.2 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Scandi+Standard+AB+(publ)" target="_blank" class="company-link">Scandi Standard AB</a><br><span class="isin">SE0005999760</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">50</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:50%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">2x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y943-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">13 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>INTERNATIONAL PETROLEUM CORPORATION</strong></td>
-      <td class="td-person" data-label="Person">
-        William Axel Walter Lundin
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">79.3 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=INTERNATIONAL+PETROLEUM+CORPORATION" target="_blank" class="company-link">International Petroleum Corporation</a><br><span class="isin">CA46016U1084</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">75</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:75%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y705-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">13 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Scandi Standard AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Paulo Gaspar
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.4 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Scandi+Standard+AB+(publ)" target="_blank" class="company-link">Scandi Standard AB</a><br><span class="isin">SE0005999760</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">46</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:46%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">2x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y703-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">12 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Thule Group AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Curt Per-Arne Blomquist
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">10.4 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Thule+Group+AB" target="_blank" class="company-link">Thule Group AB</a><br><span class="isin">SE0006422390</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">54</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y491?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">11 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Swedish Orphan Biovitrum AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Sofiane FAHMY
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">13.0 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Swedish+Orphan+Biovitrum+AB+(publ)" target="_blank" class="company-link">Swedish Orphan Biovitrum AB</a><br><span class="isin">SE0000872095</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">45</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:45%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y500?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">08 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Preservia Hyresfastigheter AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        David Madeling
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">2.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Preservia+Hyresfastigheter+AB+(publ)" target="_blank" class="company-link">Preservia Hyresfastigheter AB BTA B</a><br><span class="isin">SE0028501346</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">42</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:42%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z066-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">06 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Plejd AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Rikard SkÃ¶ldin
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.1 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Plejd+AB" target="_blank" class="company-link">Plejd</a><br><span class="isin">SE0008014476</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">25</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:25%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y237?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">06 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Fagerhult Group AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Eric Gustaf Philip James Douglas
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">20.9 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Fagerhult+Group+AB" target="_blank" class="company-link">Fagerhult, AB</a><br><span class="isin">SE0010048884</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">59</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:59%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y225-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">04 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>H & M Hennes & Mauritz AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Karl-Johan Persson
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">82.3 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=H+&+M+Hennes+&+Mauritz+AB" target="_blank" class="company-link">Hennes & Mauritz AB, H & M ser. B</a><br><span class="isin">SE0000106270</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">77</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:77%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">6x kÃ¶p av samma person</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y236-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">04 May 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Arbona AB</strong></td>
-      <td class="td-person" data-label="Person">
-        HÃ¥kan Blomdahl
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">3.0 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Arbona+AB" target="_blank" class="company-link">Arbona A</a><br><span class="isin">SE0003210590</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">45</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:45%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y228-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Briox AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Martin JÃ¶nsson
-        <br><span class="badge badge-board">Styrelse</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">8.2 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Briox+AB" target="_blank" class="company-link">Briox</a><br><span class="isin">SE0008588131</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">48</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:48%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y163-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Pandox Aktiebolag</strong></td>
-      <td class="td-person" data-label="Person">
-        Christian Ringnes
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">39.9 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Pandox+Aktiebolag" target="_blank" class="company-link">Pandox AB ser. B</a><br><span class="isin">SE0007100359</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">62</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:62%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y101?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        BjÃ¶rn Einar Lidefelt
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">6.6 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">54</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y132-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Simon Ellis
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">5.2 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">54</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y127-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Neil  Vann
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">6.0 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">54</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y115-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Massimo Grassi
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">10.0 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">58</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:58%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y103-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Erik Pieder
-        <br><span class="badge badge-cfo">CFO</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">6.2 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">59</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:59%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y089-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Lucas Boselli
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">11.7 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">58</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:58%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y077-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>eWork Group AB</strong></td>
-      <td class="td-person" data-label="Person">
-        A. Staffan SalÃ©n B. Erik Ãfors
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">16.3 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=eWork+Group+AB" target="_blank" class="company-link">eWork Group AB</a><br><span class="isin">SE0002402701</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">57</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:57%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y072-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Bonava AB (publ)</strong></td>
-      <td class="td-person" data-label="Person">
-        Mats Ãke JÃ¶nsson
-        <br><span class="badge badge-chair">Ordf.</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.9 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Bonava+AB+(publ)" target="_blank" class="company-link">Bonava AB ser. B</a><br><span class="isin">SE0008091581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">41</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:41%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y069-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        stephanie ORDAN
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">5.9 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#fbbf24">54</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:54%;background:#fbbf24"></div>
-      </div>
-      <div class="score-label" style="color:#fbbf24">Medel</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Allan David Talbot-cooper
-        <br><span class="badge badge-other">AnnanÂ ledandeÂ befa</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">42</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:42%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y058-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">29 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Nico Eric JosÃ©e Delvaux
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">30.2 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">80</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:80%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">8 insiders kÃ¶per samtidigt</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y038-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>EQT AB</strong></td>
-      <td class="td-person" data-label="Person">
-        Jean Salata
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">31.0 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=EQT+AB" target="_blank" class="company-link">EQT AB</a><br><span class="isin">SE0012853455</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#f87171">44</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:44%;background:#f87171"></div>
-      </div>
-      <div class="score-label" style="color:#f87171">Svag</div>
-      
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y065-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Antoine Duclaux
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y053-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Melker Jernberg
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">3.8 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y052-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Kina Wileke
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.7 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y051-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Jens Anders Holtinger
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">2.6 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y049-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Stephen Roy
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">2.7 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y047-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        ROGER ALM
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">3.0 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y045-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Scott Rafkin
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">3.6 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y044-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Yanna Niu
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">3.4 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y043-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Mats Harry Backman
-        <br><span class="badge badge-cfo">CFO</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">2.8 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y042-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Nina Aresund
-        <br><span class="badge badge-other">AnnanÂ medlemÂ iÂ bol</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">1.5 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y041-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-
-    <tr>
-      <td class="td-date" data-label="Datum">28 Apr 2026</td>
-      <td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td>
-      <td class="td-person" data-label="Person">
-        Martin Lundstedt
-        <br><span class="badge badge-ceo">VD</span>
-      </td>
-      <td class="td-amount" data-label="Belopp">14.1 Mkr</td>
-      <td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td>
-      <td class="td-score" data-label="Score"><div class="score-wrap">
-      <div class="score-num" style="color:#4ade80">88</div>
-      <div class="score-bar-bg">
-        <div class="score-bar-fill" style="width:88%;background:#4ade80"></div>
-      </div>
-      <div class="score-label" style="color:#4ade80">Stark</div>
-      <div class="score-detail">10 insiders · Grupp: 40.1 Mkr</div>
-    </div></td>
-      <td class="td-fi" data-label="KÃ¤lla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y040-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI â</a></td>
-    </tr>
-    </tbody>
-  </table>
+<table id="main-table">
+<thead>
+<tr>
+<th data-col="0">Datum</th>
+<th data-col="1">Bolag</th>
+<th data-col="2">Person / Roll</th>
+<th data-col="3">Belopp</th>
+<th data-col="4">Aktie / ISIN</th>
+<th data-col="5">Score</th>
+<th>FI</th>
+</tr>
+</thead>
+<tbody id="tbody">
+<tr><td class="td-date" data-label="Datum">28 May 2026</td><td class="td-company" data-label="Bolag"><strong>SBP Kredit AB (publ)</strong></td><td class="td-person" data-label="Person">Matts Gustaf Herbert Kastengren<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">10.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=SBP+Kredit+AB+(publ)" target="_blank" class="company-link">SBP Kredit B</a><br><span class="isin">SE0029026095</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">64</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:64%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z275-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">27 May 2026</td><td class="td-company" data-label="Bolag"><strong>Addtech AB</strong></td><td class="td-person" data-label="Person">Malin Brodin Enarson<br><span class="badge badge-cfo">CFO</span></td><td class="td-amount" data-label="Belopp">1.8 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Addtech+AB" target="_blank" class="company-link">Addtech AB ser. B</a><br><span class="isin">SE0014781795</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">42</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:42%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z287-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">27 May 2026</td><td class="td-company" data-label="Bolag"><strong>Gränges AB</strong></td><td class="td-person" data-label="Person">Fredrik Spens<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">1.9 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Gränges+AB" target="_blank" class="company-link">Gränges AB teckningsoption</a></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">26</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:26%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z206?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">26 May 2026</td><td class="td-company" data-label="Bolag"><strong>Investment Aktiebolaget Spiltan</strong></td><td class="td-person" data-label="Person">Per Börjesson<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">5.7 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Investment+Aktiebolaget+Spiltan" target="_blank" class="company-link">Investment AB Spiltan</a><br><span class="isin">SE0013382546</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">66</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:66%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z226-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">26 May 2026</td><td class="td-company" data-label="Bolag"><strong>BIMobject AB</strong></td><td class="td-person" data-label="Person">Lars Jörnow<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">33.7 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=BIMobject+AB" target="_blank" class="company-link">BIMobject AB</a><br><span class="isin">SE0011644376</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">67</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:67%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z179?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">25 May 2026</td><td class="td-company" data-label="Bolag"><strong>Vertiseit AB (publ)</strong></td><td class="td-person" data-label="Person">Carl Backman<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">15.3 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Vertiseit+AB+(publ)" target="_blank" class="company-link">Vertiseit AB ser. B</a><br><span class="isin">SE0012481133</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">62</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:62%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z227-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">25 May 2026</td><td class="td-company" data-label="Bolag"><strong>RugVista Group AB (publ)</strong></td><td class="td-person" data-label="Person">Carl Rydin<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">8.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=RugVista+Group+AB+(publ)" target="_blank" class="company-link">RugVista Group AB</a><br><span class="isin">SE0015659834</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">58</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:58%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z221-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">22 May 2026</td><td class="td-company" data-label="Bolag"><strong>Svedbergs Group AB</strong></td><td class="td-person" data-label="Person">Anders Wassberg<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">5.6 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Svedbergs+Group+AB" target="_blank" class="company-link">Svedbergs i Dalstorp AB ser. B</a><br><span class="isin">SE0000407991</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">61</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:61%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z220-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">22 May 2026</td><td class="td-company" data-label="Bolag"><strong>Eniro Group AB</strong></td><td class="td-person" data-label="Person">Hosni Omeirat<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">17.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Eniro+Group+AB" target="_blank" class="company-link">Eniro AB</a><br><span class="isin">SE0011256312</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">68</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:68%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z212-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">20 May 2026</td><td class="td-company" data-label="Bolag"><strong>FASTIGHETS AKTIEBOLAGET TRIANON</strong></td><td class="td-person" data-label="Person">Joel Eklund<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">2.6 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=FASTIGHETS+AKTIEBOLAGET+TRIANON" target="_blank" class="company-link">Fastighets AB Trianon ser. B</a><br><span class="isin">SE0018013658</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">45</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:45%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">20 May 2026</td><td class="td-company" data-label="Bolag"><strong>Teqnion AB</strong></td><td class="td-person" data-label="Person">Investment Aktiebolaget Spiltan<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">22.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Teqnion+AB" target="_blank" class="company-link">Teqnion AB</a><br><span class="isin">SE0012308088</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">70</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:70%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y947-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">18 May 2026</td><td class="td-company" data-label="Bolag"><strong>H & M Hennes & Mauritz AB</strong></td><td class="td-person" data-label="Person">Karl-Johan Persson<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">104.7 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=H+&+M+Hennes+&+Mauritz+AB" target="_blank" class="company-link">Hennes & Mauritz AB, H & M ser. B</a><br><span class="isin">SE0000106270</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">77</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:77%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">2x köp av samma person</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y936-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">18 May 2026</td><td class="td-company" data-label="Bolag"><strong>Stenhus Fastigheter i Norden AB (publ)</strong></td><td class="td-person" data-label="Person">Ilias Georgiadis<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">82.6 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Stenhus+Fastigheter+i+Norden+AB+(publ)" target="_blank" class="company-link">Stenhus Fastigheter i Norden AB</a><br><span class="isin">SE0014956819</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">75</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:75%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y928-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">15 May 2026</td><td class="td-company" data-label="Bolag"><strong>Scandi Standard AB (publ)</strong></td><td class="td-person" data-label="Person">Paulo Gaspar<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">2.2 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Scandi+Standard+AB+(publ)" target="_blank" class="company-link">Scandi Standard AB</a><br><span class="isin">SE0005999760</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">50</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:50%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div><div class="score-detail">2x köp av samma person</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y943-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">13 May 2026</td><td class="td-company" data-label="Bolag"><strong>INTERNATIONAL PETROLEUM CORPORATION</strong></td><td class="td-person" data-label="Person">William Axel Walter Lundin<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">79.3 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=INTERNATIONAL+PETROLEUM+CORPORATION" target="_blank" class="company-link">International Petroleum Corporation</a><br><span class="isin">CA46016U1084</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">72</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:72%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y705-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">13 May 2026</td><td class="td-company" data-label="Bolag"><strong>Scandi Standard AB (publ)</strong></td><td class="td-person" data-label="Person">Paulo Gaspar<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">1.4 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Scandi+Standard+AB+(publ)" target="_blank" class="company-link">Scandi Standard AB</a><br><span class="isin">SE0005999760</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">43</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:43%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div><div class="score-detail">2x köp av samma person</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y703-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">12 May 2026</td><td class="td-company" data-label="Bolag"><strong>Thule Group AB</strong></td><td class="td-person" data-label="Person">Curt Per-Arne Blomquist<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">10.4 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Thule+Group+AB" target="_blank" class="company-link">Thule Group AB</a><br><span class="isin">SE0006422390</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">54</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:54%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y491?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">11 May 2026</td><td class="td-company" data-label="Bolag"><strong>Swedish Orphan Biovitrum AB (publ)</strong></td><td class="td-person" data-label="Person">Sofiane FAHMY<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">13.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Swedish+Orphan+Biovitrum+AB+(publ)" target="_blank" class="company-link">Swedish Orphan Biovitrum AB</a><br><span class="isin">SE0000872095</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">45</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:45%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y500?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">08 May 2026</td><td class="td-company" data-label="Bolag"><strong>Preservia Hyresfastigheter AB (publ)</strong></td><td class="td-person" data-label="Person">David Madeling<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">2.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Preservia+Hyresfastigheter+AB+(publ)" target="_blank" class="company-link">Preservia Hyresfastigheter AB BTA B</a><br><span class="isin">SE0028501346</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">42</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:42%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z066-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">06 May 2026</td><td class="td-company" data-label="Bolag"><strong>Plejd AB</strong></td><td class="td-person" data-label="Person">Rikard Sköldin<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">1.1 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Plejd+AB" target="_blank" class="company-link">Plejd</a><br><span class="isin">SE0008014476</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">23</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:23%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y237?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">06 May 2026</td><td class="td-company" data-label="Bolag"><strong>Fagerhult Group AB</strong></td><td class="td-person" data-label="Person">Eric Gustaf Philip James Douglas<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">20.9 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Fagerhult+Group+AB" target="_blank" class="company-link">Fagerhult, AB</a><br><span class="isin">SE0010048884</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">57</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:57%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y225-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">04 May 2026</td><td class="td-company" data-label="Bolag"><strong>H & M Hennes & Mauritz AB</strong></td><td class="td-person" data-label="Person">Karl-Johan Persson<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">82.3 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=H+&+M+Hennes+&+Mauritz+AB" target="_blank" class="company-link">Hennes & Mauritz AB, H & M ser. B</a><br><span class="isin">SE0000106270</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">72</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:72%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div><div class="score-detail">2x köp av samma person</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y236-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">04 May 2026</td><td class="td-company" data-label="Bolag"><strong>Arbona AB</strong></td><td class="td-person" data-label="Person">Håkan Blomdahl<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">3.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Arbona+AB" target="_blank" class="company-link">Arbona A</a><br><span class="isin">SE0003210590</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">45</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:45%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y228-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Briox AB</strong></td><td class="td-person" data-label="Person">Martin Jönsson<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">8.2 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Briox+AB" target="_blank" class="company-link">Briox</a><br><span class="isin">SE0008588131</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">48</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:48%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y163-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Pandox Aktiebolag</strong></td><td class="td-person" data-label="Person">Christian Ringnes<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">39.9 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Pandox+Aktiebolag" target="_blank" class="company-link">Pandox AB ser. B</a><br><span class="isin">SE0007100359</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">62</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:62%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y101?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Björn Einar Lidefelt<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">6.6 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y132-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Simon Ellis<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">5.2 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y127-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Neil  Vann<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">6.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y115-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Massimo Grassi<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">10.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y103-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Erik Pieder<br><span class="badge badge-cfo">CFO</span></td><td class="td-amount" data-label="Belopp">6.2 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y089-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Lucas Boselli<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">11.7 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y077-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>eWork Group AB</strong></td><td class="td-person" data-label="Person">A. Staffan Salén B. Erik Åfors<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">16.3 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=eWork+Group+AB" target="_blank" class="company-link">eWork Group AB</a><br><span class="isin">SE0002402701</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#fbbf24">57</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:57%;background:#fbbf24"></div></div><div class="score-label" style="color:#fbbf24">Medel</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y072-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Bonava AB (publ)</strong></td><td class="td-person" data-label="Person">Mats Åke Jönsson<br><span class="badge badge-board">Styrelse</span></td><td class="td-amount" data-label="Belopp">1.9 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Bonava+AB+(publ)" target="_blank" class="company-link">Bonava AB ser. B</a><br><span class="isin">SE0008091581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">41</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:41%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y069-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">stephanie ORDAN<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">5.9 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y062-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Allan David Talbot-cooper<br><span class="badge badge-other">Annan ledande befa</span></td><td class="td-amount" data-label="Belopp">1.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y058-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">29 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>ASSA ABLOY AB</strong></td><td class="td-person" data-label="Person">Nico Eric Josée Delvaux<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">30.2 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=ASSA+ABLOY+AB" target="_blank" class="company-link">ASSA ABLOY AB ser. B</a><br><span class="isin">SE0007100581</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">8 insiders köper samtidigt . 9 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y038-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>EQT AB</strong></td><td class="td-person" data-label="Person">Jean Salata<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">31.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=EQT+AB" target="_blank" class="company-link">EQT AB</a><br><span class="isin">SE0012853455</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#f87171">44</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:44%;background:#f87171"></div></div><div class="score-label" style="color:#f87171">Svag</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y065-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Antoine Duclaux<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">1.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y053-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Melker Jernberg<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">3.8 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y052-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Kina Wileke<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">1.7 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y051-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Jens Anders Holtinger<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">2.6 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y049-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Stephen Roy<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">2.7 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y047-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">ROGER ALM<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">3.0 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y045-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Scott Rafkin<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">3.6 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y044-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Yanna Niu<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">3.4 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y043-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Mats Harry Backman<br><span class="badge badge-cfo">CFO</span></td><td class="td-amount" data-label="Belopp">2.8 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y042-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Nina Aresund<br><span class="badge badge-other">Annan medlem i bol</span></td><td class="td-amount" data-label="Belopp">1.5 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y041-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+<tr><td class="td-date" data-label="Datum">28 Apr 2026</td><td class="td-company" data-label="Bolag"><strong>Aktiebolaget Volvo</strong></td><td class="td-person" data-label="Person">Martin Lundstedt<br><span class="badge badge-ceo">VD</span></td><td class="td-amount" data-label="Belopp">14.1 Mkr</td><td class="td-instrument" data-label="Aktie"><a href="https://www.nordnet.se/marknaden/aktiekurser?searchText=Aktiebolaget+Volvo" target="_blank" class="company-link">Volvo, AB ser. B</a><br><span class="isin">SE0000115446</span></td><td class="td-score" data-label="Score"><div class="score-wrap"><div class="score-num" style="color:#4ade80">100</div><div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#4ade80"></div></div><div class="score-label" style="color:#4ade80">Stark</div><div class="score-detail">10 insiders köper samtidigt . 11 insiders koper samtidigt</div></div></td><td class="td-fi" data-label="Kalla"><a href="https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y040-1?s%C3%B6kfunktion=Insyn" target="_blank" class="fi-link">FI &#8599;</a></td></tr>
+</tbody>
+</table>
 </div>
-
 <footer>
-  Data frÃ¥n <a href="https://www.fi.se" target="_blank">Finansinspektionen</a> Â·
-  Aktier pÃ¥ <a href="https://www.nordnet.se" target="_blank">Nordnet</a> Â·
-  <a href="https://github.com/Gurkburkens/FI-Insider" target="_blank">KÃ¤llkod pÃ¥ GitHub</a> Â·
-  Ej finansiell rÃ¥dgivning Â·
-  Skapad av Gustav EngstrÃ¶m
+Data fran <a href="https://www.fi.se" target="_blank">Finansinspektionen</a> -
+Aktier pa <a href="https://www.nordnet.se" target="_blank">Nordnet</a> -
+<a href="https://github.com/Gurkburkens/FI-Insider" target="_blank">Kallkod pa GitHub</a> -
+Ej finansiell radgivning - Skapad av Gustav Engstrom
 </footer>
-
 <script>
-  const search      = document.getElementById('search');
-  const roleFilter  = document.getElementById('role-filter');
-  const scoreFilter = document.getElementById('score-filter');
-  const tbody       = document.getElementById('tbody');
-  const countEl     = document.getElementById('count');
-  const rows        = Array.from(tbody.querySelectorAll('tr'));
-
-  function filter() {
-    const q      = search.value.toLowerCase();
-    const r      = roleFilter.value.toLowerCase();
-    const minScore = parseInt(scoreFilter.value) || 0;
-    let visible  = 0;
-
-    rows.forEach(row => {
-      const text  = row.textContent.toLowerCase();
-      const scoreEl = row.querySelector('.score-num');
-      const score = scoreEl ? parseInt(scoreEl.textContent) : 0;
-
-      const matchQ = !q || text.includes(q);
-      const matchR = !r || text.includes(r);
-      const matchS = score >= minScore;
-
-      row.style.display = matchQ && matchR && matchS ? '' : 'none';
-      if (matchQ && matchR && matchS) visible++;
-    });
-    countEl.textContent = visible + ' affÃ¤rer';
-  }
-
-  search.addEventListener('input', filter);
-  roleFilter.addEventListener('change', filter);
-  scoreFilter.addEventListener('change', filter);
-
-  // Sortering
-  let sortCol = -1, sortAsc = true;
-  document.querySelectorAll('thead th[data-col]').forEach(th => {
-    th.addEventListener('click', () => {
-      const col = +th.dataset.col;
-      if (sortCol === col) sortAsc = !sortAsc;
-      else { sortCol = col; sortAsc = true; }
-      document.querySelectorAll('thead th').forEach(h => h.classList.remove('sorted'));
-      th.classList.add('sorted');
-      const sorted = [...rows].sort((a, b) => {
-        const av = a.cells[col]?.textContent.trim() || '';
-        const bv = b.cells[col]?.textContent.trim() || '';
-        if (col === 3) {
-          const toNum = s => parseFloat(s.replace(/[^0-9,.]/g,'').replace(',','.')) || 0;
-          return sortAsc ? toNum(av) - toNum(bv) : toNum(bv) - toNum(av);
-        }
-        if (col === 5) {
-          const toNum = s => parseInt(s) || 0;
-          return sortAsc ? toNum(av) - toNum(bv) : toNum(bv) - toNum(av);
-        }
-        return sortAsc ? av.localeCompare(bv,'sv') : bv.localeCompare(av,'sv');
-      });
-      sorted.forEach(r => tbody.appendChild(r));
-    });
-  });
+const search = document.getElementById('search');
+const roleFilter = document.getElementById('role-filter');
+const scoreFilter = document.getElementById('score-filter');
+const tbody = document.getElementById('tbody');
+const countEl = document.getElementById('count');
+const rows = Array.from(tbody.querySelectorAll('tr'));
+function filter() {
+const q = search.value.toLowerCase();
+const r = roleFilter.value.toLowerCase();
+const minScore = parseInt(scoreFilter.value) || 0;
+let visible = 0;
+rows.forEach(row => {
+const text = row.textContent.toLowerCase();
+const scoreEl = row.querySelector('.score-num');
+const score = scoreEl ? parseInt(scoreEl.textContent) : 0;
+const matchQ = !q || text.includes(q);
+const matchR = !r || text.includes(r);
+const matchS = score >= minScore;
+row.style.display = matchQ && matchR && matchS ? '' : 'none';
+if (matchQ && matchR && matchS) visible++;
+});
+countEl.textContent = visible + ' affarer';
+}
+search.addEventListener('input', filter);
+roleFilter.addEventListener('change', filter);
+scoreFilter.addEventListener('change', filter);
+let sortCol = -1, sortAsc = true;
+document.querySelectorAll('thead th[data-col]').forEach(th => {
+th.addEventListener('click', () => {
+const col = +th.dataset.col;
+if (sortCol === col) sortAsc = !sortAsc;
+else { sortCol = col; sortAsc = true; }
+document.querySelectorAll('thead th').forEach(h => h.classList.remove('sorted'));
+th.classList.add('sorted');
+const sorted = [...rows].sort((a, b) => {
+const av = a.cells[col]?.textContent.trim() || '';
+const bv = b.cells[col]?.textContent.trim() || '';
+if (col === 3) {
+const toNum = s => parseFloat(s.replace(/[^0-9,.]/g,'').replace(',','.')) || 0;
+return sortAsc ? toNum(av) - toNum(bv) : toNum(bv) - toNum(av);
+}
+if (col === 5) {
+const toNum = s => parseInt(s) || 0;
+return sortAsc ? toNum(av) - toNum(bv) : toNum(bv) - toNum(av);
+}
+return sortAsc ? av.localeCompare(bv,'sv') : bv.localeCompare(av,'sv');
+});
+sorted.forEach(r => tbody.appendChild(r));
+});
+});
 </script>
 </body>
 </html>
