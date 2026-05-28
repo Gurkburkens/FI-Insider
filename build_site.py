@@ -117,13 +117,7 @@ def build_rows(trades: list) -> str:
         n = len(groups[key])
         if n > 1:
             display_score = group_scores[key]
-            total_amt = group_totals[key]
-            parts = []
-            existing = t.get("score_detail", "")
-            if existing:
-                parts.append(existing)
-            parts.append(f"{n} insiders koper samtidigt")
-            score_detail = " . ".join(parts)
+            score_detail = f"{n} insiders köper samtidigt"
         else:
             display_score = t.get("score", 0)
             score_detail = t.get("score_detail", "")
