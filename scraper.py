@@ -37,16 +37,16 @@ def days_back_needed(existing: dict) -> int:
     """Räknar ut hur många dagar tillbaka vi behöver hämta baserat på senaste körning."""
     last = existing.get("updated", "")
     if not last:
-        print("  Ingen tidigare data — hämtar 30 dagars historik.")
-        return 30
+        print("  Ingen tidigare data — hämtar 90 dagars historik.")
+        return 90
     try:
         last_dt = datetime.fromisoformat(last)
         days = (datetime.now() - last_dt).days + 2  # +2 dagars marginal
-        days = max(2, min(days, 30))
+        days = max(2, min(days, 90))
         print(f"  Senaste körning: {last_dt:%Y-%m-%d} — hämtar {days} dagars data.")
         return days
     except Exception:
-        return 30
+        return 90
 
 
 def parse_amount(volume_str: str, price_str: str) -> float:
