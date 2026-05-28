@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-28T14:52:15.608142",
+  "updated": "2026-05-28T18:26:32.286402",
   "threshold_sek": 1000000,
   "total": 33,
   "trades": [
@@ -19,8 +19,8 @@
       "amount_sek": 10000000.0,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z275-1?s%C3%B6kfunktion=Insyn",
-      "score": 64,
-      "score_detail": ""
+      "score": 69,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z287-1",
@@ -38,8 +38,8 @@
       "amount_sek": 1801000.0,
       "trade_date": "2026-05-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z287-1?s%C3%B6kfunktion=Insyn",
-      "score": 42,
-      "score_detail": ""
+      "score": 47,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z283-1",
@@ -266,8 +266,8 @@
       "amount_sek": 12971288.190000001,
       "trade_date": "2026-05-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y500?s%C3%B6kfunktion=Insyn",
-      "score": 45,
-      "score_detail": "2x köp av samma person"
+      "score": 40,
+      "score_detail": ""
     },
     {
       "id": "A003Z066-1",
@@ -323,8 +323,8 @@
       "amount_sek": 3273940.9345,
       "trade_date": "2026-05-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y450-1?s%C3%B6kfunktion=Insyn",
-      "score": 59,
-      "score_detail": "2x köp av samma person"
+      "score": 54,
+      "score_detail": ""
     },
     {
       "id": "A003Y400",
@@ -438,7 +438,7 @@
       "trade_date": "2026-04-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y074-1?s%C3%B6kfunktion=Insyn",
       "score": 52,
-      "score_detail": "2 insiders köper inom 14 dagar"
+      "score_detail": ""
     },
     {
       "id": "A003Y070-1",
@@ -457,7 +457,7 @@
       "trade_date": "2026-04-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y070-1?s%C3%B6kfunktion=Insyn",
       "score": 52,
-      "score_detail": "2 insiders köper inom 14 dagar"
+      "score_detail": ""
     },
     {
       "id": "A003Y163-1",
@@ -494,8 +494,8 @@
       "amount_sek": 39903540.6,
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y101?s%C3%B6kfunktion=Insyn",
-      "score": 67,
-      "score_detail": "2x köp av samma person"
+      "score": 62,
+      "score_detail": ""
     },
     {
       "id": "A003Y132-1",
@@ -514,7 +514,7 @@
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y132-1?s%C3%B6kfunktion=Insyn",
       "score": 49,
-      "score_detail": "5 insiders köper samtidigt"
+      "score_detail": ""
     },
     {
       "id": "A003Y127-1",
@@ -533,7 +533,7 @@
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y127-1?s%C3%B6kfunktion=Insyn",
       "score": 49,
-      "score_detail": "5 insiders köper samtidigt"
+      "score_detail": ""
     },
     {
       "id": "A003Y115-1",
@@ -552,7 +552,7 @@
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y115-1?s%C3%B6kfunktion=Insyn",
       "score": 49,
-      "score_detail": "5 insiders köper samtidigt"
+      "score_detail": ""
     },
     {
       "id": "A003Y103-1",
@@ -571,7 +571,7 @@
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y103-1?s%C3%B6kfunktion=Insyn",
       "score": 53,
-      "score_detail": "5 insiders köper samtidigt"
+      "score_detail": ""
     },
     {
       "id": "A003Y089-1",
@@ -590,7 +590,7 @@
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y089-1?s%C3%B6kfunktion=Insyn",
       "score": 59,
-      "score_detail": "5 insiders köper samtidigt"
+      "score_detail": ""
     },
     {
       "id": "A003Y077-1",
@@ -609,7 +609,7 @@
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y077-1?s%C3%B6kfunktion=Insyn",
       "score": 53,
-      "score_detail": "5 insiders köper samtidigt"
+      "score_detail": ""
     },
     {
       "id": "A003Y072-1",
