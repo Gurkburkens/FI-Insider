@@ -16,11 +16,10 @@ def fmt_sek(amount: float) -> str:
 
 
 def fmt_date(s: str) -> str:
-        try:
-                    return datetime.fromisoformat(s[:10]).strftime("%d %b %Y")
-except Exception:
+      try:
+                return datetime.fromisoformat(s[:10]).strftime("%d %b %Y")
+    except Exception:
         return s
-
 
 def role_badge(role: str) -> str:
         role_lower = role.lower()
