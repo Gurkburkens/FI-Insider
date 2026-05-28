@@ -179,13 +179,10 @@ def enrich_scores(trades: list[dict]) -> list[dict]:
             })
             if unique_persons >= 3:
                 score += 15
-                bonuses.append(f"{unique_persons} insiders köper samtidigt")
             elif unique_persons == 2:
                 score += 8
-                bonuses.append(f"2 insiders köper samtidigt")
             elif unique_persons == 1:
                 score += 4
-                bonuses.append("2 insiders köper inom 14 dagar")
         except Exception:
             pass
 
