@@ -98,7 +98,7 @@ def calc_base_score(trade: dict) -> int:
     elif any(k in role for k in ["ekonomichef", "cfo", "finanschef"]):
         score += 13
     elif any(k in role for k in ["ledande", "befattning"]):
-        score += 8
+        score += 3  # Kan vara obligatoriskt köp enligt avtal
     else:
         score += 4
 
