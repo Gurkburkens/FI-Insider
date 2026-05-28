@@ -89,7 +89,7 @@ def build_rows(trades: list) -> str:
                     return '<tr><td colspan="7" class="empty">Inga affarer hittades.</td></tr>'
 
     def gkey(t):
-                return (t.get("company", ""), t.get("trade_date", "")[:10])
+                return (t.get("isin", "") or t.get("company", ""), t.get("trade_date", "")[:10])
 
     groups = defaultdict(list)
     for t in trades:
