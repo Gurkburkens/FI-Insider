@@ -1,8 +1,27 @@
 {
-  "updated": "2026-05-28T20:08:53.038274",
+  "updated": "2026-05-29T09:43:51.275974",
   "threshold_sek": 1000000,
-  "total": 80,
+  "total": 81,
   "trades": [
+    {
+      "id": "A003Z315-1",
+      "published": "2026-05-29",
+      "company": "Green Landscaping Group AB (publ)",
+      "person": "Staffan Salén",
+      "role": "Styrelseledamot",
+      "instrument": "Green Landscaping Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0010985028",
+      "trade_type": "Förvärv",
+      "volume": "761 159",
+      "price": "31,50",
+      "currency": "SEK",
+      "amount_sek": 23976508.5,
+      "trade_date": "2026-05-28",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z315-1?s%C3%B6kfunktion=Insyn",
+      "score": 72,
+      "score_detail": "2x köp av samma person"
+    },
     {
       "id": "A003Z275-1",
       "published": "2026-05-28",
@@ -57,7 +76,7 @@
       "amount_sek": 1871250,
       "trade_date": "2026-05-25",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z283-1?s%C3%B6kfunktion=Insyn",
-      "score": 26,
+      "score": 24,
       "score_detail": ""
     },
     {
@@ -95,7 +114,7 @@
       "amount_sek": 3781843,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z082-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -114,7 +133,7 @@
       "amount_sek": 1256349.8,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z069-1?s%C3%B6kfunktion=Insyn",
-      "score": 44,
+      "score": 41,
       "score_detail": ""
     },
     {
@@ -133,7 +152,7 @@
       "amount_sek": 3724042.6,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z068-1?s%C3%B6kfunktion=Insyn",
-      "score": 60,
+      "score": 57,
       "score_detail": ""
     },
     {
@@ -152,7 +171,7 @@
       "amount_sek": 1512780,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z043-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -171,7 +190,7 @@
       "amount_sek": 2211300,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z029-1?s%C3%B6kfunktion=Insyn",
-      "score": 35,
+      "score": 32,
       "score_detail": ""
     },
     {
@@ -304,7 +323,7 @@
       "amount_sek": 1968287.4312,
       "trade_date": "2026-05-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y512-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -323,7 +342,7 @@
       "amount_sek": 3273940.9345,
       "trade_date": "2026-05-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y450-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
@@ -342,7 +361,7 @@
       "amount_sek": 3369108.4778,
       "trade_date": "2026-05-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y400?s%C3%B6kfunktion=Insyn",
-      "score": 33,
+      "score": 31,
       "score_detail": ""
     },
     {
@@ -361,7 +380,7 @@
       "amount_sek": 100433196,
       "trade_date": "2026-05-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y382-1?s%C3%B6kfunktion=Insyn",
-      "score": 64,
+      "score": 62,
       "score_detail": ""
     },
     {
@@ -456,8 +475,8 @@
       "amount_sek": 8204436.239999999,
       "trade_date": "2026-04-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y070-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
-      "score_detail": ""
+      "score": 57,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Y163-1",
