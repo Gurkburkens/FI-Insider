@@ -1,8 +1,84 @@
 {
-  "updated": "2026-06-01T11:21:24.823160",
+  "updated": "2026-06-02T10:13:28.849237",
   "threshold_sek": 1000000,
-  "total": 85,
+  "total": 89,
   "trades": [
+    {
+      "id": "A003Z431-1",
+      "published": "2026-06-02",
+      "company": "Cheffelo AB",
+      "person": "Angur Invest AS",
+      "role": "Styrelseordförande",
+      "instrument": "Cheffelo AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0015556873",
+      "trade_type": "Förvärv",
+      "volume": "20 000",
+      "price": "115,411",
+      "currency": "SEK",
+      "amount_sek": 2308220.0,
+      "trade_date": "2026-06-01",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z431-1?s%C3%B6kfunktion=Insyn",
+      "score": 55,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z395-1",
+      "published": "2026-06-01",
+      "company": "RugVista Group AB (publ)",
+      "person": "Carl Rydin",
+      "role": "Styrelseledamot",
+      "instrument": "RugVista Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0015659834",
+      "trade_type": "Förvärv",
+      "volume": "380 000",
+      "price": "55,6319",
+      "currency": "SEK",
+      "amount_sek": 21140122.0,
+      "trade_date": "2026-06-01",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z395-1?s%C3%B6kfunktion=Insyn",
+      "score": 72,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A003Z382",
+      "published": "2026-06-01",
+      "company": "Vitec Software Group AB",
+      "person": "Jan Friedman",
+      "role": "Styrelseledamot",
+      "instrument": "Vitec Software Group AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000514630",
+      "trade_type": "Förvärv",
+      "volume": "4 000",
+      "price": "270,70",
+      "currency": "SEK",
+      "amount_sek": 1082800.0,
+      "trade_date": "2026-06-01",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z382?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A003Z383-1",
+      "published": "2026-06-01",
+      "company": "Atrium Ljungberg AB",
+      "person": "Johan Ljungberg",
+      "role": "Styrelseordförande",
+      "instrument": "ATRLJ B",
+      "instrument_type": "Aktie",
+      "isin": "SE0024320832",
+      "trade_type": "Förvärv",
+      "volume": "1 000 000",
+      "price": "29,60",
+      "currency": "SEK",
+      "amount_sek": 29600000.0,
+      "trade_date": "2026-06-01",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z383-1?s%C3%B6kfunktion=Insyn",
+      "score": 72,
+      "score_detail": ""
+    },
     {
       "id": "A003Z371-1",
       "published": "2026-06-01",
@@ -19,7 +95,7 @@
       "amount_sek": 1999999.998703314,
       "trade_date": "2026-05-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z371-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -38,7 +114,7 @@
       "amount_sek": 4692500.0,
       "trade_date": "2026-05-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z343-1?s%C3%B6kfunktion=Insyn",
-      "score": 62,
+      "score": 60,
       "score_detail": ""
     },
     {
@@ -152,7 +228,7 @@
       "amount_sek": 1871250,
       "trade_date": "2026-05-25",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z283-1?s%C3%B6kfunktion=Insyn",
-      "score": 24,
+      "score": 21,
       "score_detail": ""
     },
     {
@@ -190,8 +266,8 @@
       "amount_sek": 3781843,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z082-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
-      "score_detail": ""
+      "score": 54,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z069-1",
@@ -361,7 +437,7 @@
       "amount_sek": 12971288.190000001,
       "trade_date": "2026-05-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y500?s%C3%B6kfunktion=Insyn",
-      "score": 40,
+      "score": 38,
       "score_detail": ""
     },
     {
