@@ -1,8 +1,84 @@
 {
-  "updated": "2026-06-02T10:13:28.849237",
+  "updated": "2026-06-03T10:49:19.279367",
   "threshold_sek": 1000000,
-  "total": 89,
+  "total": 93,
   "trades": [
+    {
+      "id": "A003Z512-1",
+      "published": "2026-06-03",
+      "company": "Asker Healthcare Group AB",
+      "person": "Mikael Stöhr",
+      "role": "Styrelseordförande",
+      "instrument": "Köpoption",
+      "instrument_type": "Köpoption",
+      "isin": "",
+      "trade_type": "Förvärv",
+      "volume": "291 970",
+      "price": "13,70",
+      "currency": "SEK",
+      "amount_sek": 3999989.0,
+      "trade_date": "2026-06-02",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z512-1?s%C3%B6kfunktion=Insyn",
+      "score": 53,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z491-1",
+      "published": "2026-06-02",
+      "company": "Front ventures",
+      "person": "Johan Olof Lund",
+      "role": "Styrelseledamot",
+      "instrument": "Front Ventures B",
+      "instrument_type": "Aktie",
+      "isin": "SE0005337920",
+      "trade_type": "Förvärv",
+      "volume": "10 534 500",
+      "price": "0,27",
+      "currency": "SEK",
+      "amount_sek": 2844315.0,
+      "trade_date": "2026-06-02",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z491-1?s%C3%B6kfunktion=Insyn",
+      "score": 54,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z490-1",
+      "published": "2026-06-02",
+      "company": "Front ventures",
+      "person": "Henrik Roglar",
+      "role": "Styrelseledamot",
+      "instrument": "Front Ventures B",
+      "instrument_type": "Aktie",
+      "isin": "SE0005337920",
+      "trade_type": "Förvärv",
+      "volume": "5 098 881",
+      "price": "0,27",
+      "currency": "SEK",
+      "amount_sek": 1376697.87,
+      "trade_date": "2026-06-02",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z490-1?s%C3%B6kfunktion=Insyn",
+      "score": 50,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z465-1",
+      "published": "2026-06-02",
+      "company": "Bilia AB",
+      "person": "Mats Qviberg",
+      "role": "Styrelseordförande",
+      "instrument": "Bilia AB ser. A",
+      "instrument_type": "Aktie",
+      "isin": "SE0009921588",
+      "trade_type": "Förvärv",
+      "volume": "40 000",
+      "price": "139,35",
+      "currency": "SEK",
+      "amount_sek": 5574000.0,
+      "trade_date": "2026-06-02",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z465-1?s%C3%B6kfunktion=Insyn",
+      "score": 63,
+      "score_detail": ""
+    },
     {
       "id": "A003Z431-1",
       "published": "2026-06-02",
@@ -57,8 +133,8 @@
       "amount_sek": 1082800.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z382?s%C3%B6kfunktion=Insyn",
-      "score": 51,
-      "score_detail": "2x köp av samma person"
+      "score": 46,
+      "score_detail": ""
     },
     {
       "id": "A003Z383-1",
@@ -76,8 +152,8 @@
       "amount_sek": 29600000.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z383-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
-      "score_detail": ""
+      "score": 77,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z371-1",
@@ -418,7 +494,7 @@
       "amount_sek": 10442700,
       "trade_date": "2026-05-12",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y491?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
