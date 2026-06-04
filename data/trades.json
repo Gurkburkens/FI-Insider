@@ -1,8 +1,27 @@
 {
-  "updated": "2026-06-03T10:49:19.279367",
+  "updated": "2026-06-04T09:49:16.525990",
   "threshold_sek": 1000000,
-  "total": 93,
+  "total": 94,
   "trades": [
+    {
+      "id": "A003Z540-1",
+      "published": "2026-06-03",
+      "company": "Investmentaktiebolaget Latour",
+      "person": "Johan Nordström",
+      "role": "Styrelseordförande",
+      "instrument": "Latour, Investmentab. ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0010100958",
+      "trade_type": "Förvärv",
+      "volume": "5 500",
+      "price": "196,86",
+      "currency": "SEK",
+      "amount_sek": 1082730.0,
+      "trade_date": "2026-06-03",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z540-1?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": ""
+    },
     {
       "id": "A003Z512-1",
       "published": "2026-06-03",
@@ -19,8 +38,8 @@
       "amount_sek": 3999989.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z512-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
-      "score_detail": ""
+      "score": 58,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z491-1",
@@ -38,8 +57,8 @@
       "amount_sek": 2844315.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z491-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
-      "score_detail": ""
+      "score": 59,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z490-1",
@@ -57,8 +76,8 @@
       "amount_sek": 1376697.87,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z490-1?s%C3%B6kfunktion=Insyn",
-      "score": 50,
-      "score_detail": ""
+      "score": 55,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z465-1",
@@ -76,8 +95,8 @@
       "amount_sek": 5574000.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z465-1?s%C3%B6kfunktion=Insyn",
-      "score": 63,
-      "score_detail": ""
+      "score": 68,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z431-1",
@@ -152,8 +171,8 @@
       "amount_sek": 29600000.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z383-1?s%C3%B6kfunktion=Insyn",
-      "score": 77,
-      "score_detail": "2x köp av samma person"
+      "score": 72,
+      "score_detail": ""
     },
     {
       "id": "A003Z371-1",
@@ -285,7 +304,7 @@
       "amount_sek": 1801000,
       "trade_date": "2026-05-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z287-1?s%C3%B6kfunktion=Insyn",
-      "score": 40,
+      "score": 37,
       "score_detail": ""
     },
     {
@@ -437,7 +456,7 @@
       "amount_sek": 2590000,
       "trade_date": "2026-05-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z062-1?s%C3%B6kfunktion=Insyn",
-      "score": 45,
+      "score": 42,
       "score_detail": ""
     },
     {
@@ -456,7 +475,7 @@
       "amount_sek": 79301804,
       "trade_date": "2026-05-13",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y705-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
+      "score": 70,
       "score_detail": ""
     },
     {
@@ -475,7 +494,7 @@
       "amount_sek": 1406427.19,
       "trade_date": "2026-05-13",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y703-1?s%C3%B6kfunktion=Insyn",
-      "score": 48,
+      "score": 46,
       "score_detail": "4x köp av samma person"
     },
     {
