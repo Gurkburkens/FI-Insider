@@ -1,8 +1,65 @@
 {
-  "updated": "2026-06-05T09:37:45.543751",
+  "updated": "2026-06-08T10:26:20.626567",
   "threshold_sek": 1000000,
-  "total": 95,
+  "total": 98,
   "trades": [
+    {
+      "id": "A003Z687-1",
+      "published": "2026-06-08",
+      "company": "BIMobject AB",
+      "person": "David Johansson",
+      "role": "Styrelseledamot",
+      "instrument": "BIMobject AB teckningsoption 2023:1A",
+      "instrument_type": "Teckningsoption",
+      "isin": "",
+      "trade_type": "Förvärv",
+      "volume": "962 000",
+      "price": "1,80",
+      "currency": "SEK",
+      "amount_sek": 1731600.0,
+      "trade_date": "2026-06-05",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z687-1?s%C3%B6kfunktion=Insyn",
+      "score": 40,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A003Z664-1",
+      "published": "2026-06-06",
+      "company": "Vitec Software Group AB (publ)",
+      "person": "Jonas Ahlberg",
+      "role": "Styrelseledamot",
+      "instrument": "Vitec Software Group AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0007871363",
+      "trade_type": "Förvärv",
+      "volume": "7 665",
+      "price": "267,10",
+      "currency": "SEK",
+      "amount_sek": 2047321.5000000002,
+      "trade_date": "2026-06-05",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z664-1?s%C3%B6kfunktion=Insyn",
+      "score": 50,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z689-1",
+      "published": "2026-06-08",
+      "company": "Securitas AB",
+      "person": "Matteo DallOra",
+      "role": "Ekonomichef/finanschef/finansdirektör",
+      "instrument": "Securitas AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000163594",
+      "trade_type": "Förvärv",
+      "volume": "6 443",
+      "price": "156,50",
+      "currency": "SEK",
+      "amount_sek": 1008329.5,
+      "trade_date": "2026-06-04",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z689-1?s%C3%B6kfunktion=Insyn",
+      "score": 40,
+      "score_detail": ""
+    },
     {
       "id": "A003Z586-1",
       "published": "2026-06-04",
@@ -19,7 +76,7 @@
       "amount_sek": 1258720.32,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z586-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
@@ -38,7 +95,7 @@
       "amount_sek": 1082730.0,
       "trade_date": "2026-06-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z540-1?s%C3%B6kfunktion=Insyn",
-      "score": 51,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -57,7 +114,7 @@
       "amount_sek": 3999989.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z512-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
+      "score": 51,
       "score_detail": ""
     },
     {
@@ -76,7 +133,7 @@
       "amount_sek": 2844315.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z491-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
@@ -95,7 +152,7 @@
       "amount_sek": 1376697.87,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z490-1?s%C3%B6kfunktion=Insyn",
-      "score": 50,
+      "score": 48,
       "score_detail": ""
     },
     {
@@ -114,7 +171,7 @@
       "amount_sek": 5574000.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z465-1?s%C3%B6kfunktion=Insyn",
-      "score": 63,
+      "score": 61,
       "score_detail": ""
     },
     {
@@ -209,7 +266,7 @@
       "amount_sek": 1999999.998703314,
       "trade_date": "2026-05-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z371-1?s%C3%B6kfunktion=Insyn",
-      "score": 44,
+      "score": 41,
       "score_detail": ""
     },
     {
@@ -228,7 +285,7 @@
       "amount_sek": 4692500.0,
       "trade_date": "2026-05-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z343-1?s%C3%B6kfunktion=Insyn",
-      "score": 60,
+      "score": 57,
       "score_detail": ""
     },
     {
@@ -361,7 +418,7 @@
       "amount_sek": 1648140,
       "trade_date": "2026-05-22",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z288-1?s%C3%B6kfunktion=Insyn",
-      "score": 41,
+      "score": 38,
       "score_detail": ""
     },
     {
