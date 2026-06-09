@@ -1,8 +1,27 @@
 {
-  "updated": "2026-06-08T10:26:20.626567",
+  "updated": "2026-06-09T09:31:48.503492",
   "threshold_sek": 1000000,
-  "total": 98,
+  "total": 99,
   "trades": [
+    {
+      "id": "A003Z721-1",
+      "published": "2026-06-08",
+      "company": "CellaVision AB",
+      "person": "Karl Adam Peter Morell",
+      "role": "Annan medlem i bolagets administrations-, lednings- eller kontrollorgan",
+      "instrument": "CellaVision AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000683484",
+      "trade_type": "Förvärv",
+      "volume": "10 000",
+      "price": "127,00",
+      "currency": "SEK",
+      "amount_sek": 1270000.0,
+      "trade_date": "2026-06-08",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z721-1?s%C3%B6kfunktion=Insyn",
+      "score": 33,
+      "score_detail": ""
+    },
     {
       "id": "A003Z687-1",
       "published": "2026-06-08",
@@ -19,8 +38,8 @@
       "amount_sek": 1731600.0,
       "trade_date": "2026-06-05",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z687-1?s%C3%B6kfunktion=Insyn",
-      "score": 40,
-      "score_detail": "2x köp av samma person"
+      "score": 33,
+      "score_detail": ""
     },
     {
       "id": "A003Z664-1",
@@ -38,7 +57,7 @@
       "amount_sek": 2047321.5000000002,
       "trade_date": "2026-06-05",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z664-1?s%C3%B6kfunktion=Insyn",
-      "score": 50,
+      "score": 48,
       "score_detail": ""
     },
     {
@@ -190,7 +209,7 @@
       "amount_sek": 2308220.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z431-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
+      "score": 50,
       "score_detail": ""
     },
     {
@@ -209,7 +228,7 @@
       "amount_sek": 21140122.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z395-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
+      "score": 67,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -228,7 +247,7 @@
       "amount_sek": 1082800.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Z382?s%C3%B6kfunktion=Insyn",
-      "score": 44,
+      "score": 41,
       "score_detail": ""
     },
     {
@@ -247,7 +266,7 @@
       "amount_sek": 29600000.0,
       "trade_date": "2026-06-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z383-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
+      "score": 67,
       "score_detail": ""
     },
     {
@@ -399,7 +418,7 @@
       "amount_sek": 1871250,
       "trade_date": "2026-05-25",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z283-1?s%C3%B6kfunktion=Insyn",
-      "score": 21,
+      "score": 18,
       "score_detail": ""
     },
     {
