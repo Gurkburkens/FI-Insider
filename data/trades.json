@@ -1,8 +1,141 @@
 {
-  "updated": "2026-06-09T09:31:48.503492",
+  "updated": "2026-06-10T09:47:20.670790",
   "threshold_sek": 1000000,
-  "total": 99,
+  "total": 106,
   "trades": [
+    {
+      "id": "A003Z807-1",
+      "published": "2026-06-09",
+      "company": "Atlas Copco AB",
+      "person": "Kenneth Lagerborg",
+      "role": "Annan medlem i bolagets administrations-, lednings- eller kontrollorgan",
+      "instrument": "Atlas Copco AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000122467",
+      "trade_type": "Förvärv",
+      "volume": "7 000",
+      "price": "161,5681",
+      "currency": "SEK",
+      "amount_sek": 1130976.7,
+      "trade_date": "2026-06-09",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z807-1?s%C3%B6kfunktion=Insyn",
+      "score": 33,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z794-1",
+      "published": "2026-06-09",
+      "company": "EQT AB",
+      "person": "Marcus Wallenberg",
+      "role": "Styrelseledamot",
+      "instrument": "EQT AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0012853455",
+      "trade_type": "Förvärv",
+      "volume": "895 533",
+      "price": "291,73",
+      "currency": "SEK",
+      "amount_sek": 261253842.09,
+      "trade_date": "2026-06-09",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z794-1?s%C3%B6kfunktion=Insyn",
+      "score": 82,
+      "score_detail": "3x köp av samma person"
+    },
+    {
+      "id": "A003Z792-1",
+      "published": "2026-06-09",
+      "company": "Bure Equity AB",
+      "person": "Ulf Rosberg",
+      "role": "Styrelseledamot",
+      "instrument": "Bure Equity AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000195810",
+      "trade_type": "Förvärv",
+      "volume": "40 000",
+      "price": "269,7122",
+      "currency": "SEK",
+      "amount_sek": 10788488.0,
+      "trade_date": "2026-06-09",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z792-1?s%C3%B6kfunktion=Insyn",
+      "score": 62,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z815-1",
+      "published": "2026-06-10",
+      "company": "ASSA ABLOY AB",
+      "person": "Nico Eric Josée Delvaux",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "ASSA ABLOY AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0007100581",
+      "trade_type": "Förvärv",
+      "volume": "14 195",
+      "price": "323,35",
+      "currency": "SEK",
+      "amount_sek": 4589953.25,
+      "trade_date": "2026-06-08",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z815-1?s%C3%B6kfunktion=Insyn",
+      "score": 70,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z793-1",
+      "published": "2026-06-09",
+      "company": "EQT AB",
+      "person": "Marcus Wallenberg",
+      "role": "Styrelseledamot",
+      "instrument": "EQT AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0012853455",
+      "trade_type": "Förvärv",
+      "volume": "300 000",
+      "price": "291,54",
+      "currency": "SEK",
+      "amount_sek": 87462000.0,
+      "trade_date": "2026-06-08",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z793-1?s%C3%B6kfunktion=Insyn",
+      "score": 82,
+      "score_detail": "3x köp av samma person"
+    },
+    {
+      "id": "A003Z791-1",
+      "published": "2026-06-09",
+      "company": "ASSA ABLOY AB",
+      "person": "Massimo Grassi",
+      "role": "Annan ledande befattningshavare",
+      "instrument": "ASSA ABLOY AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0007100581",
+      "trade_type": "Förvärv",
+      "volume": "5 461",
+      "price": "323,35",
+      "currency": "SEK",
+      "amount_sek": 1765814.35,
+      "trade_date": "2026-06-08",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z791-1?s%C3%B6kfunktion=Insyn",
+      "score": 45,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A003Z781-1",
+      "published": "2026-06-09",
+      "company": "ASSA ABLOY AB",
+      "person": "Lucas Boselli",
+      "role": "Annan ledande befattningshavare",
+      "instrument": "ASSA ABLOY AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0007100581",
+      "trade_type": "Förvärv",
+      "volume": "5 412",
+      "price": "323,35",
+      "currency": "SEK",
+      "amount_sek": 1749970.2000000002,
+      "trade_date": "2026-06-08",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z781-1?s%C3%B6kfunktion=Insyn",
+      "score": 45,
+      "score_detail": "2x köp av samma person"
+    },
     {
       "id": "A003Z721-1",
       "published": "2026-06-08",
@@ -133,7 +266,7 @@
       "amount_sek": 3999989.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z512-1?s%C3%B6kfunktion=Insyn",
-      "score": 51,
+      "score": 48,
       "score_detail": ""
     },
     {
@@ -152,7 +285,7 @@
       "amount_sek": 2844315.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z491-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -171,7 +304,7 @@
       "amount_sek": 1376697.87,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z490-1?s%C3%B6kfunktion=Insyn",
-      "score": 48,
+      "score": 45,
       "score_detail": ""
     },
     {
@@ -190,7 +323,7 @@
       "amount_sek": 5574000.0,
       "trade_date": "2026-06-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z465-1?s%C3%B6kfunktion=Insyn",
-      "score": 61,
+      "score": 58,
       "score_detail": ""
     },
     {
@@ -931,8 +1064,8 @@
       "amount_sek": 10047298.17,
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y103-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
-      "score_detail": ""
+      "score": 58,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Y089-1",
@@ -969,8 +1102,8 @@
       "amount_sek": 11748928.1,
       "trade_date": "2026-04-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Y077-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
-      "score_detail": ""
+      "score": 58,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Y072-1",
@@ -1520,8 +1653,8 @@
       "amount_sek": 139845000,
       "trade_date": "2026-03-19",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003X206-1?s%C3%B6kfunktion=Insyn",
-      "score": 62,
-      "score_detail": ""
+      "score": 72,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A003X175-1",
