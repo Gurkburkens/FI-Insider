@@ -1,8 +1,46 @@
 {
-  "updated": "2026-06-10T09:47:20.670790",
+  "updated": "2026-06-11T10:14:42.685483",
   "threshold_sek": 1000000,
-  "total": 106,
+  "total": 109,
   "trades": [
+    {
+      "id": "A003Z897-1",
+      "published": "2026-06-11",
+      "company": "Fastighetsbolaget Emilshus AB",
+      "person": "Björn Garat",
+      "role": "Styrelseledamot",
+      "instrument": "Fastighetsbolaget Emilshus AB Pref",
+      "instrument_type": "Aktie",
+      "isin": "SE0016785794",
+      "trade_type": "Förvärv",
+      "volume": "835 000",
+      "price": "30,00",
+      "currency": "SEK",
+      "amount_sek": 25050000.0,
+      "trade_date": "2026-06-09",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z897-1?s%C3%B6kfunktion=Insyn",
+      "score": 67,
+      "score_detail": ""
+    },
+    {
+      "id": "A003Z869-1",
+      "published": "2026-06-10",
+      "company": "Morrow Bank AB",
+      "person": "Lars Niklas Midby",
+      "role": "Styrelseordförande",
+      "instrument": "Morrow Bank AB",
+      "instrument_type": "Obligation",
+      "isin": "NO0013755249",
+      "trade_type": "Förvärv",
+      "volume": "1",
+      "price": "1 250 000,00",
+      "currency": "SEK",
+      "amount_sek": 1250000.0,
+      "trade_date": "2026-06-09",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z869-1?s%C3%B6kfunktion=Insyn",
+      "score": 45,
+      "score_detail": ""
+    },
     {
       "id": "A003Z807-1",
       "published": "2026-06-09",
@@ -59,6 +97,25 @@
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z792-1?s%C3%B6kfunktion=Insyn",
       "score": 62,
       "score_detail": ""
+    },
+    {
+      "id": "A003Z872-1",
+      "published": "2026-06-10",
+      "company": "CellaVision AB",
+      "person": "christer Fåhraeus",
+      "role": "Styrelseledamot",
+      "instrument": "CellaVision AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000683484",
+      "trade_type": "Förvärv",
+      "volume": "62 000",
+      "price": "127,40",
+      "currency": "SEK",
+      "amount_sek": 7898800.0,
+      "trade_date": "2026-06-08",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z872-1?s%C3%B6kfunktion=Insyn",
+      "score": 72,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A003Z815-1",
@@ -152,7 +209,7 @@
       "amount_sek": 1270000.0,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z721-1?s%C3%B6kfunktion=Insyn",
-      "score": 33,
+      "score": 37,
       "score_detail": ""
     },
     {
@@ -247,7 +304,7 @@
       "amount_sek": 1082730.0,
       "trade_date": "2026-06-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z540-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -532,7 +589,7 @@
       "amount_sek": 1801000,
       "trade_date": "2026-05-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z287-1?s%C3%B6kfunktion=Insyn",
-      "score": 37,
+      "score": 34,
       "score_detail": ""
     },
     {
@@ -684,7 +741,7 @@
       "amount_sek": 2590000,
       "trade_date": "2026-05-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z062-1?s%C3%B6kfunktion=Insyn",
-      "score": 42,
+      "score": 40,
       "score_detail": ""
     },
     {
