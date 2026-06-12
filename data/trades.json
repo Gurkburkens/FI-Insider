@@ -1,8 +1,27 @@
 {
-  "updated": "2026-06-11T10:14:42.685483",
+  "updated": "2026-06-12T10:02:12.530488",
   "threshold_sek": 1000000,
-  "total": 109,
+  "total": 110,
   "trades": [
+    {
+      "id": "A003Z985-1",
+      "published": "2026-06-12",
+      "company": "RaySearch Laboratories AB (publ)",
+      "person": "Johan Löf",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "RaySearch Laboratories AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000135485",
+      "trade_type": "Förvärv",
+      "volume": "9 243",
+      "price": "216,3694",
+      "currency": "SEK",
+      "amount_sek": 1999902.3642000002,
+      "trade_date": "2026-06-11",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z985-1?s%C3%B6kfunktion=Insyn",
+      "score": 54,
+      "score_detail": ""
+    },
     {
       "id": "A003Z897-1",
       "published": "2026-06-11",
@@ -114,8 +133,8 @@
       "amount_sek": 7898800.0,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z872-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
-      "score_detail": "3x köp av samma person"
+      "score": 60,
+      "score_detail": ""
     },
     {
       "id": "A003Z815-1",
@@ -133,7 +152,7 @@
       "amount_sek": 4589953.25,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z815-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
+      "score": 68,
       "score_detail": ""
     },
     {
@@ -152,7 +171,7 @@
       "amount_sek": 87462000.0,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z793-1?s%C3%B6kfunktion=Insyn",
-      "score": 82,
+      "score": 80,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -171,7 +190,7 @@
       "amount_sek": 1765814.35,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z791-1?s%C3%B6kfunktion=Insyn",
-      "score": 45,
+      "score": 43,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -190,7 +209,7 @@
       "amount_sek": 1749970.2000000002,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z781-1?s%C3%B6kfunktion=Insyn",
-      "score": 45,
+      "score": 43,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -209,7 +228,7 @@
       "amount_sek": 1270000.0,
       "trade_date": "2026-06-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z721-1?s%C3%B6kfunktion=Insyn",
-      "score": 37,
+      "score": 35,
       "score_detail": ""
     },
     {
@@ -266,7 +285,7 @@
       "amount_sek": 1008329.5,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z689-1?s%C3%B6kfunktion=Insyn",
-      "score": 40,
+      "score": 37,
       "score_detail": ""
     },
     {
@@ -285,7 +304,7 @@
       "amount_sek": 1258720.32,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z586-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -513,7 +532,7 @@
       "amount_sek": 2103300.0,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z375-1?s%C3%B6kfunktion=Insyn",
-      "score": 32,
+      "score": 29,
       "score_detail": ""
     },
     {
@@ -532,7 +551,7 @@
       "amount_sek": 14915630.6,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z362-1?s%C3%B6kfunktion=Insyn",
-      "score": 62,
+      "score": 59,
       "score_detail": ""
     },
     {
@@ -551,7 +570,7 @@
       "amount_sek": 23976508.5,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z315-1?s%C3%B6kfunktion=Insyn",
-      "score": 67,
+      "score": 64,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -570,7 +589,7 @@
       "amount_sek": 10000000,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z275-1?s%C3%B6kfunktion=Insyn",
-      "score": 59,
+      "score": 56,
       "score_detail": ""
     },
     {
@@ -646,7 +665,7 @@
       "amount_sek": 3781843,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z082-1?s%C3%B6kfunktion=Insyn",
-      "score": 51,
+      "score": 49,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -665,7 +684,7 @@
       "amount_sek": 1256349.8,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z069-1?s%C3%B6kfunktion=Insyn",
-      "score": 38,
+      "score": 36,
       "score_detail": ""
     },
     {
@@ -684,7 +703,7 @@
       "amount_sek": 3724042.6,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z068-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
@@ -703,7 +722,7 @@
       "amount_sek": 1512780,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z043-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -722,7 +741,7 @@
       "amount_sek": 2211300,
       "trade_date": "2026-05-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z029-1?s%C3%B6kfunktion=Insyn",
-      "score": 29,
+      "score": 27,
       "score_detail": ""
     },
     {
