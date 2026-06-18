@@ -1,8 +1,46 @@
 {
-  "updated": "2026-06-17T10:45:42.377013",
+  "updated": "2026-06-18T10:13:06.981423",
   "threshold_sek": 1000000,
-  "total": 116,
+  "total": 118,
   "trades": [
+    {
+      "id": "A004A303-1",
+      "published": "2026-06-17",
+      "company": "Asmodee Group AB",
+      "person": "Thomas Koegler",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "Asmodee Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0023615638",
+      "trade_type": "Förvärv",
+      "volume": "9 100",
+      "price": "132,50",
+      "currency": "SEK",
+      "amount_sek": 1205750.0,
+      "trade_date": "2026-06-17",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A303-1?s%C3%B6kfunktion=Insyn",
+      "score": 54,
+      "score_detail": ""
+    },
+    {
+      "id": "A004A288-1",
+      "published": "2026-06-17",
+      "company": "QLIRO AB",
+      "person": "Christoffer Rutgersson",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "Qliro AB (teckningsoption, ej Euroclearansluten)",
+      "instrument_type": "Teckningsoption",
+      "isin": "SE0013719077",
+      "trade_type": "Förvärv",
+      "volume": "750 000",
+      "price": "4,20",
+      "currency": "SEK",
+      "amount_sek": 3150000.0,
+      "trade_date": "2026-06-16",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A288-1?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": ""
+    },
     {
       "id": "A004A226-1",
       "published": "2026-06-16",
@@ -38,8 +76,8 @@
       "amount_sek": 2002997.5,
       "trade_date": "2026-06-15",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A278-1?s%C3%B6kfunktion=Insyn",
-      "score": 42,
-      "score_detail": "2x köp av samma person"
+      "score": 37,
+      "score_detail": ""
     },
     {
       "id": "A004A240-1",
@@ -57,8 +95,8 @@
       "amount_sek": 26647874.0,
       "trade_date": "2026-06-15",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A240-1?s%C3%B6kfunktion=Insyn",
-      "score": 77,
-      "score_detail": "3x köp av samma person"
+      "score": 72,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A004A192-1",
@@ -114,8 +152,8 @@
       "amount_sek": 17880660.0,
       "trade_date": "2026-06-12",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A114-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
-      "score_detail": "3x köp av samma person"
+      "score": 65,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Z985-1",
@@ -437,7 +475,7 @@
       "amount_sek": 1082730.0,
       "trade_date": "2026-06-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z540-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 43,
       "score_detail": ""
     },
     {
@@ -722,7 +760,7 @@
       "amount_sek": 1801000,
       "trade_date": "2026-05-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z287-1?s%C3%B6kfunktion=Insyn",
-      "score": 34,
+      "score": 32,
       "score_detail": ""
     },
     {
