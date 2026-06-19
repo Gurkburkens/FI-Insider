@@ -1,8 +1,27 @@
 {
-  "updated": "2026-06-18T10:13:06.981423",
+  "updated": "2026-06-19T10:18:12.013203",
   "threshold_sek": 1000000,
-  "total": 118,
+  "total": 119,
   "trades": [
+    {
+      "id": "A004A340",
+      "published": "2026-06-18",
+      "company": "Spago nano medical ab",
+      "person": "Mikael Lönn",
+      "role": "Styrelseledamot",
+      "instrument": "SPAGO BTA",
+      "instrument_type": "BTA (betald tecknad aktie)",
+      "isin": "SE0029278142",
+      "trade_type": "Förvärv",
+      "volume": "13 504 500",
+      "price": "0,11",
+      "currency": "SEK",
+      "amount_sek": 1485495.0,
+      "trade_date": "2026-06-17",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004A340?s%C3%B6kfunktion=Insyn",
+      "score": 46,
+      "score_detail": ""
+    },
     {
       "id": "A004A303-1",
       "published": "2026-06-17",
@@ -76,7 +95,7 @@
       "amount_sek": 2002997.5,
       "trade_date": "2026-06-15",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A278-1?s%C3%B6kfunktion=Insyn",
-      "score": 37,
+      "score": 35,
       "score_detail": ""
     },
     {
@@ -95,7 +114,7 @@
       "amount_sek": 26647874.0,
       "trade_date": "2026-06-15",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A240-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
+      "score": 70,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -114,7 +133,7 @@
       "amount_sek": 1410000.0,
       "trade_date": "2026-06-15",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A192-1?s%C3%B6kfunktion=Insyn",
-      "score": 50,
+      "score": 48,
       "score_detail": ""
     },
     {
@@ -133,7 +152,7 @@
       "amount_sek": 5413500000.0,
       "trade_date": "2026-06-15",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A177-1?s%C3%B6kfunktion=Insyn",
-      "score": 71,
+      "score": 69,
       "score_detail": ""
     },
     {
@@ -171,7 +190,7 @@
       "amount_sek": 1999902.3642000002,
       "trade_date": "2026-06-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z985-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -437,7 +456,7 @@
       "amount_sek": 1008329.5,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z689-1?s%C3%B6kfunktion=Insyn",
-      "score": 37,
+      "score": 34,
       "score_detail": ""
     },
     {
@@ -456,7 +475,7 @@
       "amount_sek": 1258720.32,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z586-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -684,7 +703,7 @@
       "amount_sek": 2103300.0,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z375-1?s%C3%B6kfunktion=Insyn",
-      "score": 29,
+      "score": 27,
       "score_detail": ""
     },
     {
@@ -703,7 +722,7 @@
       "amount_sek": 14915630.6,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z362-1?s%C3%B6kfunktion=Insyn",
-      "score": 59,
+      "score": 57,
       "score_detail": ""
     },
     {
@@ -722,7 +741,7 @@
       "amount_sek": 23976508.5,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z315-1?s%C3%B6kfunktion=Insyn",
-      "score": 64,
+      "score": 62,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -741,7 +760,7 @@
       "amount_sek": 10000000,
       "trade_date": "2026-05-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z275-1?s%C3%B6kfunktion=Insyn",
-      "score": 56,
+      "score": 54,
       "score_detail": ""
     },
     {
