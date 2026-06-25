@@ -1,8 +1,27 @@
 {
-  "updated": "2026-06-24T08:57:57.852545",
+  "updated": "2026-06-25T08:52:24.270908",
   "threshold_sek": 1000000,
-  "total": 119,
+  "total": 120,
   "trades": [
+    {
+      "id": "A004A472-1",
+      "published": "2026-06-24",
+      "company": "Viking Supply Ships AB",
+      "person": "Bengt A. Rem",
+      "role": "Styrelseordförande",
+      "instrument": "Viking Supply Ships AB A-aktier",
+      "instrument_type": "Aktie",
+      "isin": "",
+      "trade_type": "Förvärv",
+      "volume": "14 608",
+      "price": "166,50",
+      "currency": "SEK",
+      "amount_sek": 2432232.0,
+      "trade_date": "2026-06-24",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A472-1?s%C3%B6kfunktion=Insyn",
+      "score": 55,
+      "score_detail": ""
+    },
     {
       "id": "A004A340",
       "published": "2026-06-18",
@@ -19,7 +38,7 @@
       "amount_sek": 1485495.0,
       "trade_date": "2026-06-17",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004A340?s%C3%B6kfunktion=Insyn",
-      "score": 44,
+      "score": 41,
       "score_detail": ""
     },
     {
@@ -38,7 +57,7 @@
       "amount_sek": 1205750.0,
       "trade_date": "2026-06-17",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A303-1?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 49,
       "score_detail": ""
     },
     {
@@ -494,7 +513,7 @@
       "amount_sek": 1082730.0,
       "trade_date": "2026-06-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z540-1?s%C3%B6kfunktion=Insyn",
-      "score": 43,
+      "score": 41,
       "score_detail": ""
     },
     {
