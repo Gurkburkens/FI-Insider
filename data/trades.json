@@ -1,8 +1,27 @@
 {
-  "updated": "2026-06-25T08:52:24.270908",
+  "updated": "2026-06-26T08:55:48.240554",
   "threshold_sek": 1000000,
-  "total": 120,
+  "total": 125,
   "trades": [
+    {
+      "id": "A004A491-1",
+      "published": "2026-06-25",
+      "company": "Krona Public Real Estate AB",
+      "person": "Tomas Georgiadis",
+      "role": "Styrelseledamot",
+      "instrument": "Krona Public Real Estate",
+      "instrument_type": "Aktie",
+      "isin": "SE0015657895",
+      "trade_type": "Förvärv",
+      "volume": "81 356",
+      "price": "41,20",
+      "currency": "SEK",
+      "amount_sek": 3351867.2,
+      "trade_date": "2026-06-24",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A491-1?s%C3%B6kfunktion=Insyn",
+      "score": 59,
+      "score_detail": "2x köp av samma person"
+    },
     {
       "id": "A004A472-1",
       "published": "2026-06-24",
@@ -19,8 +38,84 @@
       "amount_sek": 2432232.0,
       "trade_date": "2026-06-24",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A472-1?s%C3%B6kfunktion=Insyn",
-      "score": 55,
+      "score": 60,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A004A507-1",
+      "published": "2026-06-25",
+      "company": "Stillfront Group AB (publ)",
+      "person": "Mohammad Alhaj Hasan",
+      "role": "Styrelseledamot",
+      "instrument": "Stillfront Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0015346135",
+      "trade_type": "Förvärv",
+      "volume": "34 299 098",
+      "price": "5,169",
+      "currency": "SEK",
+      "amount_sek": 177292037.56199998,
+      "trade_date": "2026-06-23",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A507-1?s%C3%B6kfunktion=Insyn",
+      "score": 86,
+      "score_detail": "3x köp av samma person"
+    },
+    {
+      "id": "A004A505",
+      "published": "2026-06-25",
+      "company": "Stillfront Group AB (publ)",
+      "person": "Mohammad Alhaj Hasan",
+      "role": "Styrelseledamot",
+      "instrument": "Stillfront Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0015346135",
+      "trade_type": "Förvärv",
+      "volume": "13 781 079",
+      "price": "5,169",
+      "currency": "SEK",
+      "amount_sek": 71234397.351,
+      "trade_date": "2026-06-23",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004A505?s%C3%B6kfunktion=Insyn",
+      "score": 86,
+      "score_detail": "3x köp av samma person"
+    },
+    {
+      "id": "A004A506-1",
+      "published": "2026-06-25",
+      "company": "Stillfront Group AB (publ)",
+      "person": "Waleed Khaled Mustafa Tuffaha",
+      "role": "Styrelseledamot",
+      "instrument": "Stillfront Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0015346135",
+      "trade_type": "Förvärv",
+      "volume": "10 720 639",
+      "price": "5,169",
+      "currency": "SEK",
+      "amount_sek": 55414982.991,
+      "trade_date": "2026-06-23",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A506-1?s%C3%B6kfunktion=Insyn",
+      "score": 76,
       "score_detail": ""
+    },
+    {
+      "id": "A004A496-1",
+      "published": "2026-06-25",
+      "company": "Storytel AB (publ)",
+      "person": "Lars Wingefors",
+      "role": "Styrelseledamot",
+      "instrument": "Storytel AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0007439443",
+      "trade_type": "Förvärv",
+      "volume": "283 016",
+      "price": "89,3614",
+      "currency": "SEK",
+      "amount_sek": 25290705.9824,
+      "trade_date": "2026-06-23",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A496-1?s%C3%B6kfunktion=Insyn",
+      "score": 77,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004A340",
@@ -209,7 +304,7 @@
       "amount_sek": 1999902.3642000002,
       "trade_date": "2026-06-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z985-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -475,7 +570,7 @@
       "amount_sek": 1008329.5,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z689-1?s%C3%B6kfunktion=Insyn",
-      "score": 34,
+      "score": 32,
       "score_detail": ""
     },
     {
@@ -494,7 +589,7 @@
       "amount_sek": 1258720.32,
       "trade_date": "2026-06-04",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z586-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -2109,8 +2204,8 @@
       "amount_sek": 8842138,
       "trade_date": "2026-03-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003W989-1?s%C3%B6kfunktion=Insyn",
-      "score": 48,
-      "score_detail": ""
+      "score": 53,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003X068-1",
