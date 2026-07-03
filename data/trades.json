@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-02T08:47:25.669829",
+  "updated": "2026-07-03T08:54:34.150026",
   "threshold_sek": 1000000,
-  "total": 134,
+  "total": 135,
   "trades": [
     {
       "id": "A004A649-1",
@@ -19,8 +19,27 @@
       "amount_sek": 1574927.360848,
       "trade_date": "2026-07-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A649-1?s%C3%B6kfunktion=Insyn",
-      "score": 55,
-      "score_detail": ""
+      "score": 60,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A004A680-1",
+      "published": "2026-07-03",
+      "company": "H & M Hennes & Mauritz AB",
+      "person": "Karl-Johan Persson",
+      "role": "Styrelseordförande",
+      "instrument": "Hennes & Mauritz AB, H & M ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000106270",
+      "trade_type": "Förvärv",
+      "volume": "1 500 000",
+      "price": "166,7498",
+      "currency": "SEK",
+      "amount_sek": 250124700.0,
+      "trade_date": "2026-06-30",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A680-1?s%C3%B6kfunktion=Insyn",
+      "score": 87,
+      "score_detail": "5x köp av samma person"
     },
     {
       "id": "A004A608-1",
@@ -38,8 +57,8 @@
       "amount_sek": 4398000.0,
       "trade_date": "2026-06-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A608-1?s%C3%B6kfunktion=Insyn",
-      "score": 67,
-      "score_detail": "2x köp av samma person"
+      "score": 62,
+      "score_detail": ""
     },
     {
       "id": "A004A606-1",
@@ -57,8 +76,8 @@
       "amount_sek": 1097100.0,
       "trade_date": "2026-06-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A606-1?s%C3%B6kfunktion=Insyn",
-      "score": 59,
-      "score_detail": "2x köp av samma person"
+      "score": 54,
+      "score_detail": ""
     },
     {
       "id": "A004A589-1",
@@ -76,8 +95,8 @@
       "amount_sek": 333234800.0,
       "trade_date": "2026-06-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A589-1?s%C3%B6kfunktion=Insyn",
-      "score": 82,
-      "score_detail": "2x köp av samma person"
+      "score": 85,
+      "score_detail": "5x köp av samma person"
     },
     {
       "id": "A004A554-1",
@@ -95,7 +114,7 @@
       "amount_sek": 4252500.0,
       "trade_date": "2026-06-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A554-1?s%C3%B6kfunktion=Insyn",
-      "score": 58,
+      "score": 56,
       "score_detail": ""
     },
     {
@@ -114,7 +133,7 @@
       "amount_sek": 1016512.0,
       "trade_date": "2026-06-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A545-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
@@ -475,7 +494,7 @@
       "amount_sek": 1999902.3642000002,
       "trade_date": "2026-06-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003Z985-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -2109,8 +2128,8 @@
       "amount_sek": 758872800,
       "trade_date": "2026-03-26",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A003X444-1?s%C3%B6kfunktion=Insyn",
-      "score": 76,
-      "score_detail": "2x köp av samma person"
+      "score": 81,
+      "score_detail": "5x köp av samma person"
     },
     {
       "id": "A003X400-1",
