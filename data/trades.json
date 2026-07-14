@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-13T08:57:25.428634",
+  "updated": "2026-07-14T07:52:33.101384",
   "threshold_sek": 1000000,
   "total": 144,
   "trades": [
@@ -19,7 +19,7 @@
       "amount_sek": 4621500.0,
       "trade_date": "2026-07-10",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A848-1?s%C3%B6kfunktion=Insyn",
-      "score": 62,
+      "score": 60,
       "score_detail": ""
     },
     {
@@ -57,8 +57,8 @@
       "amount_sek": 3783000.0,
       "trade_date": "2026-07-09",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A837-1?s%C3%B6kfunktion=Insyn",
-      "score": 57,
-      "score_detail": "2x köp av samma person"
+      "score": 52,
+      "score_detail": ""
     },
     {
       "id": "A004A812-1",
@@ -171,7 +171,7 @@
       "amount_sek": 1509807.9497000002,
       "trade_date": "2026-07-06",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A758-1?s%C3%B6kfunktion=Insyn",
-      "score": 59,
+      "score": 56,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -266,7 +266,7 @@
       "amount_sek": 333234800.0,
       "trade_date": "2026-06-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A589-1?s%C3%B6kfunktion=Insyn",
-      "score": 82,
+      "score": 79,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -285,7 +285,7 @@
       "amount_sek": 4252500.0,
       "trade_date": "2026-06-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A554-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
+      "score": 50,
       "score_detail": ""
     },
     {
@@ -304,7 +304,7 @@
       "amount_sek": 1016512.0,
       "trade_date": "2026-06-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A545-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
