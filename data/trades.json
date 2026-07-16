@@ -1,8 +1,27 @@
 {
-  "updated": "2026-07-15T07:56:47.301792",
+  "updated": "2026-07-16T08:02:40.537449",
   "threshold_sek": 1000000,
-  "total": 147,
+  "total": 149,
   "trades": [
+    {
+      "id": "A004A968-1",
+      "published": "2026-07-15",
+      "company": "Plejd AB",
+      "person": "Iman Karimi",
+      "role": "Annan medlem i bolagets administrations-, lednings- eller kontrollorgan",
+      "instrument": "Plejd",
+      "instrument_type": "Aktie",
+      "isin": "SE0008014476",
+      "trade_type": "Förvärv",
+      "volume": "1 238",
+      "price": "890,92",
+      "currency": "SEK",
+      "amount_sek": 1102958.96,
+      "trade_date": "2026-07-15",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A968-1?s%C3%B6kfunktion=Insyn",
+      "score": 33,
+      "score_detail": ""
+    },
     {
       "id": "A004A933-1",
       "published": "2026-07-14",
@@ -19,8 +38,8 @@
       "amount_sek": 46689561.599999994,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A933-1?s%C3%B6kfunktion=Insyn",
-      "score": 80,
-      "score_detail": "2x köp av samma person"
+      "score": 85,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004A931-1",
@@ -38,7 +57,26 @@
       "amount_sek": 3046844.4000000004,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A931-1?s%C3%B6kfunktion=Insyn",
-      "score": 62,
+      "score": 67,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A004A940",
+      "published": "2026-07-15",
+      "company": "Hultström Group AB",
+      "person": "Petter Stillström",
+      "role": "Styrelseledamot",
+      "instrument": "Hultström Group AB, serie B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000483943",
+      "trade_type": "Förvärv",
+      "volume": "260 000",
+      "price": "3,946402",
+      "currency": "SEK",
+      "amount_sek": 1026064.52,
+      "trade_date": "2026-07-13",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004A940?s%C3%B6kfunktion=Insyn",
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -58,7 +96,7 @@
       "trade_date": "2026-07-13",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A929-1?s%C3%B6kfunktion=Insyn",
       "score": 56,
-      "score_detail": "3x köp av samma person"
+      "score_detail": "4x köp av samma person"
     },
     {
       "id": "A004A848-1",
@@ -152,7 +190,7 @@
       "amount_sek": 5648975.1162,
       "trade_date": "2026-07-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A807-1?s%C3%B6kfunktion=Insyn",
-      "score": 71,
+      "score": 68,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -247,7 +285,7 @@
       "amount_sek": 1574927.360848,
       "trade_date": "2026-07-01",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A649-1?s%C3%B6kfunktion=Insyn",
-      "score": 55,
+      "score": 52,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -418,7 +456,7 @@
       "amount_sek": 4000000.0,
       "trade_date": "2026-06-24",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A524-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -437,7 +475,7 @@
       "amount_sek": 3351867.2,
       "trade_date": "2026-06-24",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A491-1?s%C3%B6kfunktion=Insyn",
-      "score": 56,
+      "score": 54,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -456,7 +494,7 @@
       "amount_sek": 2432232.0,
       "trade_date": "2026-06-24",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A472-1?s%C3%B6kfunktion=Insyn",
-      "score": 47,
+      "score": 45,
       "score_detail": ""
     },
     {
