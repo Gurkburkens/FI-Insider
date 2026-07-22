@@ -1,8 +1,122 @@
 {
-  "updated": "2026-07-21T08:15:07.279216",
+  "updated": "2026-07-22T08:16:03.358077",
   "threshold_sek": 1000000,
-  "total": 169,
+  "total": 175,
   "trades": [
+    {
+      "id": "A004B216-1",
+      "published": "2026-07-22",
+      "company": "Swedish Orphan Biovitrum AB (publ)",
+      "person": "Henrik Stenqvist",
+      "role": "Ekonomichef/finanschef/finansdirektör",
+      "instrument": "Swedish Orphan Biovitrum AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000872095",
+      "trade_type": "Förvärv",
+      "volume": "57 232",
+      "price": "235,15",
+      "currency": "SEK",
+      "amount_sek": 13458104.8,
+      "trade_date": "2026-07-22",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B216-1?s%C3%B6kfunktion=Insyn",
+      "score": 66,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B209-1",
+      "published": "2026-07-21",
+      "company": "Svenska Handelsbanken AB",
+      "person": "Pär Boman",
+      "role": "Styrelseordförande",
+      "instrument": "Svenska Handelsbanken ser. A",
+      "instrument_type": "Aktie",
+      "isin": "SE0007100599",
+      "trade_type": "Förvärv",
+      "volume": "666 866",
+      "price": "140,4792",
+      "currency": "SEK",
+      "amount_sek": 93680802.1872,
+      "trade_date": "2026-07-21",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B209-1?s%C3%B6kfunktion=Insyn",
+      "score": 91,
+      "score_detail": "6x köp av samma person"
+    },
+    {
+      "id": "A004B185-1",
+      "published": "2026-07-21",
+      "company": "Swedish Orphan Biovitrum AB (publ)",
+      "person": "Mahmood Ladha",
+      "role": "Annan medlem i bolagets administrations-, lednings- eller kontrollorgan",
+      "instrument": "Swedish Orphan Biovitrum AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000872095",
+      "trade_type": "Förvärv",
+      "volume": "61 936",
+      "price": "235,15",
+      "currency": "SEK",
+      "amount_sek": 14564250.4,
+      "trade_date": "2026-07-21",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B185-1?s%C3%B6kfunktion=Insyn",
+      "score": 57,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B181-1",
+      "published": "2026-07-21",
+      "company": "Thule Group AB",
+      "person": "Curt Per-Arne Blomquist",
+      "role": "Styrelseledamot",
+      "instrument": "Thule Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0006422390",
+      "trade_type": "Förvärv",
+      "volume": "15 000",
+      "price": "213,16",
+      "currency": "SEK",
+      "amount_sek": 3197400.0,
+      "trade_date": "2026-07-21",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B181-1?s%C3%B6kfunktion=Insyn",
+      "score": 59,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A004B179-1",
+      "published": "2026-07-21",
+      "company": "HANZA AB",
+      "person": "Francesco Franzé",
+      "role": "Styrelseordförande",
+      "instrument": "HANZA Holding AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0005878543",
+      "trade_type": "Förvärv",
+      "volume": "9 000",
+      "price": "129,40",
+      "currency": "SEK",
+      "amount_sek": 1164600.0,
+      "trade_date": "2026-07-21",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B179-1?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B193-1",
+      "published": "2026-07-21",
+      "company": "CTEK AB (publ)",
+      "person": "Henrik Fagrenius",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "CTEK AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0016798763",
+      "trade_type": "Förvärv",
+      "volume": "92 352",
+      "price": "13,5932",
+      "currency": "SEK",
+      "amount_sek": 1255359.2064,
+      "trade_date": "2026-07-20",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B193-1?s%C3%B6kfunktion=Insyn",
+      "score": 54,
+      "score_detail": ""
+    },
     {
       "id": "A004B140",
       "published": "2026-07-20",
@@ -19,8 +133,8 @@
       "amount_sek": 7015229.95,
       "trade_date": "2026-07-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004B140?s%C3%B6kfunktion=Insyn",
-      "score": 45,
-      "score_detail": ""
+      "score": 58,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A004B159-1",
@@ -95,7 +209,7 @@
       "amount_sek": 139106300.0,
       "trade_date": "2026-07-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B155-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
+      "score": 76,
       "score_detail": ""
     },
     {
@@ -418,7 +532,7 @@
       "amount_sek": 46689561.599999994,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A933-1?s%C3%B6kfunktion=Insyn",
-      "score": 73,
+      "score": 70,
       "score_detail": ""
     },
     {
@@ -437,7 +551,7 @@
       "amount_sek": 3046844.4000000004,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A931-1?s%C3%B6kfunktion=Insyn",
-      "score": 60,
+      "score": 57,
       "score_detail": ""
     },
     {
@@ -589,7 +703,7 @@
       "amount_sek": 2497500.0,
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A782-1?s%C3%B6kfunktion=Insyn",
-      "score": 32,
+      "score": 29,
       "score_detail": ""
     },
     {
@@ -608,7 +722,7 @@
       "amount_sek": 2026188.0291999998,
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A779-1?s%C3%B6kfunktion=Insyn",
-      "score": 60,
+      "score": 57,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -627,7 +741,7 @@
       "amount_sek": 8520000.0,
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A767-1?s%C3%B6kfunktion=Insyn",
-      "score": 67,
+      "score": 64,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -684,7 +798,7 @@
       "amount_sek": 250124700.0,
       "trade_date": "2026-06-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A680-1?s%C3%B6kfunktion=Insyn",
-      "score": 79,
+      "score": 77,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -703,7 +817,7 @@
       "amount_sek": 4398000.0,
       "trade_date": "2026-06-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A608-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
+      "score": 52,
       "score_detail": ""
     },
     {
@@ -722,7 +836,7 @@
       "amount_sek": 1097100.0,
       "trade_date": "2026-06-30",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A606-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -1938,8 +2052,8 @@
       "amount_sek": 10442700,
       "trade_date": "2026-05-12",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A003Y491?s%C3%B6kfunktion=Insyn",
-      "score": 52,
-      "score_detail": ""
+      "score": 57,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A003Y500",
