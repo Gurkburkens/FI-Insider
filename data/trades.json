@@ -1,8 +1,46 @@
 {
-  "updated": "2026-07-28T08:23:19.527793",
+  "updated": "2026-07-29T08:29:13.226382",
   "threshold_sek": 1000000,
-  "total": 185,
+  "total": 188,
   "trades": [
+    {
+      "id": "A004B354-1",
+      "published": "2026-07-29",
+      "company": "Swedish Orphan Biovitrum AB (publ)",
+      "person": "Christin Wesström",
+      "role": "Annan ledande befattningshavare",
+      "instrument": "Swedish Orphan Biovitrum AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000872095",
+      "trade_type": "Förvärv",
+      "volume": "37 292",
+      "price": "235,15",
+      "currency": "SEK",
+      "amount_sek": 8769213.8,
+      "trade_date": "2026-07-28",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B354-1?s%C3%B6kfunktion=Insyn",
+      "score": 59,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B345-1",
+      "published": "2026-07-28",
+      "company": "Nordisk Bergteknik AB (publ)",
+      "person": "Göran Näsholm",
+      "role": "Styrelseordförande",
+      "instrument": "Nordisk Bergteknik AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0015812128",
+      "trade_type": "Förvärv",
+      "volume": "100 000",
+      "price": "10,95",
+      "currency": "SEK",
+      "amount_sek": 1095000.0,
+      "trade_date": "2026-07-28",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B345-1?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": ""
+    },
     {
       "id": "A004B312",
       "published": "2026-07-28",
@@ -19,8 +57,27 @@
       "amount_sek": 15684975.3,
       "trade_date": "2026-07-28",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004B312?s%C3%B6kfunktion=Insyn",
-      "score": 69,
-      "score_detail": "2x köp av samma person"
+      "score": 74,
+      "score_detail": "3x köp av samma person"
+    },
+    {
+      "id": "A004B341-1",
+      "published": "2026-07-28",
+      "company": "Duni AB",
+      "person": "Sven Knutsson",
+      "role": "Styrelseledamot",
+      "instrument": "Duni AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0000616716",
+      "trade_type": "Förvärv",
+      "volume": "81 000",
+      "price": "77,70",
+      "currency": "SEK",
+      "amount_sek": 6293700.0,
+      "trade_date": "2026-07-27",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B341-1?s%C3%B6kfunktion=Insyn",
+      "score": 58,
+      "score_detail": ""
     },
     {
       "id": "A004B333-1",
@@ -39,7 +96,7 @@
       "trade_date": "2026-07-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B333-1?s%C3%B6kfunktion=Insyn",
       "score": 82,
-      "score_detail": "7x köp av samma person"
+      "score_detail": "8x köp av samma person"
     },
     {
       "id": "A004B312-1",
@@ -57,8 +114,8 @@
       "amount_sek": 30312317.618118003,
       "trade_date": "2026-07-24",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B312-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
-      "score_detail": "2x köp av samma person"
+      "score": 77,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004B310-1",
@@ -209,7 +266,7 @@
       "amount_sek": 4255924.18,
       "trade_date": "2026-07-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B255-1?s%C3%B6kfunktion=Insyn",
-      "score": 67,
+      "score": 64,
       "score_detail": "5x köp av samma person"
     },
     {
@@ -228,7 +285,7 @@
       "amount_sek": 93680802.1872,
       "trade_date": "2026-07-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B209-1?s%C3%B6kfunktion=Insyn",
-      "score": 79,
+      "score": 76,
       "score_detail": ""
     },
     {
@@ -247,7 +304,7 @@
       "amount_sek": 14564250.4,
       "trade_date": "2026-07-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B185-1?s%C3%B6kfunktion=Insyn",
-      "score": 62,
+      "score": 59,
       "score_detail": ""
     },
     {
@@ -266,7 +323,7 @@
       "amount_sek": 3197400.0,
       "trade_date": "2026-07-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B181-1?s%C3%B6kfunktion=Insyn",
-      "score": 57,
+      "score": 54,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -285,7 +342,7 @@
       "amount_sek": 1164600.0,
       "trade_date": "2026-07-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B179-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -722,7 +779,7 @@
       "amount_sek": 46689561.599999994,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A933-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
+      "score": 67,
       "score_detail": ""
     },
     {
@@ -741,7 +798,7 @@
       "amount_sek": 3046844.4000000004,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A931-1?s%C3%B6kfunktion=Insyn",
-      "score": 57,
+      "score": 54,
       "score_detail": ""
     },
     {
@@ -893,7 +950,7 @@
       "amount_sek": 2497500.0,
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A782-1?s%C3%B6kfunktion=Insyn",
-      "score": 29,
+      "score": 27,
       "score_detail": ""
     },
     {
@@ -912,7 +969,7 @@
       "amount_sek": 2026188.0291999998,
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A779-1?s%C3%B6kfunktion=Insyn",
-      "score": 57,
+      "score": 55,
       "score_detail": "5x köp av samma person"
     },
     {
@@ -931,7 +988,7 @@
       "amount_sek": 8520000.0,
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A767-1?s%C3%B6kfunktion=Insyn",
-      "score": 64,
+      "score": 62,
       "score_detail": "2x köp av samma person"
     },
     {
