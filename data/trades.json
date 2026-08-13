@@ -1,8 +1,141 @@
 {
-  "updated": "2026-08-12T07:15:23.274286",
+  "updated": "2026-08-13T07:17:35.299209",
   "threshold_sek": 1000000,
-  "total": 214,
+  "total": 221,
   "trades": [
+    {
+      "id": "A004B575-1",
+      "published": "2026-08-13",
+      "company": "Teqnion AB",
+      "person": "Hans Johan Steene",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "Teqnion AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0012308088",
+      "trade_type": "Förvärv",
+      "volume": "40 000",
+      "price": "175,00",
+      "currency": "SEK",
+      "amount_sek": 7000000.0,
+      "trade_date": "2026-08-12",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B575-1?s%C3%B6kfunktion=Insyn",
+      "score": 66,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B565",
+      "published": "2026-08-12",
+      "company": "Arlandastad Group AB (publ)",
+      "person": "Krister Karlsson",
+      "role": "Styrelseledamot",
+      "instrument": "Arlandastad Group AB",
+      "instrument_type": "Aktie",
+      "isin": "SE0016276851",
+      "trade_type": "Förvärv",
+      "volume": "950 000",
+      "price": "37,182",
+      "currency": "SEK",
+      "amount_sek": 35322900.0,
+      "trade_date": "2026-08-12",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004B565?s%C3%B6kfunktion=Insyn",
+      "score": 76,
+      "score_detail": "2x köp av samma person"
+    },
+    {
+      "id": "A004B563-1",
+      "published": "2026-08-12",
+      "company": "KlaraBo Sverige AB",
+      "person": "Andreas Morfiadakis",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "KlaraBo Sverige AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0010832287",
+      "trade_type": "Förvärv",
+      "volume": "2 795 270",
+      "price": "14,10",
+      "currency": "SEK",
+      "amount_sek": 39413307.0,
+      "trade_date": "2026-08-12",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B563-1?s%C3%B6kfunktion=Insyn",
+      "score": 75,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B562-1",
+      "published": "2026-08-12",
+      "company": "Bergman & Beving Aktiebolag",
+      "person": "Malin Nordesjö",
+      "role": "Styrelseledamot",
+      "instrument": "Bergman & Beving AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000101362",
+      "trade_type": "Förvärv",
+      "volume": "50 000",
+      "price": "287,75",
+      "currency": "SEK",
+      "amount_sek": 14387500.0,
+      "trade_date": "2026-08-12",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B562-1?s%C3%B6kfunktion=Insyn",
+      "score": 72,
+      "score_detail": "3x köp av samma person"
+    },
+    {
+      "id": "A004B560-1",
+      "published": "2026-08-12",
+      "company": "Storskogen Group AB (publ)",
+      "person": "Annette Brodin Rampe",
+      "role": "Styrelseordförande",
+      "instrument": "Storskogen Group AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0016797732",
+      "trade_type": "Förvärv",
+      "volume": "100 000",
+      "price": "10,89",
+      "currency": "SEK",
+      "amount_sek": 1089000.0,
+      "trade_date": "2026-08-12",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B560-1?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": ""
+    },
+    {
+      "id": "A004B571-1",
+      "published": "2026-08-12",
+      "company": "Corem Property Group AB",
+      "person": "Rutger Arnhult",
+      "role": "Verkställande direktör (VD)",
+      "instrument": "Corem Property Group AB ser. D",
+      "instrument_type": "Aktie",
+      "isin": "SE0015961594",
+      "trade_type": "Förvärv",
+      "volume": "12 000",
+      "price": "229,87",
+      "currency": "SEK",
+      "amount_sek": 2758440.0,
+      "trade_date": "2026-08-11",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B571-1?s%C3%B6kfunktion=Insyn",
+      "score": 68,
+      "score_detail": "5x köp av samma person"
+    },
+    {
+      "id": "A004B559-1",
+      "published": "2026-08-12",
+      "company": "Fastpartner AB",
+      "person": "Sven-Olof Johansson",
+      "role": "Styrelseordförande",
+      "instrument": "Fastpartner AB ser. A",
+      "instrument_type": "Aktie",
+      "isin": "SE0013512506",
+      "trade_type": "Förvärv",
+      "volume": "41 727",
+      "price": "42,9386",
+      "currency": "SEK",
+      "amount_sek": 1791698.9622,
+      "trade_date": "2026-08-11",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B559-1?s%C3%B6kfunktion=Insyn",
+      "score": 61,
+      "score_detail": "7x köp av samma person"
+    },
     {
       "id": "A004B555-1",
       "published": "2026-08-11",
@@ -19,8 +152,8 @@
       "amount_sek": 2468700.0,
       "trade_date": "2026-08-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B555-1?s%C3%B6kfunktion=Insyn",
-      "score": 55,
-      "score_detail": "2x köp av samma person"
+      "score": 60,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004B553-1",
@@ -38,8 +171,8 @@
       "amount_sek": 28825000.0,
       "trade_date": "2026-08-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B553-1?s%C3%B6kfunktion=Insyn",
-      "score": 67,
-      "score_detail": ""
+      "score": 77,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004B552-1",
@@ -57,8 +190,8 @@
       "amount_sek": 163280000.0,
       "trade_date": "2026-08-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B552-1?s%C3%B6kfunktion=Insyn",
-      "score": 85,
-      "score_detail": "2x köp av samma person"
+      "score": 90,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004B547-1",
@@ -76,8 +209,8 @@
       "amount_sek": 8050000.000000001,
       "trade_date": "2026-08-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B547-1?s%C3%B6kfunktion=Insyn",
-      "score": 58,
-      "score_detail": ""
+      "score": 63,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A004B536-1",
@@ -95,8 +228,8 @@
       "amount_sek": 9574805.4,
       "trade_date": "2026-08-11",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B536-1?s%C3%B6kfunktion=Insyn",
-      "score": 63,
-      "score_detail": ""
+      "score": 68,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A004B524-1",
@@ -134,7 +267,7 @@
       "trade_date": "2026-08-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B512-1?s%C3%B6kfunktion=Insyn",
       "score": 59,
-      "score_detail": "6x köp av samma person"
+      "score_detail": "7x köp av samma person"
     },
     {
       "id": "A004B474",
@@ -152,7 +285,7 @@
       "amount_sek": 1012750.6950000001,
       "trade_date": "2026-08-05",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004B474?s%C3%B6kfunktion=Insyn",
-      "score": 57,
+      "score": 54,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -228,7 +361,7 @@
       "amount_sek": 1998416.24,
       "trade_date": "2026-07-31",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B437-1?s%C3%B6kfunktion=Insyn",
-      "score": 41,
+      "score": 45,
       "score_detail": ""
     },
     {
@@ -361,8 +494,8 @@
       "amount_sek": 2410000.0,
       "trade_date": "2026-07-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B396-1?s%C3%B6kfunktion=Insyn",
-      "score": 53,
-      "score_detail": ""
+      "score": 60,
+      "score_detail": "5x köp av samma person"
     },
     {
       "id": "A004B395-1",
@@ -380,7 +513,7 @@
       "amount_sek": 1196100.0,
       "trade_date": "2026-07-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B395-1?s%C3%B6kfunktion=Insyn",
-      "score": 41,
+      "score": 38,
       "score_detail": ""
     },
     {
@@ -399,7 +532,7 @@
       "amount_sek": 23515000.0,
       "trade_date": "2026-07-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004B360?s%C3%B6kfunktion=Insyn",
-      "score": 95,
+      "score": 92,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -418,7 +551,7 @@
       "amount_sek": 4199997.899999999,
       "trade_date": "2026-07-29",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B367-1?s%C3%B6kfunktion=Insyn",
-      "score": 61,
+      "score": 58,
       "score_detail": ""
     },
     {
@@ -685,7 +818,7 @@
       "trade_date": "2026-07-23",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B296-1?s%C3%B6kfunktion=Insyn",
       "score": 65,
-      "score_detail": "6x köp av samma person"
+      "score_detail": "7x köp av samma person"
     },
     {
       "id": "A004B268-1",
@@ -722,7 +855,7 @@
       "amount_sek": 5413500000.0,
       "trade_date": "2026-07-22",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B301-1?s%C3%B6kfunktion=Insyn",
-      "score": 79,
+      "score": 77,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -741,7 +874,7 @@
       "amount_sek": 13458104.8,
       "trade_date": "2026-07-22",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B216-1?s%C3%B6kfunktion=Insyn",
-      "score": 65,
+      "score": 63,
       "score_detail": ""
     },
     {
@@ -761,7 +894,7 @@
       "trade_date": "2026-07-21",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B255-1?s%C3%B6kfunktion=Insyn",
       "score": 59,
-      "score_detail": "6x köp av samma person"
+      "score_detail": "7x köp av samma person"
     },
     {
       "id": "A004B209-1",
@@ -1273,8 +1406,8 @@
       "amount_sek": 46689561.599999994,
       "trade_date": "2026-07-14",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A933-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
-      "score_detail": "2x köp av samma person"
+      "score": 75,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004A931-1",
@@ -1387,8 +1520,8 @@
       "amount_sek": 3783000.0,
       "trade_date": "2026-07-09",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A837-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
-      "score_detail": "2x köp av samma person"
+      "score": 54,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004A812-1",
@@ -1426,7 +1559,7 @@
       "trade_date": "2026-07-08",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A807-1?s%C3%B6kfunktion=Insyn",
       "score": 63,
-      "score_detail": "6x köp av samma person"
+      "score_detail": "7x köp av samma person"
     },
     {
       "id": "A004A782-1",
@@ -1464,7 +1597,7 @@
       "trade_date": "2026-07-07",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A779-1?s%C3%B6kfunktion=Insyn",
       "score": 55,
-      "score_detail": "6x köp av samma person"
+      "score_detail": "7x köp av samma person"
     },
     {
       "id": "A004A767-1",
@@ -1502,7 +1635,7 @@
       "trade_date": "2026-07-06",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004A758-1?s%C3%B6kfunktion=Insyn",
       "score": 51,
-      "score_detail": "6x köp av samma person"
+      "score_detail": "7x köp av samma person"
     },
     {
       "id": "A004A649-1",
