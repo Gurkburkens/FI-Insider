@@ -1,8 +1,27 @@
 {
-  "updated": "2026-11-03T13:27:12.937177",
+  "updated": "2026-11-04T13:38:32.065305",
   "threshold_sek": 1000000,
-  "total": 420,
+  "total": 421,
   "trades": [
+    {
+      "id": "A004D525-1",
+      "published": "2026-11-03",
+      "company": "Essity Aktiebolag (publ)",
+      "person": "Karl Åberg",
+      "role": "Styrelseledamot",
+      "instrument": "Essity AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0009922164",
+      "trade_type": "Förvärv",
+      "volume": "12 414",
+      "price": "279,7988",
+      "currency": "SEK",
+      "amount_sek": 3473422.3032000004,
+      "trade_date": "2026-11-03",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D525-1?s%C3%B6kfunktion=Insyn",
+      "score": 64,
+      "score_detail": "10x köp av samma person"
+    },
     {
       "id": "A004D522-1",
       "published": "2026-11-03",
@@ -19,8 +38,8 @@
       "amount_sek": 6784077.5,
       "trade_date": "2026-11-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D522-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
-      "score_detail": "2x köp av samma person"
+      "score": 54,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004D517-1",
@@ -38,8 +57,8 @@
       "amount_sek": 2600000.0,
       "trade_date": "2026-11-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D517-1?s%C3%B6kfunktion=Insyn",
-      "score": 54,
-      "score_detail": ""
+      "score": 59,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A004D497-1",
@@ -57,8 +76,8 @@
       "amount_sek": 1300000.0,
       "trade_date": "2026-11-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D497-1?s%C3%B6kfunktion=Insyn",
-      "score": 60,
-      "score_detail": "2x köp av samma person"
+      "score": 65,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004D495-1",
@@ -76,8 +95,8 @@
       "amount_sek": 5200000.0,
       "trade_date": "2026-11-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D495-1?s%C3%B6kfunktion=Insyn",
-      "score": 72,
-      "score_detail": "2x köp av samma person"
+      "score": 77,
+      "score_detail": "3x köp av samma person"
     },
     {
       "id": "A004D479-1",
@@ -95,8 +114,8 @@
       "amount_sek": 151593750.0,
       "trade_date": "2026-11-02",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D479-1?s%C3%B6kfunktion=Insyn",
-      "score": 76,
-      "score_detail": "2x köp av samma person"
+      "score": 71,
+      "score_detail": ""
     },
     {
       "id": "A004D465-1",
@@ -228,7 +247,7 @@
       "amount_sek": 3810667.68,
       "trade_date": "2026-10-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D426-1?s%C3%B6kfunktion=Insyn",
-      "score": 56,
+      "score": 53,
       "score_detail": ""
     },
     {
@@ -247,7 +266,7 @@
       "amount_sek": 2110000.0,
       "trade_date": "2026-10-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D387-1?s%C3%B6kfunktion=Insyn",
-      "score": 61,
+      "score": 58,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -266,7 +285,7 @@
       "amount_sek": 1008000.0,
       "trade_date": "2026-10-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004D367?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -285,7 +304,7 @@
       "amount_sek": 1320700.0,
       "trade_date": "2026-10-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D372-1?s%C3%B6kfunktion=Insyn",
-      "score": 38,
+      "score": 35,
       "score_detail": ""
     },
     {
@@ -304,7 +323,7 @@
       "amount_sek": 55456094.5411,
       "trade_date": "2026-10-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D368-1?s%C3%B6kfunktion=Insyn",
-      "score": 75,
+      "score": 72,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -323,7 +342,7 @@
       "amount_sek": 10904807.4992,
       "trade_date": "2026-10-27",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D366-1?s%C3%B6kfunktion=Insyn",
-      "score": 83,
+      "score": 80,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -798,7 +817,7 @@
       "amount_sek": 35000000.000000015,
       "trade_date": "2026-10-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D192-1?s%C3%B6kfunktion=Insyn",
-      "score": 59,
+      "score": 56,
       "score_detail": ""
     },
     {
@@ -817,7 +836,7 @@
       "amount_sek": 1753000.0,
       "trade_date": "2026-10-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D180-1?s%C3%B6kfunktion=Insyn",
-      "score": 49,
+      "score": 46,
       "score_detail": ""
     },
     {
@@ -836,7 +855,7 @@
       "amount_sek": 3859276.80802391,
       "trade_date": "2026-10-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D174-1?s%C3%B6kfunktion=Insyn",
-      "score": 51,
+      "score": 48,
       "score_detail": ""
     },
     {
@@ -855,7 +874,7 @@
       "amount_sek": 1003411.9701008622,
       "trade_date": "2026-10-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D172-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 43,
       "score_detail": ""
     },
     {
@@ -874,7 +893,7 @@
       "amount_sek": 1499984.9999999998,
       "trade_date": "2026-10-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004D165?s%C3%B6kfunktion=Insyn",
-      "score": 35,
+      "score": 32,
       "score_detail": ""
     },
     {
@@ -893,7 +912,7 @@
       "amount_sek": 1487479.9999999998,
       "trade_date": "2026-10-20",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D161-1?s%C3%B6kfunktion=Insyn",
-      "score": 40,
+      "score": 37,
       "score_detail": ""
     },
     {
@@ -3287,8 +3306,8 @@
       "amount_sek": 27973945.095599998,
       "trade_date": "2026-08-24",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004B808-1?s%C3%B6kfunktion=Insyn",
-      "score": 57,
-      "score_detail": ""
+      "score": 67,
+      "score_detail": "10x köp av samma person"
     },
     {
       "id": "A004B796-1",
