@@ -1,8 +1,46 @@
 {
-  "updated": "2026-11-24T16:50:37.112370",
+  "updated": "2026-11-25T16:39:05.860638",
   "threshold_sek": 1000000,
-  "total": 450,
+  "total": 452,
   "trades": [
+    {
+      "id": "A004E058-1",
+      "published": "2026-11-25",
+      "company": "InCoax Networks AB",
+      "person": "Peter Agardh",
+      "role": "Styrelseordförande",
+      "instrument": "InCoax Networks AB",
+      "instrument_type": "Konvertibel",
+      "isin": "SE0009832595",
+      "trade_type": "Förvärv",
+      "volume": "3 850 000",
+      "price": "1,00",
+      "currency": "SEK",
+      "amount_sek": 3850000.0,
+      "trade_date": "2026-11-25",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004E058-1?s%C3%B6kfunktion=Insyn",
+      "score": 53,
+      "score_detail": ""
+    },
+    {
+      "id": "A004E052-1",
+      "published": "2026-11-25",
+      "company": "KINNEVIK AB",
+      "person": "Caspar Sjöstrand",
+      "role": "Ekonomichef/finanschef/finansdirektör",
+      "instrument": "Kinnevik, Investment AB ser. B",
+      "instrument_type": "Aktie",
+      "isin": "SE0000164626",
+      "trade_type": "Förvärv",
+      "volume": "40 607",
+      "price": "67,7093",
+      "currency": "SEK",
+      "amount_sek": 2749471.5450999998,
+      "trade_date": "2026-11-24",
+      "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004E052-1?s%C3%B6kfunktion=Insyn",
+      "score": 51,
+      "score_detail": "2x köp av samma person"
+    },
     {
       "id": "A004E027-1",
       "published": "2026-11-24",
@@ -171,7 +209,7 @@
       "amount_sek": 2375645.984,
       "trade_date": "2026-11-17",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D919-1?s%C3%B6kfunktion=Insyn",
-      "score": 58,
+      "score": 55,
       "score_detail": "6x köp av samma person"
     },
     {
@@ -190,7 +228,7 @@
       "amount_sek": 15606189.473399999,
       "trade_date": "2026-11-17",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D893-1?s%C3%B6kfunktion=Insyn",
-      "score": 70,
+      "score": 67,
       "score_detail": "3x köp av samma person"
     },
     {
@@ -399,7 +437,7 @@
       "amount_sek": 6759999.999999999,
       "trade_date": "2026-11-10",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D681-1?s%C3%B6kfunktion=Insyn",
-      "score": 58,
+      "score": 55,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -513,7 +551,7 @@
       "amount_sek": 1034449.3500000001,
       "trade_date": "2026-11-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D575-1?s%C3%B6kfunktion=Insyn",
-      "score": 46,
+      "score": 44,
       "score_detail": ""
     },
     {
@@ -532,7 +570,7 @@
       "amount_sek": 2236979.816,
       "trade_date": "2026-11-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/RapportHistorik/Index/A004D548?s%C3%B6kfunktion=Insyn",
-      "score": 52,
+      "score": 50,
       "score_detail": "4x köp av samma person"
     },
     {
@@ -551,7 +589,7 @@
       "amount_sek": 3473422.3032000004,
       "trade_date": "2026-11-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D525-1?s%C3%B6kfunktion=Insyn",
-      "score": 51,
+      "score": 49,
       "score_detail": "2x köp av samma person"
     },
     {
@@ -570,7 +608,7 @@
       "amount_sek": 6784077.5,
       "trade_date": "2026-11-03",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D522-1?s%C3%B6kfunktion=Insyn",
-      "score": 36,
+      "score": 34,
       "score_detail": ""
     },
     {
@@ -1501,8 +1539,8 @@
       "amount_sek": 4729670.0,
       "trade_date": "2026-10-19",
       "fi_url": "https://marknadssok.fi.se/Publiceringsklient/sv-SE/Rapportsammanst%C3%A4llning/Index/A004D157-1?s%C3%B6kfunktion=Insyn",
-      "score": 48,
-      "score_detail": ""
+      "score": 53,
+      "score_detail": "2x köp av samma person"
     },
     {
       "id": "A004D120-1",
